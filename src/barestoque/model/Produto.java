@@ -8,7 +8,7 @@ public class Produto
     private double valor;
     private int codigo;
    // private Categoria categoria;
-    private String quantidade;
+    private int quantidade;
     private String unidade;
     private Date validade;
    // private Fornecedor fornecedor;

@@ -7,12 +7,24 @@ public class Produto
     private String nome;
     private double valor;
     private int codigo;
-   // private Categoria categoria;
+    private Categoria categoria;
     private int quantidade;
     private String unidade;
     private Date validade;
-   // private Fornecedor fornecedor;
+    private Fornecedor fornecedor;
 
+
+    public Produto(String nome, double valor, int codigo, Categoria categoria, int quantidade, String unidade, Date validade, Fornecedor fornecedor) {
+        this.nome = nome;
+        this.valor = valor;
+        this.codigo = codigo;
+        this.categoria = categoria;
+        this.quantidade = quantidade;
+        this.unidade = unidade;
+        this.validade = validade;
+        this.fornecedor = fornecedor;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -42,11 +54,11 @@ public class Produto
         this.quantidade = quantidade;
     }
 
-    public int getUnidade() {
+    public String getUnidade() {
         return unidade;
     }
 
-    public void setUnidade(int unidade) {
+    public void setUnidade(String unidade) {
         this.unidade = unidade;
     }
 
@@ -58,13 +70,11 @@ public class Produto
         this.validade = validade;
     }
             
-    public Produto ()
-    {
-    }
+    
+    
     /*public boolean vencido(){
         return false;
     }
             */
-    
 }
 

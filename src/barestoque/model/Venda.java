@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Venda
 {
     private int codigo;
-    //private Cliente cliente;
+    private Cliente cliente;
     private ArrayList <Prato> pratos;
     private double valor;
 

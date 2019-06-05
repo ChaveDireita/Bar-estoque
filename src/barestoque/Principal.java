@@ -1,9 +1,11 @@
 package barestoque;
-import java.util.Date;
+
+import barestoque.model.Venda;
+
 public class Principal
 {
     public static void main(String[] args) 
     {
-      
+        
     }
 }

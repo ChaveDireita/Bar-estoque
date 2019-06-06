@@ -3,6 +3,7 @@ package barestoque;
 import barestoque.view.InicializadorLookAndFeel;
 import barestoque.view.Janela;
 import barestoque.view.telas.TelaInicial;
+import java.util.stream.IntStream;
 
 public class Principal
 {

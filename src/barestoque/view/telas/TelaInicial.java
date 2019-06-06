@@ -12,13 +12,11 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 
-public class TelaInicial extends JPanel
+public class TelaInicial extends Tela
 {
     private JButton botaoSair,
                     botaoIniciar, 
                     botaoConfigurar;
-    
-    private JComponent[] mapa;
     
     public TelaInicial ()
     {
@@ -26,7 +24,7 @@ public class TelaInicial extends JPanel
         setLayout (gl);
         
         botaoIniciar = new JPositiveButton ("Iniciar");
-        botaoConfigurar = new JButton ("Configurar");
+        botaoConfigurar = new JButton ("Configurarações");
         botaoSair = new JNegativeButton ("Sair");
         
         mapa = new JComponent[] {new JPanel (), new JPanel (), new JPanel (),   new JPanel (),   new JPanel (), new JPanel (), new JPanel (), new JPanel (), new JPanel (), new JPanel (),

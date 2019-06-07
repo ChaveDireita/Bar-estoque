@@ -3,11 +3,8 @@ package barestoque.view.telas.fornecedor;
 import barestoque.view.InicializadorLookAndFeel;
 import barestoque.view.Janela;
 import barestoque.view.telas.Tela;
-import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
 
 import java.awt.GridLayout;
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 

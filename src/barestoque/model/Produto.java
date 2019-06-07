@@ -1,7 +1,5 @@
 package barestoque.model;
 
-import java.util.Date;
-
 public class Produto 
 {
     private String nome;
@@ -10,18 +8,16 @@ public class Produto
     private Categoria categoria;
     private int quantidade;
     private String unidade;
-    private Date validade;
     private Fornecedor fornecedor;
 
 
-    public Produto(String nome, double valor, int codigo, Categoria categoria, int quantidade, String unidade, Date validade, Fornecedor fornecedor) {
+    public Produto(String nome, double valor, int codigo, Categoria categoria, int quantidade, String unidade, Fornecedor fornecedor) {
         this.nome = nome;
         this.valor = valor;
         this.codigo = codigo;
         this.categoria = categoria;
         this.quantidade = quantidade;
         this.unidade = unidade;
-        this.validade = validade;
         this.fornecedor = fornecedor;
     }
     
@@ -61,20 +57,5 @@ public class Produto
     public void setUnidade(String unidade) {
         this.unidade = unidade;
     }
-
-    public Date getValidade() {
-        return validade;
-    }
-
-    public void setValidade(Date validade) {
-        this.validade = validade;
-    }
-            
-    
-    
-    /*public boolean vencido(){
-        return false;
-    }
-            */
 }
 

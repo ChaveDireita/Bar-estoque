@@ -6,6 +6,7 @@
 package barestoque.view.telas.fornecedor;
 
 import barestoque.view.InicializadorLookAndFeel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -98,6 +99,22 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoFornecedorNomeActionPerformed
 
+    public JTextField getCampoFornecedorCNPJ ()
+    {
+        return campoFornecedorCNPJ;
+    }
+
+    public JTextField getCampoFornecedorNome ()
+    {
+        return campoFornecedorNome;
+    }
+
+    public JTextField getCampoFornecedorTelefone ()
+    {
+        return campoFornecedorTelefone;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField campoFornecedorCNPJ;

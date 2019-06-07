@@ -1,5 +1,6 @@
 package barestoque.view.telas.fornecedor;
 
+import barestoque.controller.CadastroListenerTemp;
 import barestoque.view.InicializadorLookAndFeel;
 import barestoque.view.Janela;
 import barestoque.view.telas.Tela;
@@ -20,10 +21,11 @@ public class TelaFornecedorCadastro extends Tela
         painelSuporte = new JPanel ();
         painelSuporte.setLayout(new GridBagLayout());
         painelSuporte.setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
-        painelSuporte.add(new CadastroFornecedor());
-        
+        CadastroFornecedor cf = new CadastroFornecedor ();
+        painelSuporte.add(cf);
+        CadastroListenerTemp clt = new CadastroListenerTemp (cf);
         mapa = new JComponent[] {new TelaFornecedorBotoesSet1 (pai),            painelSuporte,
-                                                      new JPanel (), new TelaFornecedorCadastroBotoesSet2(pai)};
+                                                      new JPanel (), new TelaFornecedorCadastroBotoesSet2(pai, clt)};
         
         for (JComponent jc : mapa)
             add (jc);

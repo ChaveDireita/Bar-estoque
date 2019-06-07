@@ -5,6 +5,7 @@
  */
 package barestoque.view.telas.fornecedor;
 
+import barestoque.controller.CadastroListenerTemp;
 import barestoque.view.Janela;
 import barestoque.view.componentes.JNegativeButton;
 import barestoque.view.componentes.JPositiveButton;
@@ -24,7 +25,7 @@ public class TelaFornecedorCadastroBotoesSet2 extends Tela
     private JPositiveButton botaoAdicionar;
     
 
-    public TelaFornecedorCadastroBotoesSet2(Janela pai) {
+    public TelaFornecedorCadastroBotoesSet2(Janela pai, CadastroListenerTemp cadastro) {
         super(pai);
         
         setLayout (new GridLayout(3, 5, 8, 8));
@@ -35,6 +36,7 @@ public class TelaFornecedorCadastroBotoesSet2 extends Tela
         
         //<remover>
             botaoSair.addActionListener(e -> pai.dispose());
+            botaoAdicionar.addActionListener (cadastro);
         //</remover>
         
         mapa = new JComponent[] {new JPanel (), new JPanel (),  new JPanel (), botaoAdicionar,   botaoLimpar,

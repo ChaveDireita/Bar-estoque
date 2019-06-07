@@ -1,5 +1,6 @@
 package barestoque.DAO;
 
+import barestoque.model.Fornecedor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 

@@ -16,6 +16,15 @@ public class Fornecedor {
         this.cnpj = cnpj;
     }
 
+    public Fornecedor (String nome, String telefone, String cnpj)
+    {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.cnpj = cnpj;
+    }
+    
+    
+    
     //Métodos Acessores e Modificadores
     public int getCodigo() {
         return codigo;

@@ -4,7 +4,6 @@ import barestoque.view.InicializadorLookAndFeel;
 import barestoque.view.Janela;
 import barestoque.view.telas.TelaInicial;
 import barestoque.view.telas.TelaMenu;
-import java.util.stream.IntStream;
 
 public class Principal
 {
@@ -13,6 +12,8 @@ public class Principal
         new InicializadorLookAndFeel ().init();
         Janela j = new Janela ("Teste", 1280, 768, true);
         j.aparecer();
-        j.setCena(new TelaMenu());
+        j.setCena(new TelaInicial(j));
+        
+        
     }
 }

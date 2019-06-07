@@ -10,31 +10,31 @@ public class JNegativeButton extends JButton
 
     public JNegativeButton() 
     {
-        setBackground (InicializadorLookAndFeel.BOTAO_NEGATIVO);
+        setBackground (InicializadorLookAndFeel.COR_BOTAO_NEGATIVO);
     }
 
     public JNegativeButton(Icon icon)
     {
         super(icon);
-        setBackground (InicializadorLookAndFeel.BOTAO_NEGATIVO);
+        setBackground (InicializadorLookAndFeel.COR_BOTAO_NEGATIVO);
     }
 
     public JNegativeButton(String text) 
     {
         super(text);
-        setBackground (InicializadorLookAndFeel.BOTAO_NEGATIVO);
+        setBackground (InicializadorLookAndFeel.COR_BOTAO_NEGATIVO);
     }
 
     public JNegativeButton(Action a) 
     {
         super(a);
-        setBackground (InicializadorLookAndFeel.BOTAO_NEGATIVO);
+        setBackground (InicializadorLookAndFeel.COR_BOTAO_NEGATIVO);
     }
 
     public JNegativeButton(String text, Icon icon) 
     {
         super(text, icon);
-        setBackground (InicializadorLookAndFeel.BOTAO_NEGATIVO);
+        setBackground (InicializadorLookAndFeel.COR_BOTAO_NEGATIVO);
     }
     
 }

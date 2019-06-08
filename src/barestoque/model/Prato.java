@@ -2,9 +2,8 @@ package barestoque.model;
 
 import java.util.ArrayList;
 
-public class Prato 
+public class Prato extends EntidadeBanco
 {
-    private int codigo;
     private ArrayList <Produto> ingredientes;
     private String nome;
     private double valor;
@@ -15,11 +14,6 @@ public class Prato
         for (Produto p: ingredientes)
             valorDeProducao += p.getValor();
         return valor - valorDeProducao;
-    }
-
-    public int getCodigo() 
-    {
-        return codigo;
     }
     
     public ArrayList<Produto> getIngredientes() 

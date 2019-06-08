@@ -1,21 +1,17 @@
 package barestoque.model;
 
-public class Compra {
-    private int codigo;
-    private int codigoProduto;
+public class Compra extends EntidadeBanco{
+    
+    private Produto produto;
     private int quantidade;
     private double valor;
 
-    public int getCodigo() {
-        return codigo;
+    public Produto getCodigoProduto() {
+        return produto;
     }
 
-    public int getCodigoProduto() {
-        return codigoProduto;
-    }
-
-    public void setCodigoProduto(int codigoProduto) {
-        this.codigoProduto = codigoProduto;
+    public void setCodigoProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public int getQuantidade() {

@@ -1,10 +1,9 @@
 package barestoque.model;
 
-public class Produto 
+public class Produto extends EntidadeBanco
 {
     private String nome;
     private double valor;
-    private int codigo;
     private Categoria categoria;
     private int quantidade;
     private String unidade;
@@ -37,11 +36,6 @@ public class Produto
         this.valor = valor;
     }
 
-    public int getCodigo() {
-        return codigo;
-    }
-
-
     public int getQuantidade() {
         return quantidade;
     }
@@ -57,5 +51,27 @@ public class Produto
     public void setUnidade(String unidade) {
         this.unidade = unidade;
     }
+
+    public Categoria getCategoria ()
+    {
+        return categoria;
+    }
+
+    public void setCategoria (Categoria categoria)
+    {
+        this.categoria = categoria;
+    }
+
+    public Fornecedor getFornecedor ()
+    {
+        return fornecedor;
+    }
+
+    public void setFornecedor (Fornecedor fornecedor)
+    {
+        this.fornecedor = fornecedor;
+    }
+    
+    
 }
 

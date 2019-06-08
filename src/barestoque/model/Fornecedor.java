@@ -1,9 +1,8 @@
 package barestoque.model;
 
-public class Fornecedor {
+public class Fornecedor extends EntidadeBanco{
     
     //Atributos
-    private int codigo;
     private String nome;
     private String telefone;
     private String cnpj;
@@ -17,9 +16,6 @@ public class Fornecedor {
     }
 
     //Métodos Acessores e Modificadores
-    public int getCodigo() {
-        return codigo;
-    }
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;

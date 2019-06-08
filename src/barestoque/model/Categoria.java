@@ -1,14 +1,8 @@
 package barestoque.model;
 
-public class Categoria 
+public class Categoria extends EntidadeBanco
 {
-    private int codigo;
     private String nome;
-
-    public int getCodigo() 
-    {
-        return codigo;
-    }
 
     public String getNome() 
     {

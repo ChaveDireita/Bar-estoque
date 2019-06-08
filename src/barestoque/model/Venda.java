@@ -2,9 +2,8 @@ package barestoque.model;
 
 import java.util.ArrayList;
 
-public class Venda
+public class Venda extends EntidadeBanco
 {
-    private int codigo;
     private Cliente cliente;
     private ArrayList <Prato> pratos;
     private double valor;
@@ -33,10 +32,5 @@ public class Venda
     public void setValor(double valor) 
     {
         this.valor = valor;
-    }
-
-    public int getCodigo() 
-    {
-        return codigo;
     }
 }

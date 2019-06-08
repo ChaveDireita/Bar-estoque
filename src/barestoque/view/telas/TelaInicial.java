@@ -1,12 +1,10 @@
 
 package barestoque.view.telas;
 
-import barestoque.view.InicializadorLookAndFeel;
 import barestoque.view.Janela;
 import barestoque.view.componentes.*;
 
 import java.awt.GridLayout;
-import java.awt.Component;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 
@@ -20,7 +18,7 @@ public class TelaInicial extends Tela
     
     public TelaInicial (Janela pai)
     {
-        super (pai);
+        super (pai, 6, 10);
         GridLayout gl = new GridLayout (6, 10, 8, 8);
         setLayout (gl);
         
@@ -32,15 +30,10 @@ public class TelaInicial extends Tela
             botaoIniciar.addActionListener(e -> pai.setCena(new TelaMenu (pai)));
         //</remover>
         
-        mapa = new JComponent[] {new JPanel (), new JPanel (), new JPanel (),   new JPanel (),   new JPanel (), new JPanel (), new JPanel (), new JPanel (), new JPanel (), new JPanel (),
-                                 new JPanel (), new JPanel (), new JPanel (),   new JPanel (),   new JPanel (), new JPanel (), new JPanel (), new JPanel (), new JPanel (), new JPanel (),
-                                 new JPanel (), new JPanel (), new JPanel (),    botaoIniciar,   new JPanel (), new JPanel (), new JPanel (), new JPanel (), new JPanel (), new JPanel (),
-                                 new JPanel (), new JPanel (), new JPanel (),   new JPanel (),   new JPanel (), new JPanel (), new JPanel (), new JPanel (), new JPanel (), new JPanel (),
-                                 new JPanel (), new JPanel (), new JPanel (),   new JPanel (),   new JPanel (), new JPanel (), new JPanel (), new JPanel (), new JPanel (), new JPanel (),
-                                 new JPanel (), new JPanel (), new JPanel (),   new JPanel (),   new JPanel (), new JPanel (), new JPanel (), new JPanel (), new JPanel (), botaoSair};
+        insertMapa(botaoIniciar, 2, 3);
+        insertMapa(botaoSair, 5, 9);
         
-        for (JComponent jc : mapa)
-            add (jc);
+        montarTela();
     }
     
     

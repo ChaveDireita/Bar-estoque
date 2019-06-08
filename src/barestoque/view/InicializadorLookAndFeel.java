@@ -1,23 +1,25 @@
+package barestoque.view;
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.UIManager;
+import javax.swing.border.StrokeBorder;
+
 /**
- * A classe InicializadorLookAndFeel modifica as chaves (Object keys) da classe 
- * UIManager. Essas chaves correspondem aos dados padrões de aparência dos 
- * componentes swing. 
+ * InicializadorLookAndFeel.
+ * 
+ * Assumindo uma forma mais elegante, uma das gambiarras do meu PBL 2 foi con-
+ * vertida na classe InicializadorLookAndFeel. Ela modifica as chaves
+ * (Object keys) da classe UIManager, que correspondem aos dados padrão de apa-
+ * rência dos componentes swing.
  * 
  * Por exemplo, UIManager.put ("Button.background", algumObjetoTipoColor) modi-
  * fica todos os JButtons que serão criados para ter a cor "algumObjeoTipoColor"
  * 
  * @author Filipe Nolasco (ChaveDireita)
  */
-package barestoque.view;
-
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Insets;
-
-import javax.swing.UIManager;
-import javax.swing.border.StrokeBorder;
-
 
 public class InicializadorLookAndFeel 
 {
@@ -55,7 +57,7 @@ public class InicializadorLookAndFeel
         
         //Bordas
         UIManager.put ("TitledBorder.font", FONTE_LABEL_PADRAO);
-        UIManager.put ("TitledBorder.border", new StrokeBorder (new BasicStroke (0f), COR_BACKGROUND));
+        UIManager.put ("TitledBorder.border", new StrokeBorder (new BasicStroke (40f), COR_FOREGROUND));
         
         //Campos de texto
         UIManager.put ("TextField.background", COR_CAMPO_TEXTO_PADRAO);
@@ -65,5 +67,15 @@ public class InicializadorLookAndFeel
         UIManager.put ("TextField.selectionForeground", COR_CAMPO_TEXTO_PADRAO);
         UIManager.put ("TextField.caretForeground", COR_BACKGROUND);
         UIManager.put ("TextField.font", FONTE_LABEL_PADRAO);
+        
+        //ComboBoxes
+        UIManager.put ("ComboBox.background", COR_CAMPO_TEXTO_PADRAO);
+        UIManager.put ("ComboBox.foreground", COR_BACKGROUND);
+        UIManager.put ("ComboBox.border", new StrokeBorder (new BasicStroke (1f), COR_BACKGROUND));
+        UIManager.put ("ComboBox.selectionBackground", COR_BACKGROUND);
+        UIManager.put ("ComboBox.selectionForeground", COR_CAMPO_TEXTO_PADRAO);
+        UIManager.put ("ComboBox.buttonHighlight", COR_FOREGROUND);
+        UIManager.put ("ComboBox.font", FONTE_LABEL_PADRAO);
+        
     }
 }

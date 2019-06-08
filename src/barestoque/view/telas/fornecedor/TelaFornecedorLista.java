@@ -1,5 +1,6 @@
 package barestoque.view.telas.fornecedor;
 
+import barestoque.view.componentes.SetBotoesApenasSair;
 import barestoque.view.Janela;
 import barestoque.view.telas.Tela;
 import java.awt.GridLayout;
@@ -12,14 +13,15 @@ public class TelaFornecedorLista extends Tela
 
     public TelaFornecedorLista(Janela pai) 
     {
-        super(pai);
+        super(pai, 2, 2);
         
         setLayout (new GridLayout (2, 2, 8, 8));
         
+        insertMapa(new TelaFornecedorBotoesMenu (pai), 0, 0);
+        insertMapa(new JTable (), 0, 1);
+        insertMapa(new SetBotoesApenasSair(pai), 1, 1);
         
-        
-        mapa = new JComponent[] {new TelaFornecedorBotoesSet1 (pai),                     new JTable (),
-                                                      new JPanel (), new TelaFornecedorBotoesSet2(pai)};
+        montarTela();
     }
     
 }

@@ -4,6 +4,7 @@ import barestoque.view.InicializadorLookAndFeel;
 import barestoque.view.Janela;
 import barestoque.view.telas.TelaInicial;
 import barestoque.view.telas.TelaMenu;
+import barestoque.view.telas.produto.TelaProduto;
 
 public class Principal
 {

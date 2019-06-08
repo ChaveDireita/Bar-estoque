@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-public class TelaFornecedorBotoesSet1 extends Tela
+public class TelaFornecedorBotoesMenu extends Tela
 {
     private JButton botaoCadastrar,
                     botaoListar;
@@ -17,9 +17,9 @@ public class TelaFornecedorBotoesSet1 extends Tela
     private JNegativeButton botaoVoltar;
     
     
-    public TelaFornecedorBotoesSet1(Janela pai)
+    public TelaFornecedorBotoesMenu(Janela pai)
     {
-        super(pai);
+        super(pai, 3, 5);
         
         setLayout (new GridLayout (3, 5, 8, 8));
         
@@ -32,12 +32,11 @@ public class TelaFornecedorBotoesSet1 extends Tela
             botaoCadastrar.addActionListener(e -> pai.setCena(new TelaFornecedorCadastro(pai)));
         //</remover>
         
-        mapa = new JComponent[] {new JPanel (), new JPanel (),  new JPanel (), new JPanel (), new JPanel (),
-                                 new JPanel (), new JPanel (), botaoCadastrar, new JPanel (), new JPanel (),
-                                 new JPanel (),   botaoListar,    botaoVoltar, new JPanel (), new JPanel ()};
+        insertMapa(botaoCadastrar, 1, 2);
+        insertMapa(botaoListar, 2, 1);
+        insertMapa(botaoVoltar, 2, 2);
         
-         for (JComponent jc : mapa)
-            add (jc);
+         montarTela();
     }
     
 }

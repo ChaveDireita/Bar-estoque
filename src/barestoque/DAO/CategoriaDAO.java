@@ -12,7 +12,7 @@ public class CategoriaDAO {
     }
     
     public void inserirCategoria(Categoria categoria){
-        String script = "Insert into categoria (nome) values(?)";
+        String script = "Insert into categoria (nome) values(?);";
         try(Connection conexao = fabrica.conectar()){
             
             PreparedStatement declaracao = conexao.prepareStatement(script);

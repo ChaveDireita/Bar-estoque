@@ -31,7 +31,7 @@ public class TelaClienteBotoesMenu extends Tela
         insertMapa(botaoListar, 1, 1);
         insertMapa(botaoVoltar, 1, 2);
         
-         montarTela();
+        montarTela();
     }
     
     

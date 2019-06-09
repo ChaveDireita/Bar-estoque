@@ -2,6 +2,7 @@ package barestoque.view.telas.fornecedor;
 
 import barestoque.view.Janela;
 import barestoque.view.componentes.JNegativeButton;
+import barestoque.view.componentes.SetBotoesMenu;
 import barestoque.view.telas.Tela;
 import barestoque.view.telas.TelaMenu;
 import java.awt.GridLayout;
@@ -9,23 +10,11 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-public class TelaFornecedorBotoesMenu extends Tela
+public class TelaFornecedorBotoesMenu extends SetBotoesMenu
 {
-    private JButton botaoCadastrar,
-                    botaoListar;
-    
-    private JNegativeButton botaoVoltar;
-    
-    
     public TelaFornecedorBotoesMenu(Janela pai)
     {
-        super(pai, 3, 5);
-        
-        setLayout (new GridLayout (3, 5, 8, 8));
-        
-        botaoCadastrar = new JButton ("Cadastrar");
-        botaoListar = new JButton ("Listar");
-        botaoVoltar = new JNegativeButton ("X");
+        super(pai);
         
         //<remover>
             botaoVoltar.addActionListener(e -> pai.setCena(new TelaMenu (pai)));

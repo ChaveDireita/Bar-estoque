@@ -6,11 +6,11 @@ public class Compra extends EntidadeBanco{
     private int quantidade;
     private double valor;
 
-    public Produto getCodigoProduto() {
+    public Produto getProduto() {
         return produto;
     }
 
-    public void setCodigoProduto(Produto produto) {
+    public void setProduto(Produto produto) {
         this.produto = produto;
     }
 

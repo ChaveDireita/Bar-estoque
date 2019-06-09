@@ -5,6 +5,8 @@
  */
 package barestoque.view.telas.compra;
 
+import barestoque.view.InicializadorLookAndFeel;
+
 /**
  *
  * @author Nolasco
@@ -18,6 +20,7 @@ public class CadastroCompra extends javax.swing.JPanel
     public CadastroCompra ()
     {
         initComponents ();
+        setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
     }
 
     /**
@@ -27,8 +30,7 @@ public class CadastroCompra extends javax.swing.JPanel
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -46,6 +48,9 @@ public class CadastroCompra extends javax.swing.JPanel
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel2.setText("Quantidade");
+
+        jSpinner1.setFont(barestoque.view.InicializadorLookAndFeel.FONTE_LABEL_PADRAO);
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         jLabel3.setText("Valor(R$):");
 

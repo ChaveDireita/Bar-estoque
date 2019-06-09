@@ -38,7 +38,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextField3" pref="152" max="32767" attributes="0"/>
+              <Component id="jTextField3" pref="147" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -113,7 +113,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Quantiade:"/>
+        <Property name="text" type="java.lang.String" value="quantidade:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField3">

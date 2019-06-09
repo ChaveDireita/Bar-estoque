@@ -11,23 +11,21 @@ import javax.swing.JButton;
 public class TelaCompraBotoesMenu extends SetBotoesMenu
 {
     
-    private JButton botaoComprar,
-                    botaoHistorico;
-    
     public TelaCompraBotoesMenu (Janela pai)
     {
         super(pai);
         
-        botaoComprar = new JButton ("Realizar compra");
-        botaoHistorico = new JButton ("Histórico de compras");
+        botaoCadastrar = new JButton ("Realizar compra");
+        botaoListar = new JButton ("Histórico de compras");
         
         //<remover>
+            botaoCadastrar.addActionListener(e -> pai.setCena(new TelaCompraCadastro(pai)));
             botaoVoltar.addActionListener(e -> pai.setCena(new TelaTransacao (pai)));
         //</remover>
         
         insertMapa (botaoVoltar, 1, 2);
-        insertMapa (botaoComprar, 0, 2);
-        insertMapa (botaoHistorico, 1, 1);
+        insertMapa (botaoCadastrar, 0, 2);
+        insertMapa (botaoListar, 1, 1);
         
         montarTela ();
     }

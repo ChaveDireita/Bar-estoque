@@ -77,5 +77,23 @@ public class InicializadorLookAndFeel
         UIManager.put ("ComboBox.buttonHighlight", COR_FOREGROUND);
         UIManager.put ("ComboBox.font", FONTE_LABEL_PADRAO);
         
+        //Tabelas
+        UIManager.put ("Table.background", COR_CAMPO_TEXTO_PADRAO);
+        UIManager.put ("Table.foreground", COR_BACKGROUND);
+        UIManager.put ("Table.font", FONTE_LABEL_PADRAO);
+        UIManager.put ("Table.gridColor", COR_BACKGROUND);
+        UIManager.put ("Table.border", new StrokeBorder (new BasicStroke (1f), COR_BACKGROUND));
+        UIManager.put ("Table.selectionBackground", COR_CAMPO_TEXTO_PADRAO);
+        UIManager.put ("TableHeader.font", FONTE_LABEL_PADRAO);
+        UIManager.put ("TableHeader.background", COR_BACKGROUND);
+        UIManager.put ("TableHeader.foreground", COR_FOREGROUND);
+        UIManager.put ("TableHeader.cellBorder", new StrokeBorder (new BasicStroke (1f), COR_BACKGROUND));
+        
+        //Scrollers
+        UIManager.put ("ScrollBar.width", 0);
+        
+        //Spinners
+        UIManager.put("Spinner.font", FONTE_LABEL_PADRAO);
+        
     }
 }

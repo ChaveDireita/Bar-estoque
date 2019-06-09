@@ -5,6 +5,8 @@
  */
 package barestoque.view.telas.cliente;
 
+import barestoque.view.InicializadorLookAndFeel;
+
 /**
  *
  * @author nolas
@@ -16,6 +18,7 @@ public class CadastroCliente extends javax.swing.JPanel {
      */
     public CadastroCliente() {
         initComponents();
+        setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
     }
 
     /**

@@ -1,32 +1,28 @@
 package barestoque.view.telas.cardapio;
 
 import barestoque.view.Janela;
-import barestoque.view.componentes.JNegativeButton;
 import barestoque.view.componentes.SetBotoesMenu;
-import barestoque.view.telas.Tela;
 import barestoque.view.telas.TelaMenu;
-import java.awt.GridLayout;
 import javax.swing.JButton;
 
 public class TelaCardapioBotoesMenu extends SetBotoesMenu
 {
-    private JButton botaoReceitas,
-                    botaoAdicionar;
-    
     public TelaCardapioBotoesMenu(Janela pai)
     {
         super(pai);
         
-        botaoReceitas = new JButton("Receitas");
-        botaoAdicionar = new JButton("Adicionar Prato");
+        botaoListar = new JButton("Receitas");
+        botaoCadastrar = new JButton("Adicionar Prato");
         
         //<remover>
+            botaoListar.addActionListener(e -> pai.setCena(new TelaCardapioLista(pai)));
+            botaoCadastrar.addActionListener(e -> pai.setCena(new TelaCardapioCadastro(pai)));
             botaoVoltar.addActionListener(e -> pai.setCena(new TelaMenu (pai)));
         //</remover>
         
         insertMapa(botaoVoltar, 0, 3);
-        insertMapa(botaoAdicionar, 1, 3);
-        insertMapa(botaoReceitas, 0, 2);
+        insertMapa(botaoCadastrar, 1, 3);
+        insertMapa(botaoListar, 0, 2);
         
         montarTela();
         

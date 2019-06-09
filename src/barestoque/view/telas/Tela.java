@@ -1,6 +1,7 @@
 package barestoque.view.telas;
 
 import barestoque.view.Janela;
+import java.awt.GridBagLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
@@ -11,11 +12,17 @@ public abstract class Tela extends JPanel
     protected int linhas,
                   colunas;
     
+    protected JPanel painelSuporte;
+    
+    
     public Tela (Janela pai, int linhas, int colunas)
     {
         this.pai = pai;
         this.linhas = linhas;
         this.colunas = colunas;
+        
+        painelSuporte = new JPanel ();
+        painelSuporte.setLayout(new GridBagLayout());
         
         mapa = new JComponent[linhas][colunas];
         for (int i = 0; i < mapa.length; i++)

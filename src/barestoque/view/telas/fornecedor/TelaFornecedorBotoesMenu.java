@@ -19,6 +19,7 @@ public class TelaFornecedorBotoesMenu extends SetBotoesMenu
         //<remover>
             botaoVoltar.addActionListener(e -> pai.setCena(new TelaMenu (pai)));
             botaoCadastrar.addActionListener(e -> pai.setCena(new TelaFornecedorCadastro(pai)));
+            botaoListar.addActionListener(e -> pai.setCena(new TelaFornecedorLista(pai)));
         //</remover>
         
         insertMapa(botaoCadastrar, 1, 2);

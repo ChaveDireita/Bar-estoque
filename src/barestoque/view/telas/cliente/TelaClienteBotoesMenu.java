@@ -15,6 +15,7 @@ public class TelaClienteBotoesMenu extends SetBotoesMenu
         super(pai);
         
         //<remover>
+            botaoCadastrar.addActionListener(e -> pai.setCena(new TelaClienteCadastro(pai)));
             botaoVoltar.addActionListener(e -> pai.setCena(new TelaMenu (pai)));
         //</remover>
         

@@ -5,6 +5,8 @@
  */
 package barestoque.view.telas.cardapio;
 
+import barestoque.view.InicializadorLookAndFeel;
+
 /**
  *
  * @author nolas
@@ -16,6 +18,7 @@ public class CadastroCardapio extends javax.swing.JPanel {
      */
     public CadastroCardapio() {
         initComponents();
+        setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
     }
 
     /**
@@ -48,7 +51,7 @@ public class CadastroCardapio extends javax.swing.JPanel {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel4.setText("Quantiade:");
+        jLabel4.setText("quantidade:");
 
         jButton1.setText("X");
         jButton1.setPreferredSize(new java.awt.Dimension(40, 40));
@@ -73,7 +76,7 @@ public class CadastroCardapio extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
+                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

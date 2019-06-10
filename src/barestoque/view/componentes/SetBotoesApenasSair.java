@@ -1,5 +1,6 @@
 package barestoque.view.componentes;
 
+import barestoque.controller.ControladorDeTransicao;
 import barestoque.view.Janela;
 import barestoque.view.componentes.JNegativeButton;
 import barestoque.view.telas.Tela;
@@ -19,9 +20,7 @@ public class SetBotoesApenasSair extends Tela
         
         botaoSair = new JNegativeButton ("Sair");
         
-        //<remover>
-            botaoSair.addActionListener(e -> pai.dispose());
-        //</remover>
+        botaoSair.addActionListener(new ControladorDeTransicao(pai, this));
         
         insertMapa(botaoSair, 2, 4);
         

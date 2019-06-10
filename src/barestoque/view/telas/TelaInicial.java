@@ -1,6 +1,7 @@
 
 package barestoque.view.telas;
 
+import barestoque.controller.ControladorDeTransicao;
 import barestoque.view.Janela;
 import barestoque.view.componentes.*;
 
@@ -25,10 +26,8 @@ public class TelaInicial extends Tela
         botaoIniciar = new JPositiveButton ("Iniciar");
         botaoSair = new JNegativeButton ("Sair");
         
-        //<remover>
-            botaoSair.addActionListener(e -> pai.dispose());
-            botaoIniciar.addActionListener(e -> pai.setCena(new TelaMenu (pai)));
-        //</remover>
+        botaoSair.addActionListener(new ControladorDeTransicao(pai, this));
+        botaoIniciar.addActionListener(new ControladorDeTransicao(pai, this));
         
         insertMapa(botaoIniciar, 2, 3);
         insertMapa(botaoSair, 5, 9);

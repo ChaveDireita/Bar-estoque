@@ -1,5 +1,6 @@
 package barestoque.view.telas.compra;
 
+import barestoque.controller.ControladorDeTransicao;
 import barestoque.view.Janela;
 import barestoque.view.componentes.JNegativeButton;
 import barestoque.view.componentes.SetBotoesMenu;
@@ -19,10 +20,9 @@ public class TelaCompraBotoesMenu extends SetBotoesMenu
         botaoListar = new JButton ("Histórico de compras");
         botaoVoltar = new JNegativeButton("X");
         
-        //<remover>
-            botaoCadastrar.addActionListener(e -> pai.setCena(new TelaCompraCadastro(pai)));
-            botaoVoltar.addActionListener(e -> pai.setCena(new TelaTransacao (pai)));
-        //</remover>
+        botaoCadastrar.addActionListener(new ControladorDeTransicao(pai, this));
+        botaoListar.addActionListener(new ControladorDeTransicao(pai, this));
+        botaoVoltar.addActionListener(new ControladorDeTransicao(pai, this));
         
         insertMapa (botaoVoltar, 1, 2);
         insertMapa (botaoCadastrar, 0, 2);

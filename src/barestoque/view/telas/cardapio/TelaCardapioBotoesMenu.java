@@ -1,5 +1,6 @@
 package barestoque.view.telas.cardapio;
 
+import barestoque.controller.ControladorDeTransicao;
 import barestoque.view.Janela;
 import barestoque.view.componentes.JNegativeButton;
 import barestoque.view.componentes.SetBotoesMenu;
@@ -15,12 +16,11 @@ public class TelaCardapioBotoesMenu extends SetBotoesMenu
         botaoListar = new JButton("Receitas");
         botaoCadastrar = new JButton("Adicionar Prato");
         botaoVoltar = new JNegativeButton("X");
-        //<remover>
-            botaoListar.addActionListener(e -> pai.setCena(new TelaCardapioLista(pai)));
-            botaoCadastrar.addActionListener(e -> pai.setCena(new TelaCardapioCadastro(pai)));
-            botaoVoltar.addActionListener(e -> pai.setCena(new TelaMenu (pai)));
-        //</remover>
         
+        botaoListar.addActionListener(new ControladorDeTransicao(pai, this));
+        botaoCadastrar.addActionListener(new ControladorDeTransicao(pai, this));
+        botaoVoltar.addActionListener(new ControladorDeTransicao(pai, this));
+            
         insertMapa(botaoVoltar, 0, 3);
         insertMapa(botaoCadastrar, 1, 3);
         insertMapa(botaoListar, 0, 2);

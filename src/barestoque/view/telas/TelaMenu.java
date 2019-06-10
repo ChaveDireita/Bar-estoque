@@ -1,5 +1,6 @@
 package barestoque.view.telas;
 
+import barestoque.controller.ControladorDeTransicao;
 import barestoque.view.telas.fornecedor.TelaFornecedor;
 import barestoque.view.Janela;
 import barestoque.view.componentes.JNegativeButton;
@@ -35,15 +36,13 @@ public class TelaMenu extends Tela
         botaoSair = new JNegativeButton("Sair");
         botaoVoltar = new JNegativeButton ("X");
         
-        //<remover>
-            botaoMenuPrato.addActionListener(e -> pai.setCena(new TelaCardapio(pai)));
-            botaoMenuTransacao.addActionListener(e -> pai.setCena(new TelaTransacao(pai)));
-            botaoMenuCliente.addActionListener(e -> pai.setCena(new TelaCliente(pai)));
-            botaoMenuProduto.addActionListener(e -> pai.setCena(new TelaProduto (pai)));
-            botaoMenuFornecedor.addActionListener(e -> pai.setCena(new TelaFornecedor (pai)));
-            botaoVoltar.addActionListener(e -> pai.setCena(new TelaInicial (pai)));
-            botaoSair.addActionListener(e -> pai.dispose ());
-        //</remover>
+        botaoMenuPrato.addActionListener(new ControladorDeTransicao(pai, this));
+        botaoMenuTransacao.addActionListener(new ControladorDeTransicao(pai, this));
+        botaoMenuCliente.addActionListener(new ControladorDeTransicao(pai, this));
+        botaoMenuProduto.addActionListener(new ControladorDeTransicao(pai, this));
+        botaoMenuFornecedor.addActionListener(new ControladorDeTransicao(pai, this));
+        botaoVoltar.addActionListener(new ControladorDeTransicao(pai, this));
+        botaoSair.addActionListener(new ControladorDeTransicao(pai, this));
         
         insertMapa(botaoMenuCliente, 1, 2);
         insertMapa(botaoMenuTransacao, 1, 3);

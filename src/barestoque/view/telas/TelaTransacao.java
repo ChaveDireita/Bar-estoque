@@ -1,5 +1,6 @@
 package barestoque.view.telas;
 
+import barestoque.controller.ControladorDeTransicao;
 import barestoque.view.Janela;
 import barestoque.view.componentes.JNegativeButton;
 import barestoque.view.telas.compra.TelaCompra;
@@ -27,12 +28,10 @@ public class TelaTransacao extends Tela
         botaoSair = new JNegativeButton ("Sair");
         
         
-        //<remover>
-            botaoVender.addActionListener(e -> pai.setCena(new TelaVenda (pai)));
-            botaoComprar.addActionListener(e -> pai.setCena(new TelaCompra (pai)));
-            botaoVoltar.addActionListener(e -> pai.setCena(new TelaMenu (pai)));
-            botaoSair.addActionListener(e -> pai.dispose());
-        //</remover>
+        botaoVender.addActionListener(new ControladorDeTransicao(pai, this));
+        botaoComprar.addActionListener(new ControladorDeTransicao(pai, this));
+        botaoVoltar.addActionListener(new ControladorDeTransicao(pai, this));
+        botaoSair.addActionListener(new ControladorDeTransicao(pai, this));
         
         insertMapa(botaoVoltar, 1, 3);
         insertMapa(botaoComprar, 1, 2);

@@ -7,13 +7,11 @@ public class Cliente extends EntidadeBanco{
     
     //Construtor
     public Cliente(int codigo, String nome) {
-        this.codigo = codigo;
+        super (codigo);
         this.nome = nome;     
     }
     
-    
     //Métodos Acessores e Modificadoress
-    
     public String getNome() {
         return nome;
     }

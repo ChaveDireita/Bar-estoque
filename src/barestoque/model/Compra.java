@@ -1,11 +1,19 @@
 package barestoque.model;
 
-public class Compra extends EntidadeBanco{
+public class Compra extends EntidadeBanco implements Valoravel{
     
     private Produto produto;
     private int quantidade;
     private double valor;
 
+    public Compra (Produto produto, int quantidade, double valor, int codigo)
+    {
+        super (codigo);
+        this.produto = produto;
+        this.quantidade = quantidade;
+        this.valor = valor;
+    }
+    
     public Produto getProduto() {
         return produto;
     }
@@ -18,7 +26,11 @@ public class Compra extends EntidadeBanco{
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(int quantidade) throws IllegalArgumentException
+    {
+        if (!validarQuantidade (quantidade))
+            throw new IllegalArgumentException ();
+        produto.adicionar (quantidade);
         this.quantidade = quantidade;
     }
 
@@ -26,7 +38,14 @@ public class Compra extends EntidadeBanco{
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(double valor) throws IllegalArgumentException{
+        if (!validarValor (valor))
+            throw new IllegalArgumentException ();
         this.valor = valor;
+    }
+    
+    public boolean validarQuantidade (int quantidade)
+    {
+        return quantidade > 0;
     }
 }

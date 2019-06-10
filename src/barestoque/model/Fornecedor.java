@@ -9,7 +9,7 @@ public class Fornecedor extends EntidadeBanco{
     
     //Construtor
     public Fornecedor(int codigo, String nome, String telefone, String cnpj) {    
-        this.codigo = codigo;
+        super (codigo);
         this.nome = nome;
         this.telefone = telefone;
         this.cnpj = cnpj;
@@ -33,7 +33,9 @@ public class Fornecedor extends EntidadeBanco{
         return telefone;
     }
 
-    public void setTelefone(String telefone) {
+    public void setTelefone(String telefone) throws IllegalArgumentException {
+        if (!validarTelefone (telefone))
+            throw new IllegalArgumentException ();
         this.telefone = telefone;
     }
 
@@ -41,7 +43,19 @@ public class Fornecedor extends EntidadeBanco{
         return cnpj;
     }
 
-    public void setCnpj(String cnpj) {
+    public void setCnpj(String cnpj) throws IllegalArgumentException{
+        if (!validarCnpj (cnpj))
+            throw new IllegalArgumentException ();
         this.cnpj = cnpj;
+    }
+    
+    public boolean validarTelefone (String telefone)
+    {
+        return telefone.matches ("[0-9]{4,5}[-][0-9]{4}");
+    }
+    
+    public boolean validarCnpj (String cnpj)
+    {
+        return cnpj.matches ("[0-9]{2}([.][0-9]{3}){2}[/][0-9]{4}[-][0-9]{2}");
     }
 }

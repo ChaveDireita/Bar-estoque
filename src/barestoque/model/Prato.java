@@ -2,17 +2,25 @@ package barestoque.model;
 
 import java.util.ArrayList;
 
-public class Prato extends EntidadeBanco
+public class Prato extends EntidadeBanco implements Valoravel
 {
     private ArrayList <Produto> ingredientes;
     private String nome;
     private double valor;
+
+    public Prato (int codigo, ArrayList<Produto> ingredientes, String nome, double valor)
+    {
+        super (codigo);
+        this.ingredientes = ingredientes;
+        this.nome = nome;
+        setValor (valor);
+    }
     
     public double lucro ()
     {
         double valorDeProducao = 0;
         for (Produto p: ingredientes)
-            valorDeProducao += p.getValor();
+            valorDeProducao += p.getValor()*p.getQuantidade ();
         return valor - valorDeProducao;
     }
     
@@ -43,10 +51,9 @@ public class Prato extends EntidadeBanco
 
     public void setValor(double valor) throws IllegalArgumentException
     {
-        if (valor >= 0)
-            this.valor = valor;
-        else
+        if (!validarValor (valor))
             throw new IllegalArgumentException ();
+        this.valor = valor;
     }
     
     

@@ -1,6 +1,6 @@
 package barestoque.model;
 
-public class Produto extends EntidadeBanco
+public class Produto extends EntidadeBanco implements Valoravel
 {
     private String nome;
     private double valor;
@@ -11,11 +11,11 @@ public class Produto extends EntidadeBanco
 
 
     public Produto(String nome, double valor, int codigo, Categoria categoria, int quantidade, String unidade, Fornecedor fornecedor) {
+        super (codigo);
         this.nome = nome;
-        this.valor = valor;
-        this.codigo = codigo;
+        setValor (valor);
         this.categoria = categoria;
-        this.quantidade = quantidade;
+        setQuantidade (quantidade);
         this.unidade = unidade;
         this.fornecedor = fornecedor;
     }
@@ -32,7 +32,9 @@ public class Produto extends EntidadeBanco
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(double valor) throws IllegalArgumentException{
+        if (!validarValor (valor))
+            throw new IllegalArgumentException ();
         this.valor = valor;
     }
 
@@ -40,8 +42,10 @@ public class Produto extends EntidadeBanco
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    private void setQuantidade(int quantidade) throws IllegalArgumentException {
+        if (!validarQuantidade (quantidade))
+            throw new IllegalArgumentException ();
+        this.quantidade += quantidade;
     }
 
     public String getUnidade() {
@@ -72,6 +76,23 @@ public class Produto extends EntidadeBanco
         this.fornecedor = fornecedor;
     }
     
+    public void adicionar (int quantidade)
+    {
+        if (!validarQuantidade (quantidade))
+            throw new IllegalArgumentException ();
+        this.quantidade += quantidade;
+    }
     
+    public void remover (int quantidade)
+    {
+        if (!validarQuantidade (quantidade))
+            throw new IllegalArgumentException ();
+        this.quantidade -= quantidade;
+    }
+    
+    public boolean validarQuantidade (int quantidade)
+    {
+        return quantidade > 0;
+    }
 }
 

@@ -17,6 +17,13 @@ public abstract class EntidadeBanco
      * Este campo corresponde à chave primária das entidades no banco de dados
      */
     protected int codigo;
+
+    public EntidadeBanco (int codigo)
+    {
+        this.codigo = codigo;
+    }
+    
+    
     
     public int getCodigo ()
     {

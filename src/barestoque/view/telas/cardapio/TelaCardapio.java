@@ -19,5 +19,4 @@ public class TelaCardapio extends Tela
         
         montarTela();
     }
-    
 }

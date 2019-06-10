@@ -35,6 +35,16 @@ public class TelaInicial extends Tela
         
         montarTela();
     }
+
+    public JButton getBotaoSair() 
+    {
+        return botaoSair;
+    }
+
+    public JButton getBotaoIniciar() 
+    {
+        return botaoIniciar;
+    }
     
     
     

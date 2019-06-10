@@ -41,5 +41,26 @@ public class TelaTransacao extends Tela
         
         montarTela();
     }
+
+    public JButton getBotaoComprar()
+    {
+        return botaoComprar;
+    }
+
+    public JButton getBotaoVender()
+    {
+        return botaoVender;
+    }
+
+    public JNegativeButton getBotaoVoltar() 
+    {
+        return botaoVoltar;
+    }
+
+    public JNegativeButton getBotaoSair()
+    {
+        return botaoSair;
+    }
+    
     
 }

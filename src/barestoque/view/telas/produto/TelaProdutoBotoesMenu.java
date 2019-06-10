@@ -15,6 +15,10 @@ public class TelaProdutoBotoesMenu extends SetBotoesMenu
     {
         super(pai);
         
+        botaoCadastrar = new JButton ("Cadastrar");
+        botaoListar = new JButton ("Listar");
+        botaoVoltar = new JNegativeButton("X");
+        
         //<remover>
             botaoCadastrar.addActionListener(e -> pai.setCena(new TelaProdutoCadastro(pai)));
             botaoVoltar.addActionListener(e -> pai.setCena(new TelaMenu (pai)));

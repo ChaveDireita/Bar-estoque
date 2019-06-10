@@ -13,10 +13,22 @@ public class SetBotoesMenu extends SetBotoes
     public SetBotoesMenu(Janela pai) 
     {
         super(pai);
-        
-        botaoCadastrar = new JButton ("Cadastrar");
-        botaoListar = new JButton ("Listar");
-        botaoVoltar = new JNegativeButton("X");
     }
+
+    public JButton getBotaoCadastrar()
+    {
+        return botaoCadastrar;
+    }
+
+    public JButton getBotaoListar() 
+    {
+        return botaoListar;
+    }
+
+    public JNegativeButton getBotaoVoltar() 
+    {
+        return botaoVoltar;
+    }
+    
     
 }

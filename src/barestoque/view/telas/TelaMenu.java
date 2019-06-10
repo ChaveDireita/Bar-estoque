@@ -8,8 +8,6 @@ import barestoque.view.telas.cliente.TelaCliente;
 import barestoque.view.telas.produto.TelaProduto;
 import java.awt.GridLayout;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
 
 public class TelaMenu extends Tela
 {
@@ -58,4 +56,46 @@ public class TelaMenu extends Tela
         
         montarTela();
     }
+
+    public JButton getBotaoMenuProduto()
+    {
+        return botaoMenuProduto;
+    }
+
+    public JButton getBotaoMenuFornecedor() 
+    {
+        return botaoMenuFornecedor;
+    }
+
+    public JButton getBotaoMenuPrato()
+    {
+        return botaoMenuPrato;
+    }
+
+    public JButton getBotaoMenuTransacao() 
+    {
+        return botaoMenuTransacao;
+    }
+
+    public JButton getBotaoConfigurar() 
+    {
+        return botaoConfigurar;
+    }
+
+    public JButton getBotaoMenuCliente()
+    {
+        return botaoMenuCliente;
+    }
+
+    public JNegativeButton getBotaoSair() 
+    {
+        return botaoSair;
+    }
+
+    public JNegativeButton getBotaoVoltar() 
+    {
+        return botaoVoltar;
+    }
+    
+    
 }

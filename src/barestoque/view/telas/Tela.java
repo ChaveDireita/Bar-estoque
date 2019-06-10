@@ -66,5 +66,31 @@ public abstract class Tela extends JPanel
             for (JComponent jc : jcarray)
                     add (jc);
     } 
+
+    public JComponent[][] getMapa() 
+    {
+        return mapa;
+    }
+
+    public Janela getPai()
+    {
+        return pai;
+    }
+
+    public int getLinhas()
+    {
+        return linhas;
+    }
+
+    public int getColunas()
+    {
+        return colunas;
+    }
+
+    public JPanel getPainelSuporte() 
+    {
+        return painelSuporte;
+    }
+    
     
 }

@@ -27,5 +27,11 @@ public class SetBotoesApenasSair extends Tela
         
         montarTela();
     }
+
+    public JNegativeButton getBotaoSair() {
+        return botaoSair;
+    }
+    
+    
     
 }

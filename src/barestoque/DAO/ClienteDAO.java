@@ -3,12 +3,13 @@ package barestoque.DAO;
 import barestoque.model.Cliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class ClienteDAO {
-    public FabricaConexao fabrica;
+public class ClienteDAO extends ClasseDAO <Cliente>{
     
     public ClienteDAO(){
-        fabrica = new FabricaConexao();
+        super ("cliente", new String[] {"codigo", "nome"});
     }
     
     public void inserirCliente(Cliente cliente){
@@ -22,5 +23,24 @@ public class ClienteDAO {
             System.err.println("Erro: "+e.getMessage());
         }
         
-    } 
+    }
+
+    @Override
+    protected Cliente montarObjeto(ResultSet resultado) throws SQLException 
+    {
+        int codigo = resultado.getInt("codigo");
+        String nome = resultado.getString("nome");
+        
+        return new Cliente (codigo, nome);
+    }
+
+    @Override
+    protected Object[] desmontarObjeto(Cliente cliente) 
+    {
+        Object[] o = new Object[1];
+        o[0] = cliente.getNome ();
+        return o;
+    }
+    
+    
 }

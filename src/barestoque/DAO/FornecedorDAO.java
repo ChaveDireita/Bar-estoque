@@ -4,11 +4,10 @@ import barestoque.model.Fornecedor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-public class FornecedorDAO {
-    public FabricaConexao fabrica;
+public class FornecedorDAO extends ClasseDAO <Fornecedor>{
     
     public FornecedorDAO(){
-        fabrica = new FabricaConexao();
+        super ("fornecedor", new String[] {"codigo", "nome", "telefone", "CNPJ"});
     }
     
     public void inserirFornecedor(Fornecedor fornecedor){

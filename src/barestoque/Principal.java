@@ -2,9 +2,7 @@ package barestoque;
 
 import barestoque.view.InicializadorLookAndFeel;
 import barestoque.view.Janela;
-import barestoque.view.telas.TelaInicial;
-import barestoque.view.telas.TelaMenu;
-import barestoque.view.telas.produto.TelaProduto;
+import barestoque.view.telas.cliente.TelaClienteLista;
 import javax.swing.SwingUtilities;
 
 public class Principal
@@ -16,7 +14,7 @@ public class Principal
             new InicializadorLookAndFeel ().init();
             Janela j = new Janela ("Teste", 1280, 768, true);
             j.aparecer();
-            j.setCena(new TelaInicial(j));
+            j.setCena(new TelaClienteLista(j));
         });
         
         

@@ -8,6 +8,18 @@ import javax.swing.JPanel;
 
 import javax.swing.JFrame;
 
+
+/**
+ * Janela.
+ * 
+ * A classe janela é a janela de suporte para as telas da aplicação. As telas
+ * serão feitas em JPanels e colocadas na janela através do método setCena ().
+ * Ela foi feita para ser exdcutada em ela cheia, mas pode ser executada em modo
+ * janela passando false para o último parâmetro do construtor.
+ * 
+ * @auhor Filipe Nolasco (ChaveDireita)
+ */
+
 public class Janela extends JFrame
 {
     private JPanel cena;

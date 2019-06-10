@@ -4,6 +4,7 @@ import barestoque.view.componentes.SetBotoesApenasSair;
 import barestoque.view.InicializadorLookAndFeel;
 import barestoque.view.Janela;
 import barestoque.view.telas.Tela;
+import java.awt.GridBagLayout;
 
 import java.awt.GridLayout;
 import javax.swing.JComponent;
@@ -18,6 +19,8 @@ public class TelaFornecedor extends Tela
     {
         super(pai, 2, 2);
         setLayout (new GridLayout (2, 2, 8, 8));
+        
+        painelSuporte.setLayout(new GridBagLayout());
         
         insertMapa(new TelaFornecedorBotoesMenu(pai), 0, 0);
         insertMapa(painelSuporte, 0, 1);

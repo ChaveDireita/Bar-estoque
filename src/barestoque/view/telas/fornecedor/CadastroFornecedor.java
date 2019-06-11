@@ -5,6 +5,7 @@
  */
 package barestoque.view.telas.fornecedor;
 
+import barestoque.controller.ControladorCadastroLista;
 import barestoque.view.InicializadorLookAndFeel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -23,6 +24,8 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         initComponents();
         setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
         msgErro.setText("");
+        botaoAdd.addActionListener (new ControladorCadastroLista (this));
+        botaoLimpar.addActionListener (new ControladorCadastroLista (this));
     }
 
     /**

@@ -82,6 +82,8 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
             fdao.inserirFornecedor(f);
             
             cFornecedor.limparDados();
+            cFornecedor.getMsgErro().setText("");
+            
         } else if (src == cFornecedor.getBotaoLimpar())
         {
             cFornecedor.limparDados();
@@ -98,11 +100,15 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
             {
                 int linha = lFornecedor.getTabelaFornecedor().getSelectedRow();
                 int codigo = (Integer) lFornecedor.getTabelaFornecedor().getValueAt(linha, 0);
+                
+                FornecedorDAO fdao = new FornecedorDAO();
+                fdao.deletarFornecedor(codigo);
+                
+                lFornecedor.atualizar();
             } catch (NullPointerException ne)
             {
                 return;
             }
-            FornecedorDAO fdao = new FornecedorDAO();
         }    
     }
     //</editor-fold>
@@ -140,12 +146,15 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
             {
                 int linha = lCliente.getTabelaCliente().getSelectedRow();
                 int codigo = (Integer) lCliente.getTabelaCliente().getValueAt(linha, 0);
+                
+                ClienteDAO cdao = new ClienteDAO();
+                cdao.deletarCliente(codigo);
             } catch (NullPointerException ne)
             {
                 return;
             }
-            ClienteDAO cdao = new ClienteDAO();
             
+            lCliente.atualizar(); 
         }  
     }
     //</editor-fold>

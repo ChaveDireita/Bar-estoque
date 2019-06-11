@@ -36,6 +36,11 @@ public class ClienteDAO extends ClasseDAO <Cliente>{
         deleteFromWhereCodigo(cliente.getCodigo());
     }
     
+    public void deletarCliente (int codigo)
+    {
+        deleteFromWhereCodigo(codigo);
+    }
+    
     @Override
     protected Cliente montarObjeto(ResultSet resultado) throws SQLException 
     {

@@ -5,6 +5,7 @@
  */
 package barestoque.view.telas.cliente;
 
+import barestoque.controller.ControladorCadastroLista;
 import barestoque.view.InicializadorLookAndFeel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -21,6 +22,9 @@ public class CadastroCliente extends javax.swing.JPanel {
     public CadastroCliente() {
         initComponents();
         setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
+        
+        botaoAdd.addActionListener(new ControladorCadastroLista(this));
+        botaoLimpar.addActionListener(new ControladorCadastroLista(this));
     }
 
     /**

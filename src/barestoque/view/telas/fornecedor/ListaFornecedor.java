@@ -26,20 +26,9 @@ public class ListaFornecedor extends javax.swing.JPanel {
     public ListaFornecedor() {
         initComponents();
         setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
-        DefaultTableModel tabelaModelo = new DefaultTableModel();
-        tabelaModelo.addColumn("Codigo");
-        tabelaModelo.addColumn("Nome");
-        tabelaModelo.addColumn("Telefone");
-        tabelaModelo.addColumn("CNPJ");
-        
         botaoDeletar.addActionListener(new ControladorCadastroLista(this));
         
-        FornecedorDAO fdao = new FornecedorDAO();
-        ArrayList <Fornecedor> listaFornecedor = fdao.listaDeFornecedores();
-        for (Fornecedor f : listaFornecedor)
-            tabelaModelo.addRow(fdao.desmontarParaLista(f));
-        
-        tabelaFornecedor.setModel(tabelaModelo);
+        atualizar();
     }
 
     /**
@@ -123,7 +112,22 @@ public class ListaFornecedor extends javax.swing.JPanel {
         return tabelaFornecedor;
     }
     
-    
+    public void atualizar ()
+    {
+        DefaultTableModel tabelaModelo = new DefaultTableModel();
+        tabelaModelo.addColumn("Codigo");
+        tabelaModelo.addColumn("Nome");
+        tabelaModelo.addColumn("Telefone");
+        tabelaModelo.addColumn("CNPJ");
+        
+        
+        FornecedorDAO fdao = new FornecedorDAO();
+        ArrayList <Fornecedor> listaFornecedor = fdao.listaDeFornecedores();
+        for (Fornecedor f : listaFornecedor)
+            tabelaModelo.addRow(fdao.desmontarParaLista(f));
+        
+        tabelaFornecedor.setModel(tabelaModelo);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoDeletar;

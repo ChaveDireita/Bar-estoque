@@ -26,15 +26,9 @@ public class ListaCliente extends javax.swing.JPanel {
     public ListaCliente() {
         initComponents();
         setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
-        DefaultTableModel tabelaModelo = new DefaultTableModel();
-        tabelaModelo.addColumn("Codigo");
-        tabelaModelo.addColumn("Nome");
-        
         botaoDeletar.addActionListener(new ControladorCadastroLista(this));
-        ClienteDAO cdao = new ClienteDAO();
-        ArrayList <Cliente> listaCliente = cdao.listaDeClientes();
-        for (Cliente c : listaCliente)
-            tabelaModelo.addRow(cdao.desmontarParaLista(c));
+        
+        atualizar();
     }
 
     /**
@@ -106,6 +100,20 @@ public class ListaCliente extends javax.swing.JPanel {
         return tabelaCliente;
     }
     
+    public void atualizar ()
+    {
+        DefaultTableModel tabelaModelo = new DefaultTableModel();
+        tabelaModelo.addColumn("Codigo");
+        tabelaModelo.addColumn("Nome");
+        
+        botaoDeletar.addActionListener(new ControladorCadastroLista(this));
+        ClienteDAO cdao = new ClienteDAO();
+        ArrayList <Cliente> listaCliente = cdao.listaDeClientes();
+        for (Cliente c : listaCliente)
+            tabelaModelo.addRow(cdao.desmontarParaLista(c));
+        
+        tabelaCliente.setModel(tabelaModelo);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoDeletar;

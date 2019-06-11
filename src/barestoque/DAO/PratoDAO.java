@@ -18,7 +18,6 @@ public class PratoDAO {
             PreparedStatement declaracao = conexao.prepareStatement(script);
             declaracao.setString(1, prato.getNome());
             declaracao.setDouble(2, prato.getValor());
-            declaracao.setArray(3, prato.getIngredientes());
             declaracao.execute();
         } catch (Exception e){
                 System.err.println("Erro: "+e.getMessage());

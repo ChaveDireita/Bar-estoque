@@ -16,8 +16,6 @@ public class VendaDAO {
         try (Connection conexao = fabrica.conectar()){
             
             PreparedStatement declaracao = conexao.prepareStatement(script);
-            declaracao.setCliente(1, venda.getCliente());
-            declaracao.setArray(2, venda.getPratos());
             declaracao.setDouble(3, venda.getValor());
             declaracao.execute();
         } catch (Exception e){

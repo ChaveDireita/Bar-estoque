@@ -64,7 +64,12 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
             }
             
             Fornecedor f = new Fornecedor ();
+            f.setNome(nome);
+            f.setTelefone(telefone);
+            f.setCnpj(cnpj);
+            
             FornecedorDAO fdao = new FornecedorDAO();
+            fdao.inserirFornecedor(f);
         }
     }
 }

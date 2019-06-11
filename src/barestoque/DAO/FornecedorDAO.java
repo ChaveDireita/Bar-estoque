@@ -3,6 +3,9 @@ package barestoque.DAO;
 import barestoque.model.Fornecedor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class FornecedorDAO extends ClasseDAO <Fornecedor>{
     
@@ -22,7 +25,34 @@ public class FornecedorDAO extends ClasseDAO <Fornecedor>{
         } catch (Exception e) {
             System.err.println("Erro: "+e.getMessage());
         }
-        
     }
+    
+    public ArrayList<Fornecedor> listaDeFornecedores ()
+    {
+        return selectAllFrom();
+    }
+    
+    @Override
+    protected Fornecedor montarObjeto(ResultSet resultado) throws SQLException 
+    {
+        String nome = resultado.getString("nome"),
+               telefone = resultado.getString("telefone"),
+               cnpj = resultado.getString("cnpj");
+        
+        int codigo = resultado.getInt("codigo");
+        return new Fornecedor (codigo, nome, telefone, cnpj);
+    }
+
+    @Override
+    protected Object[] desmontarObjeto(Fornecedor fornecedor) 
+    {
+        Object[] o = new Object[3];
+        o[0] = fornecedor.getNome();
+        o[1] = fornecedor.getTelefone();
+        o[2] = fornecedor.getCnpj();
+        
+        return o;
+    }
+    
     
 }

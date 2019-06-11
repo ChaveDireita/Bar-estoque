@@ -1,0 +1,101 @@
+CREATE DATABASE barestoque;
+
+USE barestoque;
+
+CREATE TABLE categoria 
+(
+	codigo INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    nome VARCHAR (255)
+);
+
+CREATE TABLE cliente 
+(
+	codigo INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    nome VARCHAR (255)
+);
+
+CREATE TABLE fornecedor 
+(
+	codigo INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    nome VARCHAR (255), 
+    telefone VARCHAR (11), 
+    CNPJ VARCHAR (255)
+);
+
+CREATE TABLE produto 
+(
+	codigo INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR (255), 
+    valor DOUBLE, 
+    unidade VARCHAR (45),
+    codigo_categoria INT NOT NULL, 
+    codigo_fornecedor INT NOT NULL, 
+    FOREIGN KEY (codigo_categoria) REFERENCES categoria (codigo), 
+    FOREIGN KEY (codigo_fornecedor) REFERENCES fornecedor (codigo)
+);
+
+CREATE TABLE compra 
+(
+	codigo INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    codigo_produto INT NOT NULL, 
+    quantidade INT, 
+    valor DOUBLE, 
+    FOREIGN KEY (codigo_produto) REFERENCES produto (codigo)
+);
+
+CREATE TABLE prato 
+(
+	codigo INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    nome VARCHAR (255), 
+    valor DOUBLE
+);
+
+CREATE TABLE prato_ingrediente 
+(
+	codigo_produto INT NOT NULL, 
+    codigo_prato INT NOT NULL, 
+    quantidade INT, 
+    PRIMARY KEY (codigo_produto, codigo_prato)
+);
+
+CREATE TABLE venda 
+(
+	codigo INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    valor DOUBLE
+);
+
+CREATE TABLE venda_prato
+(
+	codigo_venda INT NOT NULL, 
+    codigo_prato INT NOT NULL,
+    quantidade INT NOT NULL,
+    PRIMARY KEY (codigo_prato, codigo_venda)
+);
+
+CREATE VIEW produto_categoria_fornecedor AS SELECT produto.*, categoria.nome AS categoria_nome, fornecedor.nome AS fornecedor_nome FROM produto, categoria, fornecedor WHERE produto.codigo_categoria = categoria.codigo AND produto.codigo_fornecedor = fornecedor.codigo;
+
+DELIMITER $$
+	CREATE TRIGGER adicionar_produto AFTER INSERT ON compra 
+    FOR EACH ROW
+		BEGIN
+			UPDATE produto SET produto.quantidade = produto.quantidade + NEW.quantidade	WHERE NEW.codigo_produto = produto.codigo;
+        END $$
+        
+	CREATE TRIGGER vender_prato AFTER INSERT ON venda_prato
+    FOR EACH ROW
+		BEGIN
+			UPDATE produto SET produto.quantidade = produto.quantidade - NEW.quantidade*prato_ingrediente.quantidade WHERE NEW.codigo_prato = ingrediente_prato.codigo AND NEW.codigo;
+		END $$
+        
+	CREATE TRIGGER deletar_compra BEFORE DELETE ON compra 
+    FOR EACH ROW
+		BEGIN
+			UPDATE produto SET produto.quantidade = produto.quantidade - OLD.quantidade	WHERE OLD.codigo_produto = produto.codigo;
+        END $$
+        
+	CREATE TRIGGER deletar_venda BEFORE DELETE ON venda_prato
+    FOR EACH ROW
+		BEGIN
+			UPDATE produto SET produto.quantidade = produto.quantidade + OLD.quantidade WHERE OLD.codigo_produto = produto.codigo;
+		END $$
+DELIMITER $$;

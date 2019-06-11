@@ -5,27 +5,27 @@ import java.util.ArrayList;
 public class Venda extends EntidadeBanco implements Valoravel
 {
     private Cliente cliente;
-    private ArrayList <Prato> pratos;
+    private Prato pratos;
     private double valor;
-
-    public Venda(int codigo, ArrayList<Prato> pratos) 
+    private int quantidade;
+    
+    public Venda(int codigo, Prato prato, int quantidade) 
     {
         super (codigo);
-        this.pratos = pratos;
+        this.pratos = prato;
         double valor = 0;
-        for (Prato pra : pratos)
-            valor += pra.getValor ();
+        
         setValor (valor);
     }
 
-    public ArrayList<Prato> getPratos()
+    public Prato getPrato()
     {
         return pratos;
     }
 
-    public void setPratos(ArrayList<Prato> pratos)
+    public void setPrato(Prato prato)
     {
-        this.pratos = pratos;
+        this.pratos = prato;
     }
 
     public double getValor() 

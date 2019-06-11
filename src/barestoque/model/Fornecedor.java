@@ -15,6 +15,13 @@ public class Fornecedor extends EntidadeBanco{
         this.cnpj = cnpj;
     }
 
+    public Fornecedor() 
+    {
+        super(-1);
+    }
+    
+    
+    
     //Métodos Acessores e Modificadores
 
     public void setCodigo(int codigo) {

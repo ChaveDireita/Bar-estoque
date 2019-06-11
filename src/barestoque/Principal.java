@@ -16,3 +16,5 @@ public class Principal
             j.aparecer();
             j.setCena(new TelaClienteLista(j));
         });
+    }
+}

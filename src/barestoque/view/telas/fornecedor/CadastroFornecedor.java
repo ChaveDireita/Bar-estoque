@@ -7,6 +7,7 @@ package barestoque.view.telas.fornecedor;
 
 import barestoque.view.InicializadorLookAndFeel;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
@@ -21,6 +22,7 @@ public class CadastroFornecedor extends javax.swing.JPanel {
     public CadastroFornecedor() {
         initComponents();
         setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
+        msgErro.setText("");
     }
 
     /**
@@ -40,6 +42,7 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         campoCNPJ = new javax.swing.JTextField();
         botaoLimpar = new barestoque.view.componentes.JNegativeButton();
         botaoAdd = new barestoque.view.componentes.JPositiveButton();
+        msgErro = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastrar Fornecedor", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
@@ -83,6 +86,8 @@ public class CadastroFornecedor extends javax.swing.JPanel {
             }
         });
 
+        msgErro.setText("jLabel4");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,21 +96,24 @@ public class CadastroFornecedor extends javax.swing.JPanel {
             .addComponent(campoTelefone)
             .addComponent(campoCNPJ)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(195, Short.MAX_VALUE)
                 .addComponent(botaoAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(msgErro))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addComponent(msgErro)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -144,6 +152,10 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoAddActionPerformed
 
+    public JLabel getMsgErro() {
+        return msgErro;
+    }
+    
     public JButton getBotaoAdd() {
         return botaoAdd;
     }
@@ -175,5 +187,6 @@ public class CadastroFornecedor extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel msgErro;
     // End of variables declaration//GEN-END:variables
 }

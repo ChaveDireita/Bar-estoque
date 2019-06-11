@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ProdutoDAO extends ClasseDAO <Produto>{
     
@@ -31,7 +32,26 @@ public class ProdutoDAO extends ClasseDAO <Produto>{
     
     public void inserir (Produto p)
     {
+        p.setCategoria(new CategoriaDAO().getCategoriaDeNome(p.getCategoria().getNome()));
         insertInto(p);
+    }
+    
+    public ArrayList <Produto> listaDeProdutos ()
+    {
+        return selectAllFrom();
+    }
+    
+    public Produto getProdutoDeCodigo (int codigo)
+    {
+        ArrayList <Produto> plista = selectFromWhere("codigo = " + codigo);
+        if (plista.isEmpty())
+            return null;
+        return plista.get(0);
+    }
+    
+    public ArrayList <Produto> listaDeProdutosDeCategoria (Categoria c)
+    {
+        return selectFromWhere("codigo_categoria = " + c.getCodigo());
     }
     
     @Override
@@ -69,6 +89,19 @@ public class ProdutoDAO extends ClasseDAO <Produto>{
         return o;
     }
     
+    public Object[] desmontarParaLista (Produto produto)
+    {
+        Object[] o = new Object[6];
+        
+        o[0] = produto.getCodigo();
+        o[1] = produto.getNome();
+        o[2] = produto.getValor();
+        o[3] = produto.getUnidade();
+        o[4] = produto.getQuantidade();
+        o[5] = produto.getFornecedor().getNome();
+        
+        return o;
+    }
     
 }
 

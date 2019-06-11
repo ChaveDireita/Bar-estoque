@@ -1,6 +1,6 @@
 package barestoque.model;
 
-public class Transacao extends EntidadeBanco
+public class Transacao extends EntidadeBanco implements Valoravel
 {
     protected double valor;
 
@@ -9,4 +9,5 @@ public class Transacao extends EntidadeBanco
         super (codigo);
         this.valor = valor;
     }
+    
 }

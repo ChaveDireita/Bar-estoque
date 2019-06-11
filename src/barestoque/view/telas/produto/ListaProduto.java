@@ -5,9 +5,19 @@
  */
 package barestoque.view.telas.produto;
 
+import barestoque.DAO.CategoriaDAO;
+import barestoque.DAO.FornecedorDAO;
+import barestoque.DAO.ProdutoDAO;
+import barestoque.controller.ControladorCadastroLista;
+import barestoque.model.Categoria;
+import barestoque.model.Fornecedor;
+import barestoque.model.Produto;
 import barestoque.view.InicializadorLookAndFeel;
+import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,12 +25,19 @@ import javax.swing.JTable;
  */
 public class ListaProduto extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ListaProduto
-     */
+    private Categoria[] listaCategoria;
+    
     public ListaProduto() {
+        ArrayList <Categoria> lCategoria = new CategoriaDAO ().listaDeCategorias();
+        listaCategoria = new Categoria[lCategoria.size()];
+        lCategoria.toArray(listaCategoria);
+                
         initComponents();
         setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
+        
+        comboBoxCategoria.addActionListener(new ControladorCadastroLista(this));
+        
+        atualizar();
     }
 
     /**
@@ -36,7 +53,7 @@ public class ListaProduto extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaProduto = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboBoxCategoria = new javax.swing.JComboBox<>();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Produtos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
@@ -61,10 +78,10 @@ public class ListaProduto extends javax.swing.JPanel {
 
         jLabel1.setText("Categoria:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        comboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<Categoria> ());
+        comboBoxCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                comboBoxCategoriaActionPerformed(evt);
             }
         });
 
@@ -79,7 +96,7 @@ public class ListaProduto extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(comboBoxCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,7 +104,7 @@ public class ListaProduto extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -95,9 +112,9 @@ public class ListaProduto extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void comboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCategoriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_comboBoxCategoriaActionPerformed
     
     public JButton getBotaoDeletar() {
         return botaoDeletar;
@@ -106,11 +123,37 @@ public class ListaProduto extends javax.swing.JPanel {
     public JTable getTabelaProduto() {
         return tabelaProduto;
     }
+
+    public JComboBox<Categoria> getComboBoxCategoria() {
+        return comboBoxCategoria;
+    }
     
+    
+    
+    public void atualizar ()
+    {
+        DefaultTableModel tabelaModelo = new DefaultTableModel();
+        tabelaModelo.addColumn("Codigo");
+        tabelaModelo.addColumn("Nome");
+        tabelaModelo.addColumn("Valor");
+        tabelaModelo.addColumn("Unidade");
+        tabelaModelo.addColumn("Quantidade");
+        tabelaModelo.addColumn("Fornecedor");
+        
+        
+        ProdutoDAO pdao = new ProdutoDAO();
+        Categoria c = (Categoria) comboBoxCategoria.getSelectedItem();
+        
+        ArrayList <Produto> listaProduto = pdao.listaDeProdutosDeCategoria(c);
+        for (Produto p : listaProduto)
+            tabelaModelo.addRow(pdao.desmontarParaLista(p));
+        
+        tabelaProduto.setModel(tabelaModelo);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoDeletar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Categoria> comboBoxCategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaProduto;

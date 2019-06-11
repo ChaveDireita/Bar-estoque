@@ -14,9 +14,7 @@ public class Categoria extends EntidadeBanco
     {
         super(-1);
         this.nome = nome;
-    }
-    
-    
+    }    
     
     public String getNome() 
     {

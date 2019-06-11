@@ -1,6 +1,6 @@
 package barestoque.model;
 
-public class Produto extends EntidadeBanco implements Valoravel
+public class Produto extends EntidadeBanco implements Valoravel, Quantificavel
 {
     private String nome;
     private double valor;
@@ -96,6 +96,7 @@ public class Produto extends EntidadeBanco implements Valoravel
         this.quantidade -= quantidade;
     }
     
+    @Override
     public boolean validarQuantidade (int quantidade)
     {
         return quantidade > 0;

@@ -1,8 +1,15 @@
 package barestoque.view.telas.compra;
 
+import barestoque.DAO.CompraDAO;
+import barestoque.DAO.ProdutoDAO;
+import barestoque.model.Categoria;
+import barestoque.model.Compra;
+import barestoque.model.Produto;
 import barestoque.view.InicializadorLookAndFeel;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class ListaCompra extends javax.swing.JPanel {
 
@@ -12,6 +19,8 @@ public class ListaCompra extends javax.swing.JPanel {
     public ListaCompra() {
         initComponents();
         setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
+        
+        atualizar();
     }
 
     /**
@@ -68,8 +77,8 @@ public class ListaCompra extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -83,6 +92,23 @@ public class ListaCompra extends javax.swing.JPanel {
         return tabelaCompra;
     }
     
+    public void atualizar ()
+    {
+        DefaultTableModel tabelaModelo = new DefaultTableModel();
+        tabelaModelo.addColumn("Código");
+        tabelaModelo.addColumn("Produto");
+        tabelaModelo.addColumn("Quantidade");
+        tabelaModelo.addColumn("Valor");
+        
+        CompraDAO cdao = new CompraDAO();
+        
+        ArrayList <Compra> listaCompra = cdao.listaDeCompras();
+        
+        for (Compra p : listaCompra)
+            tabelaModelo.addRow(cdao.desmontarParaLista(p));
+        
+        tabelaCompra.setModel(tabelaModelo);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoDeletar;

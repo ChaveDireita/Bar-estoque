@@ -4,6 +4,6 @@ public interface Quantificavel
 {
     default boolean validarQuantidade (int quantidade)
     {
-        return quantidade > 0;
+        return quantidade >= 0;
     }
 }

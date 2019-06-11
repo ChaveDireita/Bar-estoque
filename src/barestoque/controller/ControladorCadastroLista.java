@@ -2,15 +2,19 @@ package barestoque.controller;
 
 import barestoque.DAO.CategoriaDAO;
 import barestoque.DAO.ClienteDAO;
+import barestoque.DAO.CompraDAO;
 import barestoque.DAO.FornecedorDAO;
 import barestoque.DAO.ProdutoDAO;
 import barestoque.model.Categoria;
 import barestoque.model.Cliente;
+import barestoque.model.Compra;
 import barestoque.model.Fornecedor;
 import barestoque.model.Produto;
 import barestoque.view.Janela;
+import barestoque.view.telas.cardapio.CadastroCardapio;
 import barestoque.view.telas.cliente.CadastroCliente;
 import barestoque.view.telas.cliente.ListaCliente;
+import barestoque.view.telas.compra.CadastroCompra;
 import barestoque.view.telas.fornecedor.CadastroFornecedor;
 import barestoque.view.telas.fornecedor.ListaFornecedor;
 import barestoque.view.telas.produto.CadastroProduto;
@@ -41,6 +45,10 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
             eventoListaFornecedor((ListaFornecedor) contexto, e);
         else if (contexto instanceof CadastroProduto)
             eventoCadastroProduto((CadastroProduto) contexto, e);
+        else if (contexto instanceof ListaProduto)
+            eventoListaProduto((ListaProduto) contexto, e);
+        else if (contexto instanceof CadastroCompra)
+            eventoCadastroCompra((CadastroCompra) contexto, e);
     }
     
     @Override
@@ -103,24 +111,7 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
     
     private void eventoListaFornecedor (ListaFornecedor lFornecedor, ActionEvent e)
     {
-        Object src = e.getSource();
-        
-        if (src == lFornecedor.getBotaoDeletar())
-        {
-            try
-            {
-                int linha = lFornecedor.getTabelaFornecedor().getSelectedRow();
-                int codigo = (Integer) lFornecedor.getTabelaFornecedor().getValueAt(linha, 0);
-                
-                FornecedorDAO fdao = new FornecedorDAO();
-                fdao.deletarFornecedor(codigo);
-                
-                lFornecedor.atualizar();
-            } catch (NullPointerException ne)
-            {
-                return;
-            }
-        }    
+        Object src = e.getSource();    
     }
     //</editor-fold>
     
@@ -148,24 +139,7 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
     
     private void eventoListaCliente (ListaCliente lCliente, ActionEvent e)
     {
-        Object src = e.getSource();
-        
-        if (src == lCliente.getBotaoDeletar())
-        {
-            try
-            {
-                int linha = lCliente.getTabelaCliente().getSelectedRow();
-                int codigo = (Integer) lCliente.getTabelaCliente().getValueAt(linha, 0);
-                
-                ClienteDAO cdao = new ClienteDAO();
-                cdao.deletarCliente(codigo);
-            } catch (NullPointerException ne)
-            {
-                return;
-            }
-            
-            lCliente.atualizar(); 
-        }  
+        Object src = e.getSource();  
     }
     //</editor-fold>
 
@@ -226,23 +200,72 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
     {
         Object src = e.getSource();
         
-//        if (src == lProduto.getBotaoDeletar())
-//        {
-//            try
-//            {
-//                int linha = lProduto.getTabelaProduto().getSelectedRow();
-//                int codigo = (Integer) lProduto.getTabelaProduto().getValueAt(linha, 0);
-//                
-//                ProdutoDAO pdao = new ProdutoDAO();
-//                pdao.(codigo);
-//            } catch (NullPointerException ne)
-//            {
-//                return;
-//            }
-//            
-//            lProduto.atualizar(); 
-//        }  
+        if (src == lProduto.getComboBoxCategoria())
+            lProduto.atualizar();
     }
     //</editor-fold>
+    
+    //<editor-fold desc="Compra">
+    private void eventoCadastroCompra (CadastroCompra cCompra, ActionEvent e)
+    {
+        Object src = e.getSource();
+        
+        if (src == cCompra.getBotaoAdd())
+        {
+            Produto produto = (Produto) cCompra.getComboBoxProduto().getSelectedItem();
+            
+            int quantidade = (Integer) cCompra.getSpinnerQuantidade().getValue();
+            
+            Compra c = new Compra ();
+            c.setProduto(produto);
+            c.setQuantidade(quantidade);
+            c.gerarValor();
+            
+            CompraDAO cdao = new CompraDAO();
+            cdao.inserirCompra(c);
+            
+            cCompra.limparDados();
+            cCompra.getMsgErro().setText("");
+            
+        } else if (src == cCompra.getBotaoLimpar())
+        {
+            cCompra.limparDados();
+        } else if (src == cCompra.getComboBoxProduto())
+        {
+            cCompra.atualizarPreco();
+        }
+    }
+    
+    //</editor-fold>
+    
+    //<editor-fold desc="Cardápio">
+    private void eventoCadastroCardapio (CadastroCardapio cCardapio, ActionEvent e)
+    {
+        Object src = e.getSource();
+        
+        if (src == cCardapio.getBotaoAdd())
+        {
+            Produto produto = (Produto) cCardapio.getComboBoxProduto().getSelectedItem();
+            
+            int quantidade = (Integer) cCardapio.getSpinnerQuantidade().getValue();
+            
+            Compra c = new Compra ();
+            c.setProduto(produto);
+            c.setQuantidade(quantidade);
+            c.gerarValor();
+            
+            CompraDAO cdao = new CompraDAO();
+            cdao.inserirCompra(c);
+            
+            cCardapio.limparDados();
+            cCardapio.getMsgErro().setText("");
+            
+        } else if (src == cCardapio.getBotaoLimpar())
+        {
+            cCardapio.limparDados();
+        }
+    }
+    //</editor-fold>
+    
     //</editor-fold>
 }

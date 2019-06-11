@@ -1,3 +1,5 @@
+DROP DATABASE barestoque;
+
 CREATE DATABASE barestoque;
 
 USE barestoque;
@@ -24,14 +26,14 @@ CREATE TABLE fornecedor
 
 CREATE TABLE produto 
 (
-    codigo INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	codigo INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR (255), 
-    valor DOUBLE,
+    valor DOUBLE, 
     unidade VARCHAR (45),
     quantidade INT,
-    codigo_categoria INT NOT NULL,
-    codigo_fornecedor INT NOT NULL,
-    FOREIGN KEY (codigo_categoria) REFERENCES categoria (codigo),
+    codigo_categoria INT NOT NULL, 
+    codigo_fornecedor INT NOT NULL, 
+    FOREIGN KEY (codigo_categoria) REFERENCES categoria (codigo), 
     FOREIGN KEY (codigo_fornecedor) REFERENCES fornecedor (codigo)
 );
 
@@ -74,29 +76,3 @@ CREATE TABLE venda_prato
 );
 
 CREATE VIEW produto_categoria_fornecedor AS SELECT produto.*, categoria.nome AS categoria_nome, fornecedor.nome AS fornecedor_nome FROM produto, categoria, fornecedor WHERE produto.codigo_categoria = categoria.codigo AND produto.codigo_fornecedor = fornecedor.codigo;
-
-DELIMITER $$
-	CREATE TRIGGER adicionar_produto AFTER INSERT ON compra 
-    FOR EACH ROW
-		BEGIN
-			UPDATE produto SET produto.quantidade = produto.quantidade + NEW.quantidade	WHERE NEW.codigo_produto = produto.codigo;
-        END $$
-        
-	CREATE TRIGGER vender_prato AFTER INSERT ON venda_prato
-    FOR EACH ROW
-		BEGIN
-			UPDATE produto SET produto.quantidade = produto.quantidade - NEW.quantidade*prato_ingrediente.quantidade WHERE NEW.codigo_prato = ingrediente_prato.codigo AND NEW.codigo;
-		END $$
-        
-	CREATE TRIGGER deletar_compra BEFORE DELETE ON compra 
-    FOR EACH ROW
-		BEGIN
-			UPDATE produto SET produto.quantidade = produto.quantidade - OLD.quantidade	WHERE OLD.codigo_produto = produto.codigo;
-        END $$
-        
-	CREATE TRIGGER deletar_venda BEFORE DELETE ON venda_prato
-    FOR EACH ROW
-		BEGIN
-			UPDATE produto SET produto.quantidade = produto.quantidade + OLD.quantidade WHERE OLD.codigo_produto = produto.codigo;
-		END $$
-DELIMITER $$;

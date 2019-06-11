@@ -5,9 +5,14 @@
  */
 package barestoque.view.telas.fornecedor;
 
+import barestoque.DAO.FornecedorDAO;
+import barestoque.controller.ControladorCadastroLista;
+import barestoque.model.Fornecedor;
 import barestoque.view.InicializadorLookAndFeel;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +26,20 @@ public class ListaFornecedor extends javax.swing.JPanel {
     public ListaFornecedor() {
         initComponents();
         setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
+        DefaultTableModel tabelaModelo = new DefaultTableModel();
+        tabelaModelo.addColumn("Codigo");
+        tabelaModelo.addColumn("Nome");
+        tabelaModelo.addColumn("Telefone");
+        tabelaModelo.addColumn("CNPJ");
+        
+        botaoDeletar.addActionListener(new ControladorCadastroLista(this));
+        
+//        FornecedorDAO fdao = new FornecedorDAO();
+//        ArrayList <Fornecedor> listaFornecedor = fdao.listaDeFornecedores();
+//        for (Fornecedor f : listaFornecedor)
+//            tabelaModelo.addRow(fdao.desmontarParaLista(f));
+//        
+//        tabelaFornecedor.setModel(tabelaModelo);
     }
 
     /**

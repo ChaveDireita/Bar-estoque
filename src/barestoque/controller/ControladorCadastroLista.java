@@ -4,6 +4,7 @@ import barestoque.DAO.FornecedorDAO;
 import barestoque.model.Fornecedor;
 import barestoque.view.Janela;
 import barestoque.view.telas.fornecedor.CadastroFornecedor;
+import barestoque.view.telas.fornecedor.ListaFornecedor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -12,20 +13,22 @@ import javax.swing.JPanel;
 
 public class ControladorCadastroLista implements ActionListener, KeyListener
 {
-    private Janela pai;
     private JPanel contexto;
-
-    public ControladorCadastroLista(Janela pai, JPanel contexto) 
+    
+    
+    public ControladorCadastroLista(JPanel contexto) 
     {
-        this.pai = pai;
         this.contexto = contexto;
     }
     
+    //<editor-fold desc="Funções listeners">
     @Override
     public void actionPerformed(ActionEvent e)
     {
         if (contexto instanceof CadastroFornecedor)
             eventoCadastroFornecedor ((CadastroFornecedor) contexto, e);
+        else if (contexto instanceof ListaFornecedor)
+            eventoListaFornecedor((ListaFornecedor) contexto, e);
     }
     
     @Override
@@ -42,8 +45,11 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
     public void keyReleased(KeyEvent e) 
     {
     }
+    //</editor-fold>
     
-    public void eventoCadastroFornecedor (CadastroFornecedor cFornecedor, ActionEvent e)
+    //<editor-fold desc="Eventos por painel">
+    //<editor-fold desc="Fornecedor">
+    private void eventoCadastroFornecedor (CadastroFornecedor cFornecedor, ActionEvent e)
     {
         Object src = e.getSource();
         
@@ -70,6 +76,33 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
             
             FornecedorDAO fdao = new FornecedorDAO();
             fdao.inserirFornecedor(f);
+            
+            limparDadosCadastroFornecedor(cFornecedor);
+        } else if (src == cFornecedor.getBotaoLimpar())
+        {
+            limparDadosCadastroFornecedor(cFornecedor);
         }
     }
+    
+    private void eventoListaFornecedor (ListaFornecedor lFornecedor, ActionEvent e)
+    {
+        Object src = e.getSource();
+        
+        if (src == lFornecedor.getBotaoDeletar())
+        {
+            int linha = lFornecedor.getTabelaFornecedor().getSelectedRow();
+            int codigo = (Integer) lFornecedor.getTabelaFornecedor().getValueAt(linha, 0);
+            
+            FornecedorDAO fdao = new FornecedorDAO();
+        }    
+    }
+    
+    private void limparDadosCadastroFornecedor (CadastroFornecedor cFornecedor)
+    {
+        cFornecedor.getCampoFornecedorNome().setText("");
+        cFornecedor.getCampoFornecedorTelefone().setText("");
+        cFornecedor.getCampoFornecedorCNPJ().setText("");
+    }
+    //</editor-fold>
+    //</editor-fold>
 }

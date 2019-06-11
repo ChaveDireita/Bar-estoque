@@ -54,5 +54,15 @@ public class FornecedorDAO extends ClasseDAO <Fornecedor>{
         return o;
     }
     
+    public Object[] desmontarParaLista (Fornecedor fornecedor)
+    {
+        Object[] o = new Object[4];
+        o[0] = fornecedor.getCodigo();
+        o[1] = fornecedor.getNome();
+        o[2] = fornecedor.getTelefone();
+        o[3] = fornecedor.getCnpj();
+        
+        return o;
+    }
     
 }

@@ -5,6 +5,8 @@
  */
 package barestoque.view.telas.venda;
 
+import barestoque.view.InicializadorLookAndFeel;
+
 /**
  *
  * @author nolas
@@ -16,6 +18,7 @@ public class ListaVenda extends javax.swing.JPanel {
      */
     public ListaVenda() {
         initComponents();
+        setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
     }
 
     /**
@@ -29,13 +32,15 @@ public class ListaVenda extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaVenda = new javax.swing.JTable();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Vendas", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Deletar");
+        jButton1.setPreferredSize(new java.awt.Dimension(73, 40));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaVenda.setBorder(new javax.swing.border.StrokeBorder(new java.awt.BasicStroke (1f), InicializadorLookAndFeel.COR_BACKGROUND));
+        tabelaVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -46,9 +51,9 @@ public class ListaVenda extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.setFillsViewportHeight(true);
-        jTable1.setRowHeight(28);
-        jScrollPane1.setViewportView(jTable1);
+        tabelaVenda.setFillsViewportHeight(true);
+        tabelaVenda.setRowHeight(28);
+        jScrollPane1.setViewportView(tabelaVenda);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -56,16 +61,16 @@ public class ListaVenda extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(118, Short.MAX_VALUE)
+                .addContainerGap(103, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -73,6 +78,6 @@ public class ListaVenda extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabelaVenda;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,7 +5,6 @@ import barestoque.view.InicializadorLookAndFeel;
 import barestoque.view.Janela;
 import barestoque.view.telas.cliente.TelaClienteLista;
 import javax.swing.SwingUtilities;
-
 public class Principal
 {
     public static void main(String[] args) 
@@ -17,7 +16,3 @@ public class Principal
             j.aparecer();
             j.setCena(new TelaClienteLista(j));
         });
-        
-        
-    }
-}

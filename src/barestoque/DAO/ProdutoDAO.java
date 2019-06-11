@@ -15,6 +15,11 @@ public class ProdutoDAO extends ClasseDAO <Produto>{
         super ("produto", new String[] {"codigo", "nome", "valor", "unidade", "quantidade", "codigo_categoria", "codigo_fornecedor"});
     }
     
+    public void adicionarQuantidade (int codigo, int valor)
+    {
+        updateSet(new String[] {"quantidade"}, new Object[] {"quantidade + " + valor}, "codigo = " + codigo);
+    }
+    
     public void inserirProduto(Produto produto){
         String script = "Insert into produto (nome, valor, unidade, quantidade) values (?, ?, ?, ?);";
         try (Connection conexao = fabrica.conectar()){

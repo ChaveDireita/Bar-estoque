@@ -16,6 +16,7 @@ public class CompraDAO extends ClasseDAO<Compra>
 
     public void inserirCompra(Compra compra){
         insertInto(compra);
+        new ProdutoDAO().adicionarQuantidade(compra.getProduto().getCodigo(), compra.getQuantidade());
     }
     
     public ArrayList <Compra> listaDeCompras ()

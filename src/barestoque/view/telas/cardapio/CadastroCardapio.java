@@ -12,8 +12,11 @@ import barestoque.view.InicializadorLookAndFeel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
 public class CadastroCardapio extends javax.swing.JPanel {
@@ -28,11 +31,13 @@ public class CadastroCardapio extends javax.swing.JPanel {
         plista.toArray(ingredientes);
         
         initComponents();
+        
+        msgErro.setText("");
         setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
         
         botaoAdd.addActionListener(new ControladorCadastroLista(this));
         botaoLimpar.addActionListener(new ControladorCadastroLista(this));
-        
+        comboBoxIngrediente.addActionListener(new ControladorCadastroLista(this));
     }
     
     @SuppressWarnings("unchecked")
@@ -44,11 +49,12 @@ public class CadastroCardapio extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         campoPreco = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        comboBoxIngdiente = new javax.swing.JComboBox<>();
+        comboBoxIngrediente = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         botaoLimpar = new barestoque.view.componentes.JNegativeButton();
         botaoAdd = new barestoque.view.componentes.JPositiveButton();
         spinnerQuantidade = new javax.swing.JSpinner();
+        msgErro = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Criar Novo Prato", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
@@ -58,7 +64,7 @@ public class CadastroCardapio extends javax.swing.JPanel {
 
         jLabel3.setText("Ingredientes:");
 
-        comboBoxIngdiente.setModel(new javax.swing.DefaultComboBoxModel<Produto> (ingredientes));
+        comboBoxIngrediente.setModel(new javax.swing.DefaultComboBoxModel<Produto> (ingredientes));
 
         jLabel4.setText("quantidade:");
 
@@ -70,34 +76,39 @@ public class CadastroCardapio extends javax.swing.JPanel {
 
         spinnerQuantidade.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
+        msgErro.setText("jLabel5");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(campoNome)
             .addComponent(campoPreco)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 295, Short.MAX_VALUE)
                 .addComponent(botaoAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(comboBoxIngdiente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(comboBoxIngrediente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spinnerQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(msgErro))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(msgErro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -109,7 +120,7 @@ public class CadastroCardapio extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBoxIngdiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(spinnerQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -135,14 +146,31 @@ public class CadastroCardapio extends javax.swing.JPanel {
         return campoPreco;
     }
 
-    public JComboBox<Produto> getComboBoxIngdiente() {
-        return comboBoxIngdiente;
+    public JComboBox<Produto> getComboBoxIngrediente() {
+        return comboBoxIngrediente;
+    }
+
+    public JLabel getMsgErro() {
+        return msgErro;
+    }
+
+    public Map<Produto, Integer> getQuantidades() {
+        return quantidades;
+    }
+
+    public JSpinner getSpinnerQuantidade() {
+        return spinnerQuantidade;
     }
     
-    public void atualizar ()
+    
+    
+    public void limparDados ()
     {
+        
+        quantidades.clear();
         campoNome.setText("");
         campoPreco.setText("");
+        msgErro.setText("");
         spinnerQuantidade.setValue(0);
     }
     
@@ -151,11 +179,12 @@ public class CadastroCardapio extends javax.swing.JPanel {
     private javax.swing.JButton botaoLimpar;
     private javax.swing.JTextField campoNome;
     private javax.swing.JTextField campoPreco;
-    private javax.swing.JComboBox<Produto> comboBoxIngdiente;
+    private javax.swing.JComboBox<Produto> comboBoxIngrediente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel msgErro;
     private javax.swing.JSpinner spinnerQuantidade;
     // End of variables declaration//GEN-END:variables
 }

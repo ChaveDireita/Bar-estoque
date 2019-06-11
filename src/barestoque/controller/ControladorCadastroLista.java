@@ -4,11 +4,13 @@ import barestoque.DAO.CategoriaDAO;
 import barestoque.DAO.ClienteDAO;
 import barestoque.DAO.CompraDAO;
 import barestoque.DAO.FornecedorDAO;
+import barestoque.DAO.PratoDAO;
 import barestoque.DAO.ProdutoDAO;
 import barestoque.model.Categoria;
 import barestoque.model.Cliente;
 import barestoque.model.Compra;
 import barestoque.model.Fornecedor;
+import barestoque.model.Prato;
 import barestoque.model.Produto;
 import barestoque.view.Janela;
 import barestoque.view.telas.cardapio.CadastroCardapio;
@@ -23,9 +25,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.Map;
 import javax.swing.JPanel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-public class ControladorCadastroLista implements ActionListener, KeyListener
+public class ControladorCadastroLista implements ActionListener, KeyListener, ChangeListener
 {
     private JPanel contexto;
     
@@ -68,6 +74,14 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
     {
         
     }
+
+    @Override
+    public void stateChanged(ChangeEvent e) 
+    {
+        if (contexto instanceof CadastroCardapio);
+    }
+    
+    
     //</editor-fold>
     
     //<editor-fold desc="Eventos por painel">
@@ -245,17 +259,30 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
         
         if (src == cCardapio.getBotaoAdd())
         {
-            Produto produto = (Produto) cCardapio.getComboBoxProduto().getSelectedItem();
+            String nome = cCardapio.getCampoNome().getText();
+            double valor = -1;
             
-            int quantidade = (Integer) cCardapio.getSpinnerQuantidade().getValue();
+            try
+            {
+                valor = Double.parseDouble(cCardapio.getCampoPreco().getText());
+            } catch (NumberFormatException nfe)
+            {
+                cCardapio.getMsgErro().setText("Erro: Preço não é um número");
+                return;
+            }
+            if (!new Prato().validarValor(valor))
+            {
+                cCardapio.getMsgErro().setText("Erro: Preço inválido");
+                return;
+            }
             
-            Compra c = new Compra ();
-            c.setProduto(produto);
-            c.setQuantidade(quantidade);
-            c.gerarValor();
+            Prato p = new Prato();
+            p.setNome(nome);
+            p.setValor(valor);
+            p.setMedidaIngredientes(cCardapio.getQuantidades());
             
-            CompraDAO cdao = new CompraDAO();
-            cdao.inserirCompra(c);
+            PratoDAO pdao = new PratoDAO();
+            pdao.inserirPrato(p);
             
             cCardapio.limparDados();
             cCardapio.getMsgErro().setText("");
@@ -263,6 +290,10 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
         } else if (src == cCardapio.getBotaoLimpar())
         {
             cCardapio.limparDados();
+        } else if (src == cCardapio.getComboBoxIngrediente())
+        {
+            int spinnerValor = cCardapio.getQuantidades().get((Produto) cCardapio.getComboBoxIngrediente().getSelectedItem());
+            cCardapio.getSpinnerQuantidade().setValue(spinnerValor);
         }
     }
     //</editor-fold>

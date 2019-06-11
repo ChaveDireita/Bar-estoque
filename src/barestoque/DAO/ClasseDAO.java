@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * 
  * @author Nolasco
  */
-public abstract class ClasseDAO <T extends EntidadeBanco>
+public abstract class ClasseDAO <T>
 {
     protected FabricaConexao fabrica;
     protected String tabela;

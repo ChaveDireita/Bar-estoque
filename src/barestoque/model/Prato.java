@@ -1,45 +1,44 @@
 package barestoque.model;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 
 public class Prato extends EntidadeBanco implements Valoravel
 {
-    private ArrayList <Produto> ingredientes;
+    private Map <Produto, Integer> medidaIngredientes;
     private String nome;
     private double valor;
 
-    public Prato (int codigo, ArrayList<Produto> ingredientes, String nome, double valor)
+    public Prato (int codigo, String nome, double valor, Map <Produto, Integer> medidaIngredientes)
     {
         super (codigo);
-        this.ingredientes = ingredientes;
+        this.medidaIngredientes = medidaIngredientes;
         this.nome = nome;
         setValor (valor);
     }
 
-    public Prato(int codigo, String nome, double valor) {
-        super(codigo);
-        this.nome = nome;
-        this.valor = valor;
-    }
-    
-    
+    public Prato() {
+        super(-1);
+    } 
     
     public double lucro ()
     {
         double valorDeProducao = 0;
-        for (Produto p: ingredientes)
-            valorDeProducao += p.getValor()*p.getQuantidade ();
+        Set <Produto> chaves = medidaIngredientes.keySet();
+        for (Produto p: chaves)
+            valorDeProducao += p.getValor()*medidaIngredientes.getOrDefault(p, 0);
         return valor - valorDeProducao;
     }
     
-    public ArrayList<Produto> getIngredientes() 
+    public Map<Produto, Integer> getMedidaIngredientes() 
     {
-        return ingredientes;
+        return medidaIngredientes;
     }
 
-    public void setIngredientes(ArrayList<Produto> ingredientes) 
+    public void setMedidaIngredientes(Map<Produto, Integer> medidaIngredientes) 
     {
-        this.ingredientes = ingredientes;
+        this.medidaIngredientes = medidaIngredientes;
     }
 
     public String getNome() 

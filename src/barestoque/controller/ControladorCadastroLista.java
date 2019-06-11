@@ -46,16 +46,19 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
     @Override
     public void keyTyped(KeyEvent e) 
     {
+        
     }
 
     @Override
     public void keyPressed(KeyEvent e) 
     {
+        
     }
 
     @Override
     public void keyReleased(KeyEvent e) 
     {
+        
     }
     //</editor-fold>
     
@@ -211,21 +214,34 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
         } else if (src == cProduto.getBotaoLimpar())
         {
             cProduto.limparDados();
-        } else if (src == cProduto.getCampoCategoria())
+        } else if (src == cProduto.getComboBoxCategoria())
         {
             Categoria c = (Categoria) cProduto.getComboBoxCategoria().getSelectedItem();
             cProduto.getCampoCategoria().setText(c.getNome());
         }
     }
     
-    private void eventolistaProduto (ListaProduto lProduto, ActionEvent e)
+    
+    private void eventoListaProduto (ListaProduto lProduto, ActionEvent e)
     {
         Object src = e.getSource();
         
-        if (src == lProduto.getBotaoDeletar())
-        {
-            
-        }
+//        if (src == lProduto.getBotaoDeletar())
+//        {
+//            try
+//            {
+//                int linha = lProduto.getTabelaProduto().getSelectedRow();
+//                int codigo = (Integer) lProduto.getTabelaProduto().getValueAt(linha, 0);
+//                
+//                ProdutoDAO pdao = new ProdutoDAO();
+//                pdao.(codigo);
+//            } catch (NullPointerException ne)
+//            {
+//                return;
+//            }
+//            
+//            lProduto.atualizar(); 
+//        }  
     }
     //</editor-fold>
     //</editor-fold>

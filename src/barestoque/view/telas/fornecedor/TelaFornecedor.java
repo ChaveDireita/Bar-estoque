@@ -20,8 +20,6 @@ public class TelaFornecedor extends Tela
         super(pai, 2, 2);
         setLayout (new GridLayout (2, 2, 8, 8));
         
-        painelSuporte.setLayout(new GridBagLayout());
-        
         insertMapa(new TelaFornecedorBotoesMenu(pai), 0, 0);
         insertMapa(painelSuporte, 0, 1);
         insertMapa(new SetBotoesApenasSair(pai), 1, 1);

@@ -88,6 +88,10 @@ public class CadastroCliente extends javax.swing.JPanel {
         return campoNome;
     }
     
+    public void limparDados ()
+    {
+        campoNome.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAdd;

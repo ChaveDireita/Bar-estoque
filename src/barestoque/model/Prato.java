@@ -15,6 +15,14 @@ public class Prato extends EntidadeBanco implements Valoravel
         this.nome = nome;
         setValor (valor);
     }
+
+    public Prato(int codigo, String nome, double valor) {
+        super(codigo);
+        this.nome = nome;
+        this.valor = valor;
+    }
+    
+    
     
     public double lucro ()
     {
@@ -55,6 +63,4 @@ public class Prato extends EntidadeBanco implements Valoravel
             throw new IllegalArgumentException ();
         this.valor = valor;
     }
-    
-    
 }

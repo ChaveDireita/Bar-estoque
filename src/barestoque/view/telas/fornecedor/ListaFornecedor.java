@@ -34,12 +34,12 @@ public class ListaFornecedor extends javax.swing.JPanel {
         
         botaoDeletar.addActionListener(new ControladorCadastroLista(this));
         
-//        FornecedorDAO fdao = new FornecedorDAO();
-//        ArrayList <Fornecedor> listaFornecedor = fdao.listaDeFornecedores();
-//        for (Fornecedor f : listaFornecedor)
-//            tabelaModelo.addRow(fdao.desmontarParaLista(f));
-//        
-//        tabelaFornecedor.setModel(tabelaModelo);
+        FornecedorDAO fdao = new FornecedorDAO();
+        ArrayList <Fornecedor> listaFornecedor = fdao.listaDeFornecedores();
+        for (Fornecedor f : listaFornecedor)
+            tabelaModelo.addRow(fdao.desmontarParaLista(f));
+        
+        tabelaFornecedor.setModel(tabelaModelo);
     }
 
     /**

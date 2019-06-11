@@ -3,12 +3,13 @@ package barestoque.DAO;
 import barestoque.model.Prato;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class PratoDAO {
-    public FabricaConexao fabrica;
+public class PratoDAO extends ClasseDAO<Prato>{
     
     public PratoDAO(){
-        fabrica = new FabricaConexao();
+        super("prato", new String[] {"codigo", "nome", "valor"});
     }
     
     public void inserirPrato(Prato prato){
@@ -23,5 +24,28 @@ public class PratoDAO {
                 System.err.println("Erro: "+e.getMessage());
         }
     }
+
+    @Override
+    protected Prato montarObjeto(ResultSet resultado) throws SQLException 
+    {
+        int codigo = resultado.getInt("codigo");
+        String nome = resultado.getString("nome");
+        double valor = resultado.getDouble("valor");
+        
+        return new Prato (codigo, nome, valor);
+    }
+
+    @Override
+    protected Object[] desmontarObjeto(Prato prato) 
+    {
+        Object[] o =  new Object[2];
+        o[0] = prato.getNome();
+        o[1] = prato.getValor();
+        
+        return o;
+    }
+    
+    
+    
 }
 

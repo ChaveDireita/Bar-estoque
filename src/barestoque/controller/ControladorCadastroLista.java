@@ -1,8 +1,12 @@
 package barestoque.controller;
 
+import barestoque.DAO.ClienteDAO;
 import barestoque.DAO.FornecedorDAO;
+import barestoque.model.Cliente;
 import barestoque.model.Fornecedor;
 import barestoque.view.Janela;
+import barestoque.view.telas.cliente.CadastroCliente;
+import barestoque.view.telas.cliente.ListaCliente;
 import barestoque.view.telas.fornecedor.CadastroFornecedor;
 import barestoque.view.telas.fornecedor.ListaFornecedor;
 import java.awt.event.ActionEvent;
@@ -55,9 +59,9 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
         
         if (src == cFornecedor.getBotaoAdd())
         {
-            String nome = cFornecedor.getCampoFornecedorNome().getText(),
-                   telefone = cFornecedor.getCampoFornecedorTelefone().getText(),
-                   cnpj = cFornecedor.getCampoFornecedorCNPJ().getText();
+            String nome = cFornecedor.getCampoNome().getText(),
+                   telefone = cFornecedor.getCampoTelefone().getText(),
+                   cnpj = cFornecedor.getCampoCNPJ().getText();
             
             if (!new Fornecedor ().validarTelefone(telefone))
             {
@@ -77,10 +81,10 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
             FornecedorDAO fdao = new FornecedorDAO();
             fdao.inserirFornecedor(f);
             
-            limparDadosCadastroFornecedor(cFornecedor);
+            cFornecedor.limparDados();
         } else if (src == cFornecedor.getBotaoLimpar())
         {
-            limparDadosCadastroFornecedor(cFornecedor);
+            cFornecedor.limparDados();
         }
     }
     
@@ -90,18 +94,59 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
         
         if (src == lFornecedor.getBotaoDeletar())
         {
-            int linha = lFornecedor.getTabelaFornecedor().getSelectedRow();
-            int codigo = (Integer) lFornecedor.getTabelaFornecedor().getValueAt(linha, 0);
-            
+            try
+            {
+                int linha = lFornecedor.getTabelaFornecedor().getSelectedRow();
+                int codigo = (Integer) lFornecedor.getTabelaFornecedor().getValueAt(linha, 0);
+            } catch (NullPointerException ne)
+            {
+                return;
+            }
             FornecedorDAO fdao = new FornecedorDAO();
         }    
     }
+    //</editor-fold>
     
-    private void limparDadosCadastroFornecedor (CadastroFornecedor cFornecedor)
+    //<editor-fold desc="Cliente">
+    
+    private void eventoCadastroCliente (CadastroCliente cCliente, ActionEvent e)
     {
-        cFornecedor.getCampoFornecedorNome().setText("");
-        cFornecedor.getCampoFornecedorTelefone().setText("");
-        cFornecedor.getCampoFornecedorCNPJ().setText("");
+        Object src = e.getSource();
+        
+        if (src == cCliente.getBotaoAdd())
+        {
+            String nome = cCliente.getCampoNome().getText();
+            
+            Cliente c = new Cliente ();
+            c.setNome(nome);
+            
+            ClienteDAO cdao = new ClienteDAO();
+            cdao.inserirCliente(c);
+            
+            cCliente.limparDados();
+        } else if (src == cCliente.getBotaoLimpar())
+        {
+            cCliente.limparDados();
+        }
+    }
+    
+    private void eventoListaCliente (ListaCliente lCliente, ActionEvent e)
+    {
+        Object src = e.getSource();
+        
+        if (src == lCliente.getBotaoDeletar())
+        {
+            try
+            {
+                int linha = lCliente.getTabelaCliente().getSelectedRow();
+                int codigo = (Integer) lCliente.getTabelaCliente().getValueAt(linha, 0);
+            } catch (NullPointerException ne)
+            {
+                return;
+            }
+            ClienteDAO cdao = new ClienteDAO();
+            
+        }  
     }
     //</editor-fold>
     //</editor-fold>

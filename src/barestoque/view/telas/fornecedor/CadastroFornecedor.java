@@ -164,19 +164,24 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         return botaoLimpar;
     }
 
-    public JTextField getCampoFornecedorCNPJ() {
+    public JTextField getCampoCNPJ() {
         return campoCNPJ;
     }
 
-    public JTextField getCampoFornecedorNome() {
+    public JTextField getCampoNome() {
         return campoNome;
     }
 
-    public JTextField getCampoFornecedorTelefone() {
+    public JTextField getCampoTelefone() {
         return campoTelefone;
     }
     
-    
+    public void limparDados ()
+    {
+        campoNome.setText("");
+        campoTelefone.setText("");
+        campoCNPJ.setText("");
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAdd;

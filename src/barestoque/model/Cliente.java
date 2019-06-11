@@ -10,6 +10,13 @@ public class Cliente extends EntidadeBanco{
         super (codigo);
         this.nome = nome;     
     }
+
+    public Cliente() 
+    {
+        super(-1);
+    }
+    
+    
     
     //Métodos Acessores e Modificadoress
     public String getNome() {

@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ClienteDAO extends ClasseDAO <Cliente>{
     
@@ -24,7 +25,17 @@ public class ClienteDAO extends ClasseDAO <Cliente>{
         }
         
     }
-
+    
+    public ArrayList <Cliente> listaDeClientes ()
+    {
+        return selectAllFrom();
+    }
+    
+    public void deletarCliente (Cliente cliente)
+    {
+        deleteFromWhereCodigo(cliente.getCodigo());
+    }
+    
     @Override
     protected Cliente montarObjeto(ResultSet resultado) throws SQLException 
     {
@@ -42,5 +53,12 @@ public class ClienteDAO extends ClasseDAO <Cliente>{
         return o;
     }
     
-    
+    public Object[] desmontarParaLista (Cliente cliente)
+    {
+        Object[] o = new Object[2];
+        o[0] = cliente.getCodigo();
+        o[1] = cliente.getNome ();
+        
+        return o;
+    }
 }

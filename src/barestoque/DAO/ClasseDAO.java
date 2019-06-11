@@ -1,5 +1,6 @@
 package barestoque.DAO;
 
+import barestoque.model.EntidadeBanco;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  * 
  * @author Nolasco
  */
-public abstract class ClasseDAO <T>
+public abstract class ClasseDAO <T extends EntidadeBanco>
 {
     protected FabricaConexao fabrica;
     protected String tabela;

@@ -5,9 +5,14 @@
  */
 package barestoque.view.telas.cliente;
 
+import barestoque.DAO.ClienteDAO;
+import barestoque.controller.ControladorCadastroLista;
+import barestoque.model.Cliente;
 import barestoque.view.InicializadorLookAndFeel;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +26,15 @@ public class ListaCliente extends javax.swing.JPanel {
     public ListaCliente() {
         initComponents();
         setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
+        DefaultTableModel tabelaModelo = new DefaultTableModel();
+        tabelaModelo.addColumn("Codigo");
+        tabelaModelo.addColumn("Nome");
+        
+        botaoDeletar.addActionListener(new ControladorCadastroLista(this));
+        ClienteDAO cdao = new ClienteDAO();
+        ArrayList <Cliente> listaCliente = cdao.listaDeClientes();
+        for (Cliente c : listaCliente)
+            tabelaModelo.addRow(cdao.desmontarParaLista(c));
     }
 
     /**

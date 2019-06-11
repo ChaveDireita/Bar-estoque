@@ -30,8 +30,8 @@ public class InicializadorLookAndFeel
                               COR_BOTAO_NEGATIVO = new Color (201, 78, 55),
                               COR_CAMPO_TEXTO_PADRAO = new Color (247, 245, 242);
     
-    public static final Font FONTE_BOTAO_PADRAO = new Font("Calibri", Font.PLAIN, 18),
-                             FONTE_LABEL_PADRAO = new Font("Calibri", Font.PLAIN, 24);
+    public static final Font FONTE_BOTAO_PADRAO = new Font("Calibri", Font.PLAIN, 16),
+                             FONTE_LABEL_PADRAO = new Font("Calibri", Font.PLAIN, 16);
     
     public InicializadorLookAndFeel ()
     {

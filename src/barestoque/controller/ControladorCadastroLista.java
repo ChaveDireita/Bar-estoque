@@ -1,14 +1,20 @@
 package barestoque.controller;
 
+import barestoque.DAO.CategoriaDAO;
 import barestoque.DAO.ClienteDAO;
 import barestoque.DAO.FornecedorDAO;
+import barestoque.DAO.ProdutoDAO;
+import barestoque.model.Categoria;
 import barestoque.model.Cliente;
 import barestoque.model.Fornecedor;
+import barestoque.model.Produto;
 import barestoque.view.Janela;
 import barestoque.view.telas.cliente.CadastroCliente;
 import barestoque.view.telas.cliente.ListaCliente;
 import barestoque.view.telas.fornecedor.CadastroFornecedor;
 import barestoque.view.telas.fornecedor.ListaFornecedor;
+import barestoque.view.telas.produto.CadastroProduto;
+import barestoque.view.telas.produto.ListaProduto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -114,7 +120,6 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
     //</editor-fold>
     
     //<editor-fold desc="Cliente">
-    
     private void eventoCadastroCliente (CadastroCliente cCliente, ActionEvent e)
     {
         Object src = e.getSource();
@@ -156,6 +161,65 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
             
             lCliente.atualizar(); 
         }  
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Produto">
+    private void eventoCadastroProduto (CadastroProduto cProduto, ActionEvent e)
+    {
+        Object src = e.getSource();
+        
+        if (src == cProduto.getBotaoAdd())
+        {
+            String nome = cProduto.getCampoNome().getText(),
+                   unidade = cProduto.getCampoUnidade().getText(),
+                   categoria = cProduto.getCampoCategoria().getText();
+            
+            double valor = -1;
+            
+            try
+            {
+                valor = Double.parseDouble(cProduto.getCampoValor().getText());
+            } catch (NumberFormatException nfe) 
+            {
+                cProduto.getMsgErro().setText("Erro: Valor inválido.");
+                return;
+            }
+            
+            if (!new Produto ().validarValor(valor))
+            {
+                cProduto.getMsgErro().setText("Erro: Valor inválido.");
+                return;
+            }
+            
+            Produto p = new Produto();
+            p.setNome(nome);
+            p.setUnidade(unidade);
+            p.setValor(valor);
+            
+            p.setFornecedor((Fornecedor) cProduto.getComboBoxFornecedor().getSelectedItem());
+            p.setCategoria(new CategoriaDAO().getCategoriaDeNome(categoria));
+            
+            ProdutoDAO pdao = new ProdutoDAO();
+            pdao.inserirProduto(p);
+            
+            cProduto.limparDados();
+            cProduto.getMsgErro().setText("");
+            
+        } else if (src == cProduto.getBotaoLimpar())
+        {
+            cProduto.limparDados();
+        }
+    }
+    
+    private void eventolistaProduto (ListaProduto lProduto, ActionEvent e)
+    {
+        Object src = e.getSource();
+        
+        if (src == lProduto.getBotaoDeletar())
+        {
+            
+        }
     }
     //</editor-fold>
     //</editor-fold>

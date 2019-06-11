@@ -5,9 +5,16 @@
  */
 package barestoque.view.telas.produto;
 
+import barestoque.DAO.CategoriaDAO;
+import barestoque.DAO.FornecedorDAO;
+import barestoque.controller.ControladorCadastroLista;
+import barestoque.model.Categoria;
+import barestoque.model.Fornecedor;
 import barestoque.view.InicializadorLookAndFeel;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
@@ -16,12 +23,27 @@ import javax.swing.JTextField;
  */
 public class CadastroProduto extends javax.swing.JPanel {
 
-    /**
-     * Creates new form CadastroProduto
-     */
+    private ArrayList <Categoria> categoriaLista;
+    private ArrayList <Fornecedor> fornecedorLista;
+    
     public CadastroProduto() {
         initComponents();
         setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
+        
+        botaoAdd.addActionListener(new ControladorCadastroLista(this));
+        botaoLimpar.addActionListener(new ControladorCadastroLista(this));
+        
+        msgErro.setText("");
+        
+        categoriaLista = new CategoriaDAO ().listaDeCategorias();
+        fornecedorLista = new FornecedorDAO().listaDeFornecedores();
+        
+        for (Categoria c : categoriaLista)
+            comboBoxCategoria.addItem(c);
+        for (Fornecedor f : fornecedorLista)
+            comboBoxFornecedor.addItem(f);
+        
+        
     }
 
     /**
@@ -45,6 +67,8 @@ public class CadastroProduto extends javax.swing.JPanel {
         campoCategoria = new javax.swing.JTextField();
         botaoLimpar = new barestoque.view.componentes.JNegativeButton();
         botaoAdd = new barestoque.view.componentes.JPositiveButton();
+        msgErro = new javax.swing.JLabel();
+        comboBoxCategoria = new javax.swing.JComboBox<>();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastrar Produto", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
@@ -62,7 +86,8 @@ public class CadastroProduto extends javax.swing.JPanel {
 
         jLabel4.setText("Fornecedor:");
 
-        comboBoxFornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxFornecedor.setModel(new javax.swing.DefaultComboBoxModel<Fornecedor> ((Fornecedor[]) fornecedorLista.toArray())
+        );
 
         jLabel5.setText("Categoria: ");
 
@@ -78,33 +103,43 @@ public class CadastroProduto extends javax.swing.JPanel {
         botaoAdd.setText("+");
         botaoAdd.setPreferredSize(new java.awt.Dimension(40, 40));
 
+        msgErro.setText("jLabel6");
+
+        comboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<Categoria> ((Categoria[]) categoriaLista.toArray()));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(campoNome, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5))
-                .addGap(296, 448, Short.MAX_VALUE))
             .addComponent(campoUnidade)
             .addComponent(campoValor)
-            .addComponent(campoCategoria)
             .addComponent(comboBoxFornecedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(botaoAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(msgErro)
+                        .addComponent(jLabel1)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(comboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 48, Short.MAX_VALUE)
+                .addComponent(msgErro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -119,7 +154,9 @@ public class CadastroProduto extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -163,11 +200,26 @@ public class CadastroProduto extends javax.swing.JPanel {
         return campoValor;
     }
 
-    public JComboBox<String> getComboBoxFornecedor() {
+    public JComboBox<Fornecedor> getComboBoxFornecedor() {
         return comboBoxFornecedor;
     }
 
+    public JComboBox<Categoria> getComboBoxCategoria() {
+        return comboBoxCategoria;
+    }
     
+    public JLabel getMsgErro() {
+        return msgErro;
+    }
+    
+    public void limparDados ()
+    {
+        campoNome.setText("");
+        campoCategoria.setText("");
+        campoUnidade.setText("");
+        campoValor.setText("");
+        msgErro.setText("");
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAdd;
@@ -176,11 +228,13 @@ public class CadastroProduto extends javax.swing.JPanel {
     private javax.swing.JTextField campoNome;
     private javax.swing.JTextField campoUnidade;
     private javax.swing.JTextField campoValor;
-    private javax.swing.JComboBox<String> comboBoxFornecedor;
+    private javax.swing.JComboBox<Categoria> comboBoxCategoria;
+    private javax.swing.JComboBox<Fornecedor> comboBoxFornecedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel msgErro;
     // End of variables declaration//GEN-END:variables
 }

@@ -24,13 +24,14 @@ CREATE TABLE fornecedor
 
 CREATE TABLE produto 
 (
-	codigo INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    codigo INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR (255), 
-    valor DOUBLE, 
+    valor DOUBLE,
     unidade VARCHAR (45),
-    codigo_categoria INT NOT NULL, 
-    codigo_fornecedor INT NOT NULL, 
-    FOREIGN KEY (codigo_categoria) REFERENCES categoria (codigo), 
+    quantidade INT,
+    codigo_categoria INT NOT NULL,
+    codigo_fornecedor INT NOT NULL,
+    FOREIGN KEY (codigo_categoria) REFERENCES categoria (codigo),
     FOREIGN KEY (codigo_fornecedor) REFERENCES fornecedor (codigo)
 );
 

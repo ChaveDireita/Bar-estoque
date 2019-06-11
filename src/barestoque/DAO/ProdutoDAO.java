@@ -1,14 +1,17 @@
 package barestoque.DAO;
 
+import barestoque.model.Categoria;
+import barestoque.model.Fornecedor;
 import barestoque.model.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class ProdutoDAO {
-    public FabricaConexao fabrica;
+public class ProdutoDAO extends ClasseDAO <Produto>{
     
     public ProdutoDAO(){
-        fabrica = new FabricaConexao();
+        super ("produto", new String[] {"codigo", "nome", "valor", "unidade", "quantidade", "codigo_categoria", "codigo_fornecedor"});
     }
     
     public void inserirProduto(Produto produto){
@@ -25,5 +28,47 @@ public class ProdutoDAO {
                 System.err.println("Erro: "+e.getMessage());
         }
     }
+    
+    public void inserir (Produto p)
+    {
+        insertInto(p);
+    }
+    
+    @Override
+    protected Produto montarObjeto(ResultSet resultado) throws SQLException
+    {
+        String nome = resultado.getString("nome"),
+               unidade = resultado.getString("unidade");
+        
+        int quantidade = resultado.getInt("quantidade"),
+            codigo_categoria = resultado.getInt("codigo_categoria"),
+            codigo_fornecedor = resultado.getInt("codigo_fornecedor"),
+            codigo = resultado.getInt("codigo");
+        
+        double valor = resultado.getDouble("valor");
+        
+        Categoria categoria = new CategoriaDAO().getCategoriaDeCodigo(codigo_categoria);
+        Fornecedor fornecedor = new FornecedorDAO().getFornecedorDeCodigo(codigo_fornecedor);
+        
+        Produto p = new Produto (codigo, nome, valor, unidade, quantidade, categoria, fornecedor);
+        
+        return p;
+    }
+
+    @Override
+    protected Object[] desmontarObjeto(Produto produto) 
+    {
+        Object[] o = new Object[6];
+        o[0] = produto.getNome();
+        o[1] = produto.getValor();
+        o[2] = produto.getUnidade();
+        o[3] = produto.getQuantidade();
+        o[4] = produto.getCategoria().getCodigo();
+        o[5] = produto.getFornecedor().getCodigo();
+        
+        return o;
+    }
+    
+    
 }
 

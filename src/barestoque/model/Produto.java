@@ -10,7 +10,7 @@ public class Produto extends EntidadeBanco implements Valoravel
     private Fornecedor fornecedor;
 
 
-    public Produto(String nome, double valor, int codigo, Categoria categoria, int quantidade, String unidade, Fornecedor fornecedor) {
+    public Produto(int codigo, String nome, double valor, String unidade, int quantidade, Categoria categoria, Fornecedor fornecedor) {
         super (codigo);
         this.nome = nome;
         setValor (valor);
@@ -19,6 +19,12 @@ public class Produto extends EntidadeBanco implements Valoravel
         this.unidade = unidade;
         this.fornecedor = fornecedor;
     }
+
+    public Produto() {
+        super(-1);
+    }
+    
+    
     
     public String getNome() {
         return nome;

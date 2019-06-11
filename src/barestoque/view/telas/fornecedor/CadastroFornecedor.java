@@ -114,9 +114,9 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addComponent(msgErro)
-                .addGap(18, 18, 18)
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(msgErro, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -184,6 +184,7 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         campoNome.setText("");
         campoTelefone.setText("");
         campoCNPJ.setText("");
+        msgErro.setText("");
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

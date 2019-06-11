@@ -11,10 +11,24 @@ import barestoque.view.telas.cardapio.TelaCardapioBotoesMenu;
 import barestoque.view.telas.cardapio.TelaCardapioCadastro;
 import barestoque.view.telas.cardapio.TelaCardapioLista;
 import barestoque.view.telas.cliente.TelaCliente;
+import barestoque.view.telas.cliente.TelaClienteBotoesMenu;
+import barestoque.view.telas.cliente.TelaClienteCadastro;
+import barestoque.view.telas.cliente.TelaClienteLista;
 import barestoque.view.telas.compra.TelaCompra;
+import barestoque.view.telas.compra.TelaCompraBotoesMenu;
+import barestoque.view.telas.compra.TelaCompraCadastro;
+import barestoque.view.telas.compra.TelaCompraLista;
 import barestoque.view.telas.fornecedor.TelaFornecedor;
+import barestoque.view.telas.fornecedor.TelaFornecedorBotoesMenu;
+import barestoque.view.telas.fornecedor.TelaFornecedorCadastro;
+import barestoque.view.telas.fornecedor.TelaFornecedorLista;
 import barestoque.view.telas.produto.TelaProduto;
+import barestoque.view.telas.produto.TelaProdutoBotoesMenu;
+import barestoque.view.telas.produto.TelaProdutoCadastro;
+import barestoque.view.telas.produto.TelaProdutoLista;
 import barestoque.view.telas.venda.TelaVenda;
+import barestoque.view.telas.venda.TelaVendaBotoesMenu;
+import barestoque.view.telas.venda.TelaVendaCadastro;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -39,9 +53,19 @@ public class ControladorDeTransicao implements ActionListener
         else if (contexto instanceof SetBotoesApenasSair)
             eventoBotoesApenasSair((SetBotoesApenasSair) contexto, e);
         else if (contexto instanceof TelaCardapioBotoesMenu)
-            eventoBotoesCardapio((TelaCardapioBotoesMenu) contexto, e);
+            eventoTelaCardapio((TelaCardapioBotoesMenu) contexto, e);
         else if (contexto instanceof TelaTransacao)
             eventoTelaTransacao((TelaTransacao) contexto, e);
+         else if (contexto instanceof TelaClienteBotoesMenu)
+            eventoTelaCliente((TelaClienteBotoesMenu) contexto, e);
+        else if (contexto instanceof TelaCompraBotoesMenu)
+            eventoTelaCompra((TelaCompraBotoesMenu) contexto, e);
+        else if (contexto instanceof TelaFornecedorBotoesMenu)
+            eventoTelaFornecedor((TelaFornecedorBotoesMenu) contexto, e);
+        else if (contexto instanceof TelaProdutoBotoesMenu)
+            eventoTelaProduto((TelaProdutoBotoesMenu) contexto, e);
+        else if (contexto instanceof TelaVendaBotoesMenu)
+            eventoTelaVenda((TelaVendaBotoesMenu) contexto, e);
     }
     
     private void eventoTelaInicial (TelaInicial tInicial, ActionEvent e)
@@ -92,7 +116,7 @@ public class ControladorDeTransicao implements ActionListener
             pai.setCena(new TelaVenda(pai));
     }
     
-    private void eventoBotoesCardapio (TelaCardapioBotoesMenu cardapioMenu, ActionEvent e)
+    private void eventoTelaCardapio (TelaCardapioBotoesMenu cardapioMenu, ActionEvent e)
     {
         Object src = e.getSource();
         if (src == cardapioMenu.getBotaoCadastrar())
@@ -103,4 +127,58 @@ public class ControladorDeTransicao implements ActionListener
             pai.setCena(new TelaMenu(pai));
     }
     
+    private void eventoTelaFornecedor (TelaFornecedorBotoesMenu tFornece, ActionEvent e){
+        Object src = e.getSource();
+        if (src == tFornece.getBotaoCadastrar()){
+            pai.setCena(new TelaFornecedorCadastro(pai));
+        }else if (src == tFornece.getBotaoListar()){
+            pai.setCena(new TelaFornecedorLista(pai));
+        }else if (src == tFornece.getBotaoVoltar()){
+            pai.setCena(new TelaMenu(pai));
+        }
+    }
+    
+    private void eventoTelaCliente (TelaClienteBotoesMenu tCliente, ActionEvent e){
+        Object src = e.getSource();
+        if (src == tCliente.getBotaoCadastrar()){
+            pai.setCena(new TelaClienteCadastro(pai));
+        }else if (src == tCliente.getBotaoListar()){
+            pai.setCena(new TelaClienteLista(pai));
+        }else if (src == tCliente.getBotaoVoltar()){
+            pai.setCena(new TelaMenu(pai));
+        }
+    }
+    
+    private void eventoTelaCompra (TelaCompraBotoesMenu tCompra, ActionEvent e){
+        Object src = e.getSource();
+        if (src == tCompra.getBotaoCadastrar()){
+            pai.setCena(new TelaCompraCadastro(pai));
+        }else if (src == tCompra.getBotaoListar()){
+            pai.setCena(new TelaCompraLista(pai));
+        }else if (src == tCompra.getBotaoVoltar()){
+            pai.setCena(new TelaTransacao(pai));
+        }
+    }
+    
+    private void eventoTelaVenda (TelaVendaBotoesMenu tVenda, ActionEvent e){
+        Object src = e.getSource();
+        if (src == tVenda.getBotaoCadastrar()){
+            pai.setCena(new TelaVendaCadastro(pai));
+        }else if (src == tVenda.getBotaoListar()){
+            //pai.setCena(new TelaVendaLista(pai));
+        }else if (src == tVenda.getBotaoVoltar()){
+            pai.setCena(new TelaTransacao(pai));
+        }
+    }
+    
+    private void eventoTelaProduto (TelaProdutoBotoesMenu tProduto, ActionEvent e){
+        Object src = e.getSource();
+        if (src == tProduto.getBotaoCadastrar()){
+            pai.setCena(new TelaProdutoCadastro(pai));
+        }else if (src == tProduto.getBotaoListar()){
+            pai.setCena(new TelaProdutoLista(pai));
+        }else if (src == tProduto.getBotaoVoltar()){
+            pai.setCena(new TelaMenu(pai));
+        }
+    }
 }

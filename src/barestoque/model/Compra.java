@@ -2,24 +2,24 @@ package barestoque.model;
 
 public class Compra extends EntidadeBanco implements Valoravel{
     
-    private int codigoProduto;
+    private Produto produto;
     private int quantidade;
     private double valor;
 
-    public Compra (int codigoProduto, int quantidade, double valor, int codigo)
+    public Compra (Produto produto, int quantidade, double valor, int codigo)
     {
         super (codigo);
-        this.codigoProduto = codigoProduto;
+        this.produto = produto;
         this.quantidade = quantidade;
-        this.valor = valor;
+        setValor (produto.getValor()*this.quantidade);
     }
     
-    public int getCodigoProduto() {
-        return codigoProduto;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setProduto(int codigoProduto) {
-        this.codigoProduto = codigoProduto;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public int getQuantidade() {

@@ -9,6 +9,14 @@ public class Categoria extends EntidadeBanco
         super (codigo);
         this.nome = nome;
     }
+
+    public Categoria(String nome)
+    {
+        super(-1);
+        this.nome = nome;
+    }
+    
+    
     
     public String getNome() 
     {

@@ -58,6 +58,19 @@ public class CategoriaDAO extends ClasseDAO <Categoria>{
             return null;
         return categoriaArray.get (0);
     }
+    
+    public Categoria getCategoriaDeNome (String nome)
+    {
+        ArrayList <Categoria> categorias = selectFromWhere("nome = \"" + nome + "\"");
+        if (categorias.isEmpty())
+        {
+            Categoria c = new Categoria (nome);
+            inserir(c);
+            return getCategoriaDeNome(nome);
+        }
+        return categorias.get(0);
+    }
+    
     @Override
     protected Categoria montarObjeto(ResultSet resultado) throws SQLException
     {

@@ -42,6 +42,14 @@ public class FornecedorDAO extends ClasseDAO <Fornecedor>{
         deleteFromWhereCodigo(codigo);
     }
     
+    public Fornecedor getFornecedorDeCodigo (int codigo)
+    {
+        ArrayList <Fornecedor> arrayFornecedor = selectFromWhere("codigo = " + codigo);
+        if (arrayFornecedor.isEmpty())
+            return null;
+        return arrayFornecedor.get(0);
+    }
+    
     @Override
     protected Fornecedor montarObjeto(ResultSet resultado) throws SQLException 
     {

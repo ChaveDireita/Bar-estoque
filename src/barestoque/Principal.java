@@ -1,3 +1,4 @@
+
 package barestoque;
 
 import barestoque.view.InicializadorLookAndFeel;

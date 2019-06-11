@@ -17,16 +17,19 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-/**
- *
- * @author nolas
- */
 public class CadastroProduto extends javax.swing.JPanel {
 
-    private ArrayList <Categoria> categoriaLista;
-    private ArrayList <Fornecedor> fornecedorLista;
+    private Categoria[] categoriaLista;
+    private Fornecedor[] fornecedorLista;
     
     public CadastroProduto() {
+        ArrayList <Categoria> cLista = new CategoriaDAO ().listaDeCategorias();
+        categoriaLista = new Categoria[cLista.size()];
+        cLista.toArray(categoriaLista);
+        ArrayList <Fornecedor> fLista = new FornecedorDAO().listaDeFornecedores();
+        fornecedorLista = new Fornecedor[fLista.size()];
+        fLista.toArray(fornecedorLista);
+        
         initComponents();
         setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
         
@@ -35,15 +38,7 @@ public class CadastroProduto extends javax.swing.JPanel {
         
         msgErro.setText("");
         
-        categoriaLista = new CategoriaDAO ().listaDeCategorias();
-        fornecedorLista = new FornecedorDAO().listaDeFornecedores();
-        
-        for (Categoria c : categoriaLista)
-            comboBoxCategoria.addItem(c);
-        for (Fornecedor f : fornecedorLista)
-            comboBoxFornecedor.addItem(f);
-        
-        
+        comboBoxCategoria.addActionListener(new ControladorCadastroLista(this));
     }
 
     /**
@@ -86,7 +81,7 @@ public class CadastroProduto extends javax.swing.JPanel {
 
         jLabel4.setText("Fornecedor:");
 
-        comboBoxFornecedor.setModel(new javax.swing.DefaultComboBoxModel<Fornecedor> ((Fornecedor[]) fornecedorLista.toArray())
+        comboBoxFornecedor.setModel(new javax.swing.DefaultComboBoxModel<Fornecedor> (fornecedorLista)
         );
 
         jLabel5.setText("Categoria: ");
@@ -105,7 +100,7 @@ public class CadastroProduto extends javax.swing.JPanel {
 
         msgErro.setText("jLabel6");
 
-        comboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<Categoria> ((Categoria[]) categoriaLista.toArray()));
+        comboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<Categoria> (categoriaLista));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -126,9 +121,11 @@ public class CadastroProduto extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
                     .addComponent(jLabel5)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(msgErro)
-                        .addComponent(jLabel1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(msgErro)
+                            .addComponent(jLabel1))))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(comboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -138,8 +135,9 @@ public class CadastroProduto extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(msgErro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

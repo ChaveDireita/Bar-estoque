@@ -39,6 +39,8 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
             eventoCadastroFornecedor ((CadastroFornecedor) contexto, e);
         else if (contexto instanceof ListaFornecedor)
             eventoListaFornecedor((ListaFornecedor) contexto, e);
+        else if (contexto instanceof CadastroProduto)
+            eventoCadastroProduto((CadastroProduto) contexto, e);
     }
     
     @Override
@@ -209,6 +211,10 @@ public class ControladorCadastroLista implements ActionListener, KeyListener
         } else if (src == cProduto.getBotaoLimpar())
         {
             cProduto.limparDados();
+        } else if (src == cProduto.getCampoCategoria())
+        {
+            Categoria c = (Categoria) cProduto.getComboBoxCategoria().getSelectedItem();
+            cProduto.getCampoCategoria().setText(c.getNome());
         }
     }
     

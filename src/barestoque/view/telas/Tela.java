@@ -43,7 +43,7 @@ public abstract class Tela extends JPanel
         this.colunas = colunas;
         
         painelSuporte = new JPanel ();
-        painelSuporte.setLayout(new GridBagLayout());
+        //painelSuporte.setLayout(new GridBagLayout());
         
         mapa = new JComponent[linhas][colunas];
         for (int i = 0; i < mapa.length; i++)

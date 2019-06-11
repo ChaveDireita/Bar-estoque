@@ -6,6 +6,8 @@
 package barestoque.view.telas.fornecedor;
 
 import barestoque.view.InicializadorLookAndFeel;
+import javax.swing.JButton;
+import javax.swing.JTextField;
 
 /**
  *
@@ -30,20 +32,20 @@ public class CadastroFornecedor extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        campoFornecedorNome = new javax.swing.JTextField();
+        campoNome = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        campoFornecedorTelefone = new javax.swing.JTextField();
+        campoTelefone = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        campoFornecedorCNPJ = new javax.swing.JTextField();
-        jButton1 = new barestoque.view.componentes.JNegativeButton();
-        jButton2 = new barestoque.view.componentes.JPositiveButton();
+        campoCNPJ = new javax.swing.JTextField();
+        botaoLimpar = new barestoque.view.componentes.JNegativeButton();
+        botaoAdd = new barestoque.view.componentes.JPositiveButton();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastrar Fornecedor", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        campoFornecedorNome.addActionListener(new java.awt.event.ActionListener() {
+        campoNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoFornecedorNomeActionPerformed(evt);
+                campoNomeActionPerformed(evt);
             }
         });
 
@@ -51,33 +53,33 @@ public class CadastroFornecedor extends javax.swing.JPanel {
 
         jLabel2.setText("Telefone:");
 
-        campoFornecedorTelefone.addActionListener(new java.awt.event.ActionListener() {
+        campoTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoFornecedorTelefoneActionPerformed(evt);
+                campoTelefoneActionPerformed(evt);
             }
         });
 
         jLabel3.setText("CNPJ:");
 
-        campoFornecedorCNPJ.addActionListener(new java.awt.event.ActionListener() {
+        campoCNPJ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoFornecedorCNPJActionPerformed(evt);
+                campoCNPJActionPerformed(evt);
             }
         });
 
-        jButton1.setText("X");
-        jButton1.setPreferredSize(new java.awt.Dimension(40, 40));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botaoLimpar.setText("X");
+        botaoLimpar.setPreferredSize(new java.awt.Dimension(40, 40));
+        botaoLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botaoLimparActionPerformed(evt);
             }
         });
 
-        jButton2.setText("+");
-        jButton2.setPreferredSize(new java.awt.Dimension(40, 40));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botaoAdd.setText("+");
+        botaoAdd.setPreferredSize(new java.awt.Dimension(40, 40));
+        botaoAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botaoAddActionPerformed(evt);
             }
         });
 
@@ -85,9 +87,9 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(campoFornecedorNome)
-            .addComponent(campoFornecedorTelefone)
-            .addComponent(campoFornecedorCNPJ)
+            .addComponent(campoNome)
+            .addComponent(campoTelefone)
+            .addComponent(campoCNPJ)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
@@ -96,9 +98,9 @@ public class CadastroFornecedor extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(195, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,49 +108,70 @@ public class CadastroFornecedor extends javax.swing.JPanel {
                 .addContainerGap(48, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoFornecedorNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoFornecedorTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoFornecedorCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void campoFornecedorCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoFornecedorCNPJActionPerformed
+    private void campoCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCNPJActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoFornecedorCNPJActionPerformed
+    }//GEN-LAST:event_campoCNPJActionPerformed
 
-    private void campoFornecedorNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoFornecedorNomeActionPerformed
+    private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoFornecedorNomeActionPerformed
+    }//GEN-LAST:event_campoNomeActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botaoLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLimparActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botaoLimparActionPerformed
 
-    private void campoFornecedorTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoFornecedorTelefoneActionPerformed
+    private void campoTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTelefoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoFornecedorTelefoneActionPerformed
+    }//GEN-LAST:event_campoTelefoneActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void botaoAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAddActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_botaoAddActionPerformed
 
+    public JButton getBotaoAdd() {
+        return botaoAdd;
+    }
 
+    public JButton getBotaoLimpar() {
+        return botaoLimpar;
+    }
+
+    public JTextField getCampoFornecedorCNPJ() {
+        return campoCNPJ;
+    }
+
+    public JTextField getCampoFornecedorNome() {
+        return campoNome;
+    }
+
+    public JTextField getCampoFornecedorTelefone() {
+        return campoTelefone;
+    }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField campoFornecedorCNPJ;
-    private javax.swing.JTextField campoFornecedorNome;
-    private javax.swing.JTextField campoFornecedorTelefone;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton botaoAdd;
+    private javax.swing.JButton botaoLimpar;
+    private javax.swing.JTextField campoCNPJ;
+    private javax.swing.JTextField campoNome;
+    private javax.swing.JTextField campoTelefone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

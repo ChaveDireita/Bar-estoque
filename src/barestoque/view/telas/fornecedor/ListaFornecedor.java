@@ -6,6 +6,8 @@
 package barestoque.view.telas.fornecedor;
 
 import barestoque.view.InicializadorLookAndFeel;
+import javax.swing.JButton;
+import javax.swing.JTable;
 
 /**
  *
@@ -31,13 +33,13 @@ public class ListaFornecedor extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new barestoque.view.componentes.JNegativeButton();
+        tabelaFornecedor = new javax.swing.JTable();
+        botaoDeletar = new barestoque.view.componentes.JNegativeButton();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Fornecedores", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        jTable1.setBorder(new javax.swing.border.StrokeBorder(new java.awt.BasicStroke (1f), InicializadorLookAndFeel.COR_BACKGROUND));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaFornecedor.setBorder(new javax.swing.border.StrokeBorder(new java.awt.BasicStroke (1f), InicializadorLookAndFeel.COR_BACKGROUND));
+        tabelaFornecedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -59,15 +61,15 @@ public class ListaFornecedor extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setFillsViewportHeight(true);
-        jTable1.setRowHeight(28);
-        jScrollPane1.setViewportView(jTable1);
+        tabelaFornecedor.setFillsViewportHeight(true);
+        tabelaFornecedor.setRowHeight(28);
+        jScrollPane1.setViewportView(tabelaFornecedor);
 
-        jButton1.setText("Deletar");
-        jButton1.setPreferredSize(new java.awt.Dimension(75, 40));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botaoDeletar.setText("Deletar");
+        botaoDeletar.setPreferredSize(new java.awt.Dimension(75, 40));
+        botaoDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botaoDeletarActionPerformed(evt);
             }
         });
 
@@ -78,7 +80,7 @@ public class ListaFornecedor extends javax.swing.JPanel {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(botaoDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,18 +88,27 @@ public class ListaFornecedor extends javax.swing.JPanel {
                 .addGap(0, 48, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(botaoDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botaoDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDeletarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botaoDeletarActionPerformed
 
+    public JButton getBotaoDeletar() {
+        return botaoDeletar;
+    }
 
+    public JTable getTabelaFornecedor() {
+        return tabelaFornecedor;
+    }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton botaoDeletar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabelaFornecedor;
     // End of variables declaration//GEN-END:variables
 }

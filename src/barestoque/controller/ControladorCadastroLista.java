@@ -375,6 +375,7 @@ public class ControladorCadastroLista implements ActionListener, KeyListener, Ch
             v.calcularValor ();
             
             VendaDAO vdao = new VendaDAO ();
+            vdao.inserirVenda (v);
             
             cVenda.limparDados ();
         }
@@ -384,6 +385,12 @@ public class ControladorCadastroLista implements ActionListener, KeyListener, Ch
     private void eventoChangeCadastroVenda (CadastroVenda cVenda, ChangeEvent e)
     {
         Object src = e.getSource();
+        
+        if (src == cVenda.getSpinnerQuantidade ())
+        {
+            cVenda.atualizarPreco ();
+        }
+            
     }
     //</editor-fold>
     

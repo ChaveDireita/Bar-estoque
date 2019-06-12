@@ -5,10 +5,14 @@
  */
 package barestoque.view.telas.venda;
 
+import barestoque.DAO.VendaDAO;
 import barestoque.controller.ControladorCadastroLista;
+import barestoque.model.Venda;
 import barestoque.view.InicializadorLookAndFeel;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,7 +27,7 @@ public class ListaVenda extends javax.swing.JPanel {
         initComponents();
         setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
         
-        botaoDeletar.addActionListener(new ControladorCadastroLista(this));
+        atualizar ();
     }
 
     /**
@@ -33,26 +37,25 @@ public class ListaVenda extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
-        botaoDeletar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaVenda = new javax.swing.JTable();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Vendas", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        botaoDeletar.setText("Deletar");
-        botaoDeletar.setPreferredSize(new java.awt.Dimension(73, 40));
-
         tabelaVenda.setBorder(new javax.swing.border.StrokeBorder(new java.awt.BasicStroke (1f), InicializadorLookAndFeel.COR_BACKGROUND));
         tabelaVenda.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
-            new String [] {
+            new String []
+            {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
@@ -64,33 +67,41 @@ public class ListaVenda extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(botaoDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
     
-    public JButton getBotaoDeletar() {
-        return botaoDeletar;
-    }
 
     public JTable getTabelaVenda() {
         return tabelaVenda;
     }
     
-    
+    public void atualizar ()
+    {
+        DefaultTableModel tabelaModelo = new DefaultTableModel();
+        tabelaModelo.addColumn("Codigo");
+        tabelaModelo.addColumn("Cliente");
+        tabelaModelo.addColumn("Prato");
+        tabelaModelo.addColumn("Quantidade");
+        tabelaModelo.addColumn("Valor");
+        
+        VendaDAO vdao = new VendaDAO ();
+        
+        ArrayList <Venda> listaVenda = vdao.listaDeVendas ();
+        for (Venda v : listaVenda)
+            tabelaModelo.addRow (vdao.desmontarParaLista (v));
+        
+        tabelaVenda.setModel (tabelaModelo);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoDeletar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaVenda;
     // End of variables declaration//GEN-END:variables

@@ -40,6 +40,9 @@ public class CadastroVenda extends javax.swing.JPanel
         listaPrato = new Prato[lPrato.size ()];
         listaCliente = new Cliente[lCliente.size ()];
         
+        lPrato.toArray (listaPrato);
+        lCliente.toArray (listaCliente);
+        
         initComponents ();
         setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
         
@@ -174,7 +177,7 @@ public class CadastroVenda extends javax.swing.JPanel
     public void atualizarPreco ()
     {
         int quantidade = (Integer) spinnerQuantidade.getValue ();
-        double preco = ((Produto) comboBoxPrato.getSelectedItem ()).getValor ();
+        double preco = ((Prato) comboBoxPrato.getSelectedItem ()).getValor ();
         labelPreco.setText ("" + (preco*quantidade));
     }
 

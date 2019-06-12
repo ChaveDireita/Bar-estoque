@@ -29,6 +29,7 @@ import barestoque.view.telas.produto.TelaProdutoLista;
 import barestoque.view.telas.venda.TelaVenda;
 import barestoque.view.telas.venda.TelaVendaBotoesMenu;
 import barestoque.view.telas.venda.TelaVendaCadastro;
+import barestoque.view.telas.venda.TelaVendaLista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -165,7 +166,7 @@ public class ControladorDeTransicao implements ActionListener
         if (src == tVenda.getBotaoCadastrar()){
             pai.setCena(new TelaVendaCadastro(pai));
         }else if (src == tVenda.getBotaoListar()){
-            //pai.setCena(new TelaVendaLista(pai));
+            pai.setCena(new TelaVendaLista (pai));
         }else if (src == tVenda.getBotaoVoltar()){
             pai.setCena(new TelaTransacao(pai));
         }

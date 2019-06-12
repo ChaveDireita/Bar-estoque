@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class VendaDAO extends ClasseDAO<Venda>{
     
@@ -14,10 +15,15 @@ public class VendaDAO extends ClasseDAO<Venda>{
         super ("venda", new String[] {"codigo", "codigo_prato", "codigo_cliente", "quantidade", "valor"});
     }
     
-    public void inserirProduto(Venda venda){
-        
+    public void inserirVenda(Venda venda){
+        insertInto (venda);
     }
 
+    public ArrayList <Venda> listaDeVendas ()
+    {
+        return selectAllFrom ();
+    }
+    
     @Override
     protected Venda montarObjeto (ResultSet resultado) throws SQLException
     {
@@ -35,14 +41,30 @@ public class VendaDAO extends ClasseDAO<Venda>{
         return new Venda (codigo, c, p, quantidade);
         
     }
-
+    
     @Override
-    protected Object[] desmontarObjeto (Venda objeto)
+    protected Object[] desmontarObjeto (Venda venda)
     {
-        throw new UnsupportedOperationException ("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Object[] o = new Object[4];
+        o[0] = venda.getPrato ().getCodigo ();
+        o[1] = venda.getCliente ().getCodigo ();
+        o[2] = venda.getQuantidade ();
+        o[3] = venda.getValor ();
+        
+        return o;
     }
     
-    
-    
+    public Object[] desmontarParaLista (Venda venda)
+    {
+        Object[] o = new Object[5];
+        o[0] = venda.getCodigo ();
+        o[1] = venda.getCliente ().getNome ();
+        o[2] = venda.getPrato ().getNome ();
+        o[3] = venda.getQuantidade ();
+        venda.calcularValor ();
+        o[4] = venda.getValor ();
+        
+        return o;
+    }
 }
 

@@ -9,5 +9,13 @@ public class Transacao extends EntidadeBanco implements Valoravel
         super (codigo);
         this.valor = valor;
     }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
     
 }

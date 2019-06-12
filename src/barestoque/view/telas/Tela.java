@@ -5,30 +5,9 @@ import java.awt.GridBagLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-/**
- * Tela.
- * 
- * A classe Tela serve de molde para todas as telas do programa. Ela declara
- * campos e métdos ultilizados pela maior parte das telas.
- * 
- * @author Filipe Nolasco (ChaveDireita)
- */
-
 public abstract class Tela extends JPanel
 {
-    /**
-     * mapa.
-     * 
-     * É a organização dos elementos na tela. Ele foi feito tendo em mente que
-     * as telas usariam GridLayout.
-     */
     protected JComponent[][] mapa;
-    
-    /**
-     * pai.
-     * 
-     * É a janela de suporte.
-     */
     protected Janela pai;
     protected int linhas,
                   colunas;
@@ -43,7 +22,6 @@ public abstract class Tela extends JPanel
         this.colunas = colunas;
         
         painelSuporte = new JPanel ();
-        //painelSuporte.setLayout(new GridBagLayout());
         
         mapa = new JComponent[linhas][colunas];
         for (int i = 0; i < mapa.length; i++)
@@ -55,11 +33,7 @@ public abstract class Tela extends JPanel
     {
         mapa[linha][coluna] = jc;
     }
-    /**
-     * montarTela.
-     * 
-     * Percorre os elementos do mapa e adiciona-os na tela.
-     */
+    
     protected void montarTela ()
     {
         for (JComponent[] jcarray : mapa)

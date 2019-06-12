@@ -7,17 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- * Classe DAO Genérica (Em construção).
- * 
- * A ideia dessa classe é generalizar as funções das classes DAO. Possuindo mé-
- * todos comunmente usados por elas, essa classe diminuirá o código repetido em
- * suas subclasses para apenas algumas dezenas de linhas.
- * 
- * @author Filipe Nolasco (ChaveDireita)
- * 
- * @param <T> é a entidade a ser trabalhada pela classe.
- */
 public abstract class ClasseDAO <T extends EntidadeBanco>
 {
     protected FabricaConexao fabrica;
@@ -25,60 +14,17 @@ public abstract class ClasseDAO <T extends EntidadeBanco>
     protected String[] colunas;
     protected int lastId;
     
-    /**
-     * Construtor.
-     * 
-     * No construtor, devem ser passados o nome da tabela no banco e as colunas.
-     * É altamente recomendável que se coloque as colunas em ordem.
-     */
     public ClasseDAO (String tabela, String[] colunas)
     {
         fabrica = new FabricaConexao ();
         this.tabela = tabela;
         this.colunas = colunas;
     }
-    /**
-     * montarObjeto.
-     * 
-     * Esse método é pra pegar os valores de uma linha de um ResultSet 
-     * e montar o objeto. Todas as classes DAO devem implementá-lo, porque is-
-     * so varia bastante de classe pra classe. Cada uma tem um jeito de "se 
-     * construir". O método especifica o processamento de apenas uma linha de um
-     * ResultSet
-     * 
-     * @param resultado é o ResultSet de uma querry que vai ser passada por pa-
-     * râmetro. O método será chamado repetidas vezes, enquanto houver linhas no
-     * resultado.
-     * 
-     * @return o objeto construído.
-     */
+    
     protected abstract T montarObjeto (ResultSet resultado) throws SQLException;
     
-    /**
-     * desmontarObjeto.
-     * 
-     * Esse método é pra desmontar o objeto a ser guardado no banco. e colocá-lo 
-     * em um array de Objects. Pelo mesmo motivo apresentado acima, cada classe 
-     * deve dizer como deve ser desmontado o objeto em questão. Ele deve ser 
-     * desmontado em um vetor de Object contendo seus valores, na ordem das co-
-     * lunas.
-     * 
-     * @param objeto o objeto a ser desmontado.
-     * 
-     * @return um vetor Object com a lista de valores a serem inseridos no 
-     * banco na ordem de suas colunas (com exceção da coluna codigo).
-     */
     protected abstract Object[] desmontarObjeto (T objeto);
     
-    
-    /**
-     * insertInto.
-     * 
-     * Esse é um insert genérico de um objeto em sua tabela. Percebam como ele 
-     * usa o desmontarObjeto ().
-     * 
-     * @param objeto
-     */
     protected void insertInto (T objeto)
     {
         Object[] values = desmontarObjeto (objeto);
@@ -117,17 +63,6 @@ public abstract class ClasseDAO <T extends EntidadeBanco>
         }
     }
     
-    /**
-     * selectFromWhere.
-     * 
-     * Select com as colunas e condicoes especificadas.
-     * 
-     * @param colunas são as colunas desejadas.
-     * @param condicao é a condição depois de where.
-     * 
-     * @return retorna um ArrayList com os objetos do resultado. Observem como
-     * ele usa o montarObjeto ().
-     */
     protected ArrayList <T> selectFromWhere (String[] colunas, String condicao)
     {
         ArrayList <T> entidadesFiltradas = new ArrayList <T>();

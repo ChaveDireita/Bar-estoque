@@ -1,11 +1,9 @@
 package barestoque.model;
 
 public class Cliente extends EntidadeBanco{
-    
-    //Atributos
+
     private String nome;
     
-    //Construtor
     public Cliente(int codigo, String nome) {
         super (codigo);
         this.nome = nome;     
@@ -16,7 +14,6 @@ public class Cliente extends EntidadeBanco{
         super(-1);
     }
     
-    //Métodos Acessores e Modificadoress
     public String getNome() {
         return nome;
     }

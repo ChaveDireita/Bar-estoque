@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 public class FabricaConexao {
     String servidor = "jdbc:mysql://localhost:3306/barestoque?useTimezone=true&serverTimezone=UTC";
     String usuario = "root";
-    String senha = "senhadobanco"/*coloquem a senha do banco de vocês aqui*/;
+    String senha = "cimatec";
     String driver = "com.mysql.jdbc.Driver";
     
     public Connection conectar(){

@@ -2,12 +2,10 @@ package barestoque.model;
 
 public class Fornecedor extends EntidadeBanco{
     
-    //Atributos
     private String nome;
     private String telefone;
     private String cnpj;
     
-    //Construtor
     public Fornecedor(int codigo, String nome, String telefone, String cnpj) {    
         super (codigo);
         this.nome = nome;
@@ -19,10 +17,6 @@ public class Fornecedor extends EntidadeBanco{
     {
         super(-1);
     }
-    
-    
-    
-    //Métodos Acessores e Modificadores
 
     public String getNome() {
         return nome;

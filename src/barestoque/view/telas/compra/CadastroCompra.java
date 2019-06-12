@@ -41,8 +41,8 @@ public class CadastroCompra extends javax.swing.JPanel
         spinnerQuantidade = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
         labelPreco = new javax.swing.JLabel();
-        botaoLimpar = new javax.swing.JButton();
-        botaoAdd = new javax.swing.JButton();
+        botaoLimpar = new barestoque.view.componentes.JNegativeButton ();
+        botaoAdd = new barestoque.view.componentes.JPositiveButton ();
         msgErro = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Efetuar Comprar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));

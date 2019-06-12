@@ -129,6 +129,9 @@
           <Dimension value="[40, 40]"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new barestoque.view.componentes.JNegativeButton ()"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="botaoAdd">
       <Properties>
@@ -137,6 +140,9 @@
           <Dimension value="[40, 40]"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new barestoque.view.componentes.JPositiveButton ()"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="msgErro">
       <Properties>

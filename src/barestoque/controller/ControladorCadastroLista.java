@@ -61,6 +61,8 @@ public class ControladorCadastroLista implements ActionListener, KeyListener, Ch
             eventoCadastroCardapio ((CadastroCardapio) contexto, e);
         else if (contexto instanceof ListaCardapio)
             eventoListaCardapio ((ListaCardapio) contexto, e);
+        else if (contexto instanceof CadastroVenda)
+            eventoCadastroVenda ((CadastroVenda) contexto, e);
     }
     
     @Override
@@ -86,8 +88,10 @@ public class ControladorCadastroLista implements ActionListener, KeyListener, Ch
     {
         if (contexto instanceof CadastroCompra)
             eventoChangeCadastroCompra ((CadastroCompra) contexto, e);
-        else if (contexto instanceof CadastroCardapio);
+        else if (contexto instanceof CadastroCardapio)
             eventoChangeCadastroCardapio ((CadastroCardapio) contexto, e);
+        else if (contexto instanceof CadastroVenda)
+            eventoChangeCadastroVenda ((CadastroVenda) contexto, e);
     }
     
     
@@ -343,7 +347,24 @@ public class ControladorCadastroLista implements ActionListener, KeyListener, Ch
     //<editor-fold desc="Venda">
     private void eventoCadastroVenda (CadastroVenda cVenda, ActionEvent e)
     {
+        Object src = e.getSource();
         
+        if (src == cVenda.getComboBoxPrato ())
+        {
+            cVenda.atualizarPreco ();
+        } else if (src == cVenda.getBotaoLimpar ())
+        {
+            cVenda.limparDados ();
+        } else if (src == cVenda.getBotaoAdd ())
+        {
+            
+        }
+        
+    }
+    
+    private void eventoChangeCadastroVenda (CadastroVenda cVenda, ChangeEvent e)
+    {
+        Object src = e.getSource();
     }
     //</editor-fold>
     

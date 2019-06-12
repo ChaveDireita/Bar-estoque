@@ -148,11 +148,13 @@ public class ListaProduto extends javax.swing.JPanel {
         
         ProdutoDAO pdao = new ProdutoDAO();
         Categoria c = (Categoria) comboBoxCategoria.getSelectedItem();
-        
-        ArrayList <Produto> listaProduto = pdao.listaDeProdutosDeCategoria(c);
-        for (Produto p : listaProduto)
-            tabelaModelo.addRow(pdao.desmontarParaLista(p));
-        
+        if (c != null)
+        {
+            ArrayList <Produto> listaProduto = pdao.listaDeProdutosDeCategoria(c);
+            for (Produto p : listaProduto)
+                tabelaModelo.addRow(pdao.desmontarParaLista(p));
+
+        }
         tabelaProduto.setModel(tabelaModelo);
     }
 

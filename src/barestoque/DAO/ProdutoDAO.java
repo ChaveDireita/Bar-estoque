@@ -45,7 +45,10 @@ public class ProdutoDAO extends ClasseDAO <Produto>{
     
     public ArrayList <Produto> listaDeProdutosDeCategoria (Categoria c)
     {
-        return selectFromWhere("codigo_categoria = " + c.getCodigo());
+        ArrayList <Produto> pArray = selectFromWhere("codigo_categoria = " + c.getCodigo());
+        if (pArray == null)
+            return new ArrayList<Produto> ();
+        return pArray;
     }
     
     @Override

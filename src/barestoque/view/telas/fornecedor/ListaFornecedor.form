@@ -33,8 +33,8 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="48" max="32767" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="284" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="150" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="botaoDeletar" min="-2" max="-2" attributes="0"/>
           </Group>
@@ -55,7 +55,7 @@
               <Connection code="new javax.swing.border.StrokeBorder(new java.awt.BasicStroke (1f), InicializadorLookAndFeel.COR_BACKGROUND)" type="code"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="7">
+              <Table columnCount="4" rowCount="4">
                 <Column editable="false" title="codigo" type="java.lang.Object"/>
                 <Column editable="true" title="nome" type="java.lang.Object"/>
                 <Column editable="true" title="telefone" type="java.lang.Object"/>

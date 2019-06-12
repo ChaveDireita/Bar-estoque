@@ -5,13 +5,18 @@
  */
 package barestoque.view.telas.venda;
 
+import barestoque.DAO.ClienteDAO;
+import barestoque.DAO.PratoDAO;
 import barestoque.controller.ControladorCadastroLista;
 import barestoque.model.Cliente;
 import barestoque.model.Prato;
+import barestoque.model.Produto;
 import barestoque.view.InicializadorLookAndFeel;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JSpinner;
 
 /**
  *
@@ -20,7 +25,6 @@ import javax.swing.JLabel;
 public class CadastroVenda extends javax.swing.JPanel
 {
     
-    private int quantidade;
     private Prato[] listaPrato;
     private Cliente[] listaCliente;
     
@@ -29,13 +33,19 @@ public class CadastroVenda extends javax.swing.JPanel
      */
     public CadastroVenda ()
     {
+        
+        ArrayList <Prato> lPrato = new PratoDAO ().listaDePratos ();
+        ArrayList <Cliente> lCliente = new ClienteDAO ().listaDeClientes ();
+        
+        listaPrato = new Prato[lPrato.size ()];
+        listaCliente = new Cliente[lCliente.size ()];
+        
         initComponents ();
         setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
         
         botaoAdd.addActionListener (new ControladorCadastroLista (this));
-        botaoAddPrato.addActionListener (new ControladorCadastroLista (this));
         botaoLimpar.addActionListener (new ControladorCadastroLista (this));
-        botaoRemovePrato.addActionListener (new ControladorCadastroLista (this));
+        spinnerQuantidade.addChangeListener (new ControladorCadastroLista (this));
         
     }
 
@@ -55,16 +65,15 @@ public class CadastroVenda extends javax.swing.JPanel
         labelPreco = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         comboBoxPrato = new javax.swing.JComboBox<>();
-        botaoAddPrato = new javax.swing.JButton();
-        botaoRemovePrato = new javax.swing.JButton();
         botaoLimpar = new barestoque.view.componentes.JNegativeButton();
         botaoAdd = new barestoque.view.componentes.JPositiveButton();
+        spinnerQuantidade = new javax.swing.JSpinner();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Efetuar Venda", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         jLabel1.setText("Cliente:");
 
-        comboBoxCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxCliente.setModel(new javax.swing.DefaultComboBoxModel<Cliente>(listaCliente));
 
         jLabel2.setText("Valor Total (R$):");
 
@@ -72,19 +81,15 @@ public class CadastroVenda extends javax.swing.JPanel
 
         jLabel3.setText("Prato:");
 
-        comboBoxPrato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        botaoAddPrato.setText("+");
-        botaoAddPrato.setPreferredSize(new java.awt.Dimension(40, 25));
-
-        botaoRemovePrato.setText("-");
-        botaoRemovePrato.setPreferredSize(new java.awt.Dimension(40, 25));
+        comboBoxPrato.setModel(new javax.swing.DefaultComboBoxModel<Prato>(listaPrato));
 
         botaoLimpar.setText("X");
         botaoLimpar.setPreferredSize(new java.awt.Dimension(40, 40));
 
         botaoAdd.setText("+");
         botaoAdd.setPreferredSize(new java.awt.Dimension(40, 40));
+
+        spinnerQuantidade.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -103,11 +108,9 @@ public class CadastroVenda extends javax.swing.JPanel
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(comboBoxCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(comboBoxPrato, 0, 201, Short.MAX_VALUE)
+                        .addComponent(comboBoxPrato, 0, 245, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoAddPrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoRemovePrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(spinnerQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(botaoAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -117,7 +120,7 @@ public class CadastroVenda extends javax.swing.JPanel
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 3, Short.MAX_VALUE)
+                .addGap(0, 8, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(comboBoxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -125,8 +128,7 @@ public class CadastroVenda extends javax.swing.JPanel
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboBoxPrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(botaoRemovePrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoAddPrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spinnerQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -138,45 +140,53 @@ public class CadastroVenda extends javax.swing.JPanel
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public JButton getBotaoRemovePrato() {
-        return botaoRemovePrato;
-    }
 
     public JButton getBotaoAdd() {
         return botaoAdd;
-    }
-
-    public JButton getBotaoAddPrato() {
-        return botaoAddPrato;
     }
 
     public JButton getBotaoLimpar() {
         return botaoLimpar;
     }
 
-    public JComboBox<String> getComboBoxCliente() {
+    public JComboBox<Cliente> getComboBoxCliente() {
         return comboBoxCliente;
     }
 
-    public JComboBox<String> getComboBoxPrato() {
+    public JComboBox<Prato> getComboBoxPrato() {
         return comboBoxPrato;
     }
 
     public JLabel getLabelPreco() {
         return labelPreco;
     }
+
+    public JSpinner getSpinnerQuantidade ()
+    {
+        return spinnerQuantidade;
+    }
+
+    public void limparDados ()
+    {
+        spinnerQuantidade.setValue (1);
+    }
     
+    public void atualizarPreco ()
+    {
+        int quantidade = (Integer) spinnerQuantidade.getValue ();
+        double preco = ((Produto) comboBoxPrato.getSelectedItem ()).getValor ();
+        labelPreco.setText ("" + (preco*quantidade));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAdd;
-    private javax.swing.JButton botaoAddPrato;
     private javax.swing.JButton botaoLimpar;
-    private javax.swing.JButton botaoRemovePrato;
-    private javax.swing.JComboBox<String> comboBoxCliente;
-    private javax.swing.JComboBox<String> comboBoxPrato;
+    private javax.swing.JComboBox<Cliente> comboBoxCliente;
+    private javax.swing.JComboBox<Prato> comboBoxPrato;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel labelPreco;
+    private javax.swing.JSpinner spinnerQuantidade;
     // End of variables declaration//GEN-END:variables
 }

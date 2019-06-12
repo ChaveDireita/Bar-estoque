@@ -25,4 +25,10 @@ public class Categoria extends EntidadeBanco
     {
         this.nome = nome;
     }
+
+    @Override
+    public String toString ()
+    {
+        return nome;
+    }
 }

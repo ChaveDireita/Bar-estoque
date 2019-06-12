@@ -25,7 +25,7 @@ public class CadastroCardapio extends javax.swing.JPanel {
     private Produto[] ingredientes;
     
     public CadastroCardapio() {
-        quantidades = new HashMap<>();
+        quantidades = new HashMap<Produto, Integer>();
         ArrayList <Produto> plista = new ProdutoDAO().listaDeProdutos();
         ingredientes = new Produto[plista.size()];
         plista.toArray(ingredientes);
@@ -38,6 +38,7 @@ public class CadastroCardapio extends javax.swing.JPanel {
         botaoAdd.addActionListener(new ControladorCadastroLista(this));
         botaoLimpar.addActionListener(new ControladorCadastroLista(this));
         comboBoxIngrediente.addActionListener(new ControladorCadastroLista(this));
+        spinnerQuantidade.addChangeListener (new ControladorCadastroLista (this));
     }
     
     @SuppressWarnings("unchecked")

@@ -99,7 +99,13 @@ public class Produto extends EntidadeBanco implements Valoravel, Quantificavel
     @Override
     public boolean validarQuantidade (int quantidade)
     {
-        return quantidade > 0;
+        return quantidade >= 0;
+    }
+    
+    @Override
+    public String toString ()
+    {
+        return nome;
     }
 }
 

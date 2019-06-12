@@ -62,4 +62,24 @@ public class Prato extends EntidadeBanco implements Valoravel
             throw new IllegalArgumentException ();
         this.valor = valor;
     }
+    
+    public String info()
+    {
+        String s = "Código: " + codigo +
+                   "\n Valor: " + valor + ", lucro: " + lucro () +
+                   "\n Ingredientes:";
+        
+        Set<Produto> chaves = medidaIngredientes.keySet ();
+        
+        for (Produto p : chaves)
+            s += "\n" + p.getNome () + " x " + medidaIngredientes.getOrDefault (p, 0);
+        
+        return s;
+    }
+    
+    @Override
+    public String toString ()
+    {
+        return nome;
+    }
 }

@@ -104,6 +104,8 @@ public abstract class ClasseDAO <T>
                     declaracao.setString (i + 1, (String) valor);
             }
             declaracao.executeUpdate ();
+            declaracao = conexao.prepareStatement ("select LAST_INSERT_ID ();");
+            ResultSet rs = declaracao.executeQuery ();
         } catch (Exception e)
         {
             System.err.println("Erro: "+e.getMessage());
@@ -143,7 +145,7 @@ public abstract class ClasseDAO <T>
                 entidadesFiltradas.add (montarObjeto (resultado));
         } catch (Exception e)
         {
-            System.err.println("Erro: "+e.getMessage());
+            e.printStackTrace ();
         }
         
         return entidadesFiltradas;

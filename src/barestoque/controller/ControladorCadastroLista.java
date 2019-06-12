@@ -14,6 +14,7 @@ import barestoque.model.Prato;
 import barestoque.model.Produto;
 import barestoque.view.Janela;
 import barestoque.view.telas.cardapio.CadastroCardapio;
+import barestoque.view.telas.cardapio.ListaCardapio;
 import barestoque.view.telas.cliente.CadastroCliente;
 import barestoque.view.telas.cliente.ListaCliente;
 import barestoque.view.telas.compra.CadastroCompra;
@@ -55,6 +56,12 @@ public class ControladorCadastroLista implements ActionListener, KeyListener, Ch
             eventoListaProduto((ListaProduto) contexto, e);
         else if (contexto instanceof CadastroCompra)
             eventoCadastroCompra((CadastroCompra) contexto, e);
+        else if (contexto instanceof CadastroCliente)
+            eventoCadastroCliente ((CadastroCliente) contexto, e);
+        else if (contexto instanceof CadastroCardapio)
+            eventoCadastroCardapio ((CadastroCardapio) contexto, e);
+        else if (contexto instanceof ListaCardapio)
+            eventoListaCardapio ((ListaCardapio) contexto, e);
     }
     
     @Override
@@ -78,7 +85,10 @@ public class ControladorCadastroLista implements ActionListener, KeyListener, Ch
     @Override
     public void stateChanged(ChangeEvent e) 
     {
-        if (contexto instanceof CadastroCardapio);
+        if (contexto instanceof CadastroCompra)
+            eventoChangeCadastroCompra ((CadastroCompra) contexto, e);
+        else if (contexto instanceof CadastroCardapio);
+            eventoChangeCadastroCardapio ((CadastroCardapio) contexto, e);
     }
     
     
@@ -250,6 +260,14 @@ public class ControladorCadastroLista implements ActionListener, KeyListener, Ch
         }
     }
     
+    private void eventoChangeCadastroCompra (CadastroCompra cCompra, ChangeEvent e)
+    {
+        Object src = e.getSource ();
+        if (src == cCompra.getSpinnerQuantidade ())
+        {
+            cCompra.atualizarPreco ();
+        }
+    }
     //</editor-fold>
     
     //<editor-fold desc="Cardápio">
@@ -292,9 +310,33 @@ public class ControladorCadastroLista implements ActionListener, KeyListener, Ch
             cCardapio.limparDados();
         } else if (src == cCardapio.getComboBoxIngrediente())
         {
-            int spinnerValor = cCardapio.getQuantidades().get((Produto) cCardapio.getComboBoxIngrediente().getSelectedItem());
+            Produto p = (Produto) cCardapio.getComboBoxIngrediente().getSelectedItem();
+            int spinnerValor = cCardapio.getQuantidades().getOrDefault (p, 0);
             cCardapio.getSpinnerQuantidade().setValue(spinnerValor);
         }
+    }
+    
+    public void eventoChangeCadastroCardapio (CadastroCardapio cCardapio, ChangeEvent e)
+    {
+        Object src = e.getSource ();
+        if (src == cCardapio.getSpinnerQuantidade ())
+        {
+            Produto p = (Produto) cCardapio.getComboBoxIngrediente().getSelectedItem();
+            int spinnerValor = (Integer) cCardapio.getSpinnerQuantidade ().getValue ();
+            cCardapio.getQuantidades ().put (p, spinnerValor);
+        }
+    }
+    
+    private void eventoListaCardapio (ListaCardapio lCardapio, ActionEvent e)
+    {
+        Object src = e.getSource ();
+        
+        if (src == lCardapio.getComboBoxItem ())
+        {
+            Prato p = (Prato) lCardapio.getComboBoxItem ().getSelectedItem ();
+            lCardapio.getEditorPaneFormula ().setText (p.info ());
+        }
+            
     }
     //</editor-fold>
     

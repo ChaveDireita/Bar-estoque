@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -21,16 +22,29 @@ public class PratoDAO extends ClasseDAO<Prato>{
         
         try (Connection conexao = fabrica.conectar())
         {
+            String scriptGetId = "select LAST_INSERT_ID ();";
+            PreparedStatement ps = conexao.prepareStatement (scriptGetId);
+            ResultSet rs = ps.executeQuery ();
+            rs.next ();
+            int codigo = rs.getInt (1);
+            
             Set <Produto> ingredientes = prato.getMedidaIngredientes().keySet();
             for (Produto p : ingredientes){
-                String script = "insert into prato_ingrediente values (" + prato.getCodigo() + ", " + p.getCodigo() + ", " + prato.getMedidaIngredientes().get((Produto) p) + ");";
+                String script = "insert into prato_ingrediente values (" + p.getCodigo() + ", " + codigo + ", " + prato.getMedidaIngredientes().get((Produto) p) + ");";
                 PreparedStatement declaracao = conexao.prepareStatement(script);
                 declaracao.executeUpdate ();
             }
         } catch (Exception e)
         {
-            System.err.println("Erro: "+e.getMessage());
+            e.printStackTrace ();
         }
+    }
+    
+    
+    
+    public ArrayList<Prato> listaDePratos ()
+    {
+        return selectAllFrom ();
     }
     
     @Override
@@ -44,7 +58,7 @@ public class PratoDAO extends ClasseDAO<Prato>{
         
         try (Connection conexao = fabrica.conectar())
         {
-            String script = "select codigo_produto, quantidade from prato_ingrediente where prato_ingrediente.codigo_prato = " + codigo + ");";
+            String script = "select codigo_produto, quantidade from prato_ingrediente where codigo_prato = " + codigo + ";";
             PreparedStatement declaracao = conexao.prepareStatement(script);
             ResultSet subResultado = declaracao.executeQuery();
             while (subResultado.next())
@@ -57,7 +71,7 @@ public class PratoDAO extends ClasseDAO<Prato>{
                 
         } catch (Exception e)
         {
-            System.err.println("Erro: "+e.getMessage());
+            e.printStackTrace ();
         }
         
         return new Prato (codigo, nome, valor, medidaIngredientes);

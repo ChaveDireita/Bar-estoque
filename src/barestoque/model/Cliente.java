@@ -16,8 +16,6 @@ public class Cliente extends EntidadeBanco{
         super(-1);
     }
     
-    
-    
     //Métodos Acessores e Modificadoress
     public String getNome() {
         return nome;
@@ -25,5 +23,11 @@ public class Cliente extends EntidadeBanco{
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    
+    @Override
+    public String toString ()
+    {
+        return nome;
     }
 }

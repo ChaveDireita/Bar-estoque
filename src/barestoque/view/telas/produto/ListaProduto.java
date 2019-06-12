@@ -37,7 +37,7 @@ public class ListaProduto extends javax.swing.JPanel {
         
         comboBoxCategoria.addActionListener(new ControladorCadastroLista(this));
         
-        atualizar();
+        atualizar ();
     }
 
     /**
@@ -47,7 +47,8 @@ public class ListaProduto extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         botaoDeletar = new barestoque.view.componentes.JNegativeButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -62,13 +63,15 @@ public class ListaProduto extends javax.swing.JPanel {
 
         tabelaProduto.setBorder(new javax.swing.border.StrokeBorder(new java.awt.BasicStroke (1f), InicializadorLookAndFeel.COR_BACKGROUND));
         tabelaProduto.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
-            new String [] {
+            new String []
+            {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
@@ -78,9 +81,11 @@ public class ListaProduto extends javax.swing.JPanel {
 
         jLabel1.setText("Categoria:");
 
-        comboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<Categoria> ());
-        comboBoxCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        comboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<Categoria> (listaCategoria));
+        comboBoxCategoria.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 comboBoxCategoriaActionPerformed(evt);
             }
         });

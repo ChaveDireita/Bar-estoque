@@ -9,6 +9,7 @@ import barestoque.DAO.ClienteDAO;
 import barestoque.controller.ControladorCadastroLista;
 import barestoque.model.Cliente;
 import barestoque.view.InicializadorLookAndFeel;
+import barestoque.view.componentes.TabelaModelo;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -26,7 +27,6 @@ public class ListaCliente extends javax.swing.JPanel {
     public ListaCliente() {
         initComponents();
         setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
-        botaoDeletar.addActionListener(new ControladorCadastroLista(this));
         
         atualizar();
     }
@@ -41,14 +41,10 @@ public class ListaCliente extends javax.swing.JPanel {
     private void initComponents()
     {
 
-        botaoDeletar = new barestoque.view.componentes.JNegativeButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaCliente = new javax.swing.JTable();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Clientes", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
-
-        botaoDeletar.setText("Deletar");
-        botaoDeletar.setPreferredSize(new java.awt.Dimension(73, 40));
 
         tabelaCliente.setBorder(new javax.swing.border.StrokeBorder(new java.awt.BasicStroke (1f), InicializadorLookAndFeel.COR_BACKGROUND));
         tabelaCliente.setModel(new javax.swing.table.DefaultTableModel(
@@ -83,36 +79,26 @@ public class ListaCliente extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
     
-    public JButton getBotaoDeletar() {
-        return botaoDeletar;
-    }
-
     public JTable getTabelaCliente() {
         return tabelaCliente;
     }
     
     public void atualizar ()
     {
-        DefaultTableModel tabelaModelo = new DefaultTableModel();
+        TabelaModelo tabelaModelo = new TabelaModelo();
         tabelaModelo.addColumn("Codigo");
         tabelaModelo.addColumn("Nome");
         
-        botaoDeletar.addActionListener(new ControladorCadastroLista(this));
         ClienteDAO cdao = new ClienteDAO();
         ArrayList <Cliente> listaCliente = cdao.listaDeClientes();
         for (Cliente c : listaCliente)
@@ -122,7 +108,6 @@ public class ListaCliente extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoDeletar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaCliente;
     // End of variables declaration//GEN-END:variables

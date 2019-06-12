@@ -9,6 +9,7 @@ import barestoque.DAO.FornecedorDAO;
 import barestoque.controller.ControladorCadastroLista;
 import barestoque.model.Fornecedor;
 import barestoque.view.InicializadorLookAndFeel;
+import barestoque.view.componentes.TabelaModelo;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -26,7 +27,6 @@ public class ListaFornecedor extends javax.swing.JPanel {
     public ListaFornecedor() {
         initComponents();
         setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
-        botaoDeletar.addActionListener(new ControladorCadastroLista(this));
         
         atualizar();
     }
@@ -43,7 +43,6 @@ public class ListaFornecedor extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaFornecedor = new javax.swing.JTable();
-        botaoDeletar = new barestoque.view.componentes.JNegativeButton();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Fornecedores", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
@@ -76,42 +75,19 @@ public class ListaFornecedor extends javax.swing.JPanel {
         tabelaFornecedor.setRowHeight(28);
         jScrollPane1.setViewportView(tabelaFornecedor);
 
-        botaoDeletar.setText("Deletar");
-        botaoDeletar.setPreferredSize(new java.awt.Dimension(75, 40));
-        botaoDeletar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                botaoDeletarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(botaoDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void botaoDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDeletarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoDeletarActionPerformed
-
-    public JButton getBotaoDeletar() {
-        return botaoDeletar;
-    }
 
     public JTable getTabelaFornecedor() {
         return tabelaFornecedor;
@@ -119,7 +95,7 @@ public class ListaFornecedor extends javax.swing.JPanel {
     
     public void atualizar ()
     {
-        DefaultTableModel tabelaModelo = new DefaultTableModel();
+        TabelaModelo tabelaModelo = new TabelaModelo();
         tabelaModelo.addColumn("Codigo");
         tabelaModelo.addColumn("Nome");
         tabelaModelo.addColumn("Telefone");
@@ -135,7 +111,6 @@ public class ListaFornecedor extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoDeletar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaFornecedor;
     // End of variables declaration//GEN-END:variables

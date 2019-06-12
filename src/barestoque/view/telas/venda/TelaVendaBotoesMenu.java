@@ -14,7 +14,7 @@ public class TelaVendaBotoesMenu extends SetBotoesMenu
         super(pai);
         
         botaoCadastrar = new JButton ("Realizar Venda");
-        botaoListar = new JButton ("Histórico de vendas");
+        botaoListar = new JButton ("Histórico");
         botaoVoltar = new JNegativeButton("X");
         
         botaoCadastrar.addActionListener(new ControladorDeTransicao(pai, this));

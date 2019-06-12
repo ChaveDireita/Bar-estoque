@@ -23,9 +23,9 @@ public class TelaClienteBotoesMenu extends SetBotoesMenu
         botaoListar.addActionListener(new ControladorDeTransicao(pai, this));
         botaoVoltar.addActionListener(new ControladorDeTransicao(pai, this));
         
-        insertMapa(botaoCadastrar, 0, 2);
-        insertMapa(botaoListar, 1, 1);
-        insertMapa(botaoVoltar, 1, 2);
+        insertMapa(botaoCadastrar, 1, 4);
+        insertMapa(botaoListar, 2, 3);
+        insertMapa(botaoVoltar, 2, 4);
         
         montarTela();
     }

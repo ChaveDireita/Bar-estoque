@@ -12,7 +12,7 @@ public class Principal
         SwingUtilities.invokeLater(() -> 
         {
             new InicializadorLookAndFeel ().init();
-            Janela j = new Janela ("Teste", 1280, 768, false);
+            Janela j = new Janela ("Teste", 1280, 768, true);
             j.aparecer();
             j.setCena(new TelaInicial (j));
         });

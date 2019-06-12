@@ -16,7 +16,6 @@ public class TelaMenu extends Tela
                     botaoMenuFornecedor,
                     botaoMenuPrato,
                     botaoMenuTransacao,
-                    botaoConfigurar,
                     botaoMenuCliente;
     
     private JNegativeButton botaoSair,
@@ -32,7 +31,6 @@ public class TelaMenu extends Tela
         botaoMenuPrato = new JButton ("Cardápio");
         botaoMenuTransacao = new JButton ("Transações");
         botaoMenuCliente = new JButton ("Clientes");
-        botaoConfigurar = new JButton ("Configurações");
         botaoSair = new JNegativeButton("Sair");
         botaoVoltar = new JNegativeButton ("X");
         
@@ -44,11 +42,10 @@ public class TelaMenu extends Tela
         botaoVoltar.addActionListener(new ControladorDeTransicao(pai, this));
         botaoSair.addActionListener(new ControladorDeTransicao(pai, this));
         
-        insertMapa(botaoMenuCliente, 1, 2);
+        insertMapa(botaoMenuCliente, 2, 4);
         insertMapa(botaoMenuTransacao, 1, 3);
         insertMapa(botaoMenuFornecedor, 2, 2);
         insertMapa(botaoVoltar, 2, 3);
-        insertMapa(botaoConfigurar, 2, 4);
         insertMapa(botaoMenuProduto, 3, 2);
         insertMapa(botaoMenuPrato, 3, 3);
         insertMapa(botaoSair, 5, 9);
@@ -76,10 +73,6 @@ public class TelaMenu extends Tela
         return botaoMenuTransacao;
     }
 
-    public JButton getBotaoConfigurar() 
-    {
-        return botaoConfigurar;
-    }
 
     public JButton getBotaoMenuCliente()
     {

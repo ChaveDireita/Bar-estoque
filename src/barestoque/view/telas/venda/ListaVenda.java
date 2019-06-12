@@ -9,6 +9,7 @@ import barestoque.DAO.VendaDAO;
 import barestoque.controller.ControladorCadastroLista;
 import barestoque.model.Venda;
 import barestoque.view.InicializadorLookAndFeel;
+import barestoque.view.componentes.TabelaModelo;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -85,7 +86,7 @@ public class ListaVenda extends javax.swing.JPanel {
     
     public void atualizar ()
     {
-        DefaultTableModel tabelaModelo = new DefaultTableModel();
+        TabelaModelo tabelaModelo = new TabelaModelo ();
         tabelaModelo.addColumn("Codigo");
         tabelaModelo.addColumn("Cliente");
         tabelaModelo.addColumn("Prato");

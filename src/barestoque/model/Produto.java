@@ -24,8 +24,6 @@ public class Produto extends EntidadeBanco implements Valoravel, Quantificavel
         super(-1);
     }
     
-    
-    
     public String getNome() {
         return nome;
     }

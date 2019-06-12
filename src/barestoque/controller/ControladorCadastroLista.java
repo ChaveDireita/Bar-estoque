@@ -361,22 +361,27 @@ public class ControladorCadastroLista implements ActionListener, KeyListener, Ch
         {
             Cliente cliente = (Cliente) cVenda.getComboBoxCliente ().getSelectedItem ();
             Prato prato = (Prato) cVenda.getComboBoxPrato ().getSelectedItem ();
-            
+
             int quantidade = (Integer) cVenda.getSpinnerQuantidade ().getValue ();
             double valor = (Double) prato.getValor ();
-            
+
             double preco = valor * quantidade;
-            
+
             Venda v = new Venda ();
-            
+
             v.setCliente (cliente);
             v.setPrato (prato);
             v.setQuantidade (quantidade);
             v.calcularValor ();
             
+            if (!v.checarViabilidade ())
+            {
+                cVenda.getMsgErro ().setText ("Erro: quantidade de produtos insuficiente");
+                return;
+            }
             VendaDAO vdao = new VendaDAO ();
             vdao.inserirVenda (v);
-            
+
             cVenda.limparDados ();
         }
         

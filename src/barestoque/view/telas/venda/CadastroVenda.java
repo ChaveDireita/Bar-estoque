@@ -50,6 +50,8 @@ public class CadastroVenda extends javax.swing.JPanel
         botaoLimpar.addActionListener (new ControladorCadastroLista (this));
         spinnerQuantidade.addChangeListener (new ControladorCadastroLista (this));
         
+        msgErro.setText ("");
+        
     }
 
     /**
@@ -71,6 +73,7 @@ public class CadastroVenda extends javax.swing.JPanel
         botaoLimpar = new barestoque.view.componentes.JNegativeButton();
         botaoAdd = new barestoque.view.componentes.JPositiveButton();
         spinnerQuantidade = new javax.swing.JSpinner();
+        msgErro = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Efetuar Venda", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
@@ -94,15 +97,12 @@ public class CadastroVenda extends javax.swing.JPanel
 
         spinnerQuantidade.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
+        msgErro.setText("jLabel4");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelPreco)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
@@ -119,11 +119,21 @@ public class CadastroVenda extends javax.swing.JPanel
                         .addComponent(botaoAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelPreco))
+                    .addComponent(msgErro))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 8, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(msgErro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(comboBoxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -169,8 +179,16 @@ public class CadastroVenda extends javax.swing.JPanel
         return spinnerQuantidade;
     }
 
+    public JLabel getMsgErro ()
+    {
+        return msgErro;
+    }
+
+    
+    
     public void limparDados ()
     {
+        msgErro.setText ("");
         spinnerQuantidade.setValue (1);
     }
     
@@ -190,6 +208,7 @@ public class CadastroVenda extends javax.swing.JPanel
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel labelPreco;
+    private javax.swing.JLabel msgErro;
     private javax.swing.JSpinner spinnerQuantidade;
     // End of variables declaration//GEN-END:variables
 }

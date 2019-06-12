@@ -1,6 +1,7 @@
 package barestoque.model;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class Venda extends EntidadeBanco implements Valoravel, Quantificavel
 {
@@ -23,16 +24,6 @@ public class Venda extends EntidadeBanco implements Valoravel, Quantificavel
         super (-1);
     }
     
-    public Prato getPratos()
-    {
-        return prato;
-    }
-
-    public void setPratos(Prato pratos)
-    {
-        this.prato = pratos;
-    }
-
     public double getValor() 
     {
         return valor;
@@ -56,12 +47,7 @@ public class Venda extends EntidadeBanco implements Valoravel, Quantificavel
     {
         return quantidade;
     }
-
-    public int getCodigo ()
-    {
-        return codigo;
-    }
-
+    
     public void setCliente (Cliente cliente)
     {
         this.cliente = cliente;
@@ -78,12 +64,20 @@ public class Venda extends EntidadeBanco implements Valoravel, Quantificavel
             throw new IllegalArgumentException ();
         this.quantidade = quantidade;
     }
-
-    public void setCodigo (int codigo)
+    
+    public boolean checarViabilidade ()
     {
-        this.codigo = codigo;
+        Set <Produto> chaves = prato.getMedidaIngredientes ().keySet ();
+        
+        for (Produto p : chaves)
+        {
+            int quantidadeEstoque = p.getQuantidade ();
+            int quantidadeNecessaria = quantidade * prato.getMedidaIngredientes ().getOrDefault (p, 0);
+            
+            if (quantidadeEstoque < quantidadeNecessaria)
+                return false;
+        }
+        return true;
     }
-    
-    
     
 }

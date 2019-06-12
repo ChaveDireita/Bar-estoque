@@ -24,10 +24,6 @@ public class Fornecedor extends EntidadeBanco{
     
     //Métodos Acessores e Modificadores
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
     public String getNome() {
         return nome;
     }

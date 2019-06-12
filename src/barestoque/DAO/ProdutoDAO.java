@@ -20,6 +20,11 @@ public class ProdutoDAO extends ClasseDAO <Produto>{
         updateSet(new String[] {"quantidade"}, new Object[] {"quantidade + " + valor}, "codigo = " + codigo);
     }
     
+    public void removerQuantidade (int codigo, int valor)
+    {
+        updateSet(new String[] {"quantidade"}, new Object[] {"quantidade - " + valor}, "codigo = " + codigo);
+    }
+    
     public void inserirProduto(Produto produto){
         insertInto (produto);
     }

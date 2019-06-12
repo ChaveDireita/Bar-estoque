@@ -2,12 +2,15 @@ package barestoque.DAO;
 
 import barestoque.model.Cliente;
 import barestoque.model.Prato;
+import barestoque.model.Produto;
 import barestoque.model.Venda;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 
 public class VendaDAO extends ClasseDAO<Venda>{
     
@@ -17,6 +20,16 @@ public class VendaDAO extends ClasseDAO<Venda>{
     
     public void inserirVenda(Venda venda){
         insertInto (venda);
+        
+        Map<Produto, Integer> medidas = venda.getPrato ().getMedidaIngredientes ();
+        Set <Produto> chaves = medidas.keySet ();
+        
+        for (Produto p : chaves)
+        {
+            int valor = medidas.get (p);
+            new ProdutoDAO ().removerQuantidade (p.getCodigo (), valor);
+        }
+        
     }
 
     public ArrayList <Venda> listaDeVendas ()
@@ -50,6 +63,8 @@ public class VendaDAO extends ClasseDAO<Venda>{
         o[1] = venda.getCliente ().getCodigo ();
         o[2] = venda.getQuantidade ();
         o[3] = venda.getValor ();
+        
+        
         
         return o;
     }

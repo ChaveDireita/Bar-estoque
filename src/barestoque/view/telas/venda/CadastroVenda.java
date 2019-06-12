@@ -138,7 +138,7 @@ public class CadastroVenda extends javax.swing.JPanel
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public JButton getBotamRemovePrato() {
+    public JButton getBotaoRemovePrato() {
         return botaoRemovePrato;
     }
 

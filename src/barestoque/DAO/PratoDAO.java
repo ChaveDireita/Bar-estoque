@@ -22,15 +22,9 @@ public class PratoDAO extends ClasseDAO<Prato>{
         
         try (Connection conexao = fabrica.conectar())
         {
-            String scriptGetId = "select LAST_INSERT_ID ();";
-            PreparedStatement ps = conexao.prepareStatement (scriptGetId);
-            ResultSet rs = ps.executeQuery ();
-            rs.next ();
-            int codigo = rs.getInt (1);
-            
             Set <Produto> ingredientes = prato.getMedidaIngredientes().keySet();
             for (Produto p : ingredientes){
-                String script = "insert into prato_ingrediente values (" + p.getCodigo() + ", " + codigo + ", " + prato.getMedidaIngredientes().get((Produto) p) + ");";
+                String script = "insert into prato_ingrediente values (" + p.getCodigo() + ", " + lastId + ", " + prato.getMedidaIngredientes().get((Produto) p) + ");";
                 PreparedStatement declaracao = conexao.prepareStatement(script);
                 declaracao.executeUpdate ();
             }

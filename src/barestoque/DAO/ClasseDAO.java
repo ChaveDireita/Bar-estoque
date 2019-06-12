@@ -21,6 +21,7 @@ public abstract class ClasseDAO <T>
     protected FabricaConexao fabrica;
     protected String tabela;
     protected String[] colunas;
+    protected int lastId;
     
     /**
      * Construtor.
@@ -106,6 +107,8 @@ public abstract class ClasseDAO <T>
             declaracao.executeUpdate ();
             declaracao = conexao.prepareStatement ("select LAST_INSERT_ID ();");
             ResultSet rs = declaracao.executeQuery ();
+            rs.next ();
+            lastId = rs.getInt (1);
         } catch (Exception e)
         {
             System.err.println("Erro: "+e.getMessage());

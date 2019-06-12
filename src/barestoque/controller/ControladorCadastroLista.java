@@ -33,7 +33,7 @@ import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class ControladorCadastroLista implements ActionListener, KeyListener, ChangeListener
+public class ControladorCadastroLista implements ActionListener, ChangeListener
 {
     private JPanel contexto;
     
@@ -65,24 +65,6 @@ public class ControladorCadastroLista implements ActionListener, KeyListener, Ch
             eventoListaCardapio ((ListaCardapio) contexto, e);
         else if (contexto instanceof CadastroVenda)
             eventoCadastroVenda ((CadastroVenda) contexto, e);
-    }
-    
-    @Override
-    public void keyTyped(KeyEvent e) 
-    {
-        
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) 
-    {
-        
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) 
-    {
-        
     }
 
     @Override

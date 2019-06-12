@@ -26,8 +26,9 @@ public class VendaDAO extends ClasseDAO<Venda>{
         
         for (Produto p : chaves)
         {
-            int valor = medidas.get (p);
-            new ProdutoDAO ().removerQuantidade (p.getCodigo (), valor);
+            int ingredienteQuanditidade = medidas.get (p);
+            int vendaQuantidade = venda.getQuantidade () * ingredienteQuanditidade;
+            new ProdutoDAO ().removerQuantidade (p.getCodigo (), vendaQuantidade);
         }
         
     }

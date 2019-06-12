@@ -34,7 +34,13 @@ public class PratoDAO extends ClasseDAO<Prato>{
         }
     }
     
-    
+    public Prato getPratoDeCodigo (int codigo)
+    {
+        ArrayList<Prato> parray = selectFromWhere ("codigo = " + codigo);
+        if (parray.isEmpty ())
+            return null;
+        return parray.get (0);
+    }
     
     public ArrayList<Prato> listaDePratos ()
     {

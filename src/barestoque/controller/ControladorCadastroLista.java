@@ -6,12 +6,14 @@ import barestoque.DAO.CompraDAO;
 import barestoque.DAO.FornecedorDAO;
 import barestoque.DAO.PratoDAO;
 import barestoque.DAO.ProdutoDAO;
+import barestoque.DAO.VendaDAO;
 import barestoque.model.Categoria;
 import barestoque.model.Cliente;
 import barestoque.model.Compra;
 import barestoque.model.Fornecedor;
 import barestoque.model.Prato;
 import barestoque.model.Produto;
+import barestoque.model.Venda;
 import barestoque.view.Janela;
 import barestoque.view.telas.cardapio.CadastroCardapio;
 import barestoque.view.telas.cardapio.ListaCardapio;
@@ -360,7 +362,19 @@ public class ControladorCadastroLista implements ActionListener, KeyListener, Ch
             Cliente cliente = (Cliente) cVenda.getComboBoxCliente ().getSelectedItem ();
             Prato prato = (Prato) cVenda.getComboBoxPrato ().getSelectedItem ();
             
-            int quantidade = () cVenda.getSpinnerQuantidade ().getValue ();
+            int quantidade = (Integer) cVenda.getSpinnerQuantidade ().getValue ();
+            double valor = (Double) prato.getValor ();
+            
+            double preco = valor * quantidade;
+            
+            Venda v = new Venda ();
+            
+            v.setCliente (cliente);
+            v.setPrato (prato);
+            v.setQuantidade (quantidade);
+            v.calcularValor ();
+            
+            VendaDAO vdao = new VendaDAO ();
             
             cVenda.limparDados ();
         }

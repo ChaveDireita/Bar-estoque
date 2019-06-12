@@ -9,12 +9,12 @@ public class Venda extends EntidadeBanco implements Valoravel, Quantificavel
     private double valor;
     private int quantidade;
 
-    public Venda (int codigo, Cliente cliente, Prato prato, double valor, int quantidade)
+    public Venda (int codigo, Cliente cliente, Prato prato, int quantidade)
     {
         super (codigo);
         this.cliente = cliente;
         this.prato = prato;
-        setValor (valor);
+        calcularValor ();
         setQuantidade (quantidade);
     }
 
@@ -38,10 +38,8 @@ public class Venda extends EntidadeBanco implements Valoravel, Quantificavel
         return valor;
     }
     
-    public void setValor(double valor) throws IllegalArgumentException{
-        if (!validarValor (valor))
-            throw new IllegalArgumentException ();
-        this.valor = valor;
+    public void calcularValor() throws IllegalArgumentException{
+        this.valor = prato.getValor ()*quantidade;
     }
 
     public Cliente getCliente ()

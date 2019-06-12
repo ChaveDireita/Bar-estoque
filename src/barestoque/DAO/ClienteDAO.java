@@ -26,6 +26,14 @@ public class ClienteDAO extends ClasseDAO <Cliente>{
         
     }
     
+    public Cliente getClienteDeCodigo (int codigo)
+    {
+        ArrayList <Cliente> carray = selectFromWhere("codigo = " + codigo);
+        if (carray.isEmpty())
+            return null;
+        return carray.get(0);
+    }
+    
     public ArrayList <Cliente> listaDeClientes ()
     {
         return selectAllFrom();

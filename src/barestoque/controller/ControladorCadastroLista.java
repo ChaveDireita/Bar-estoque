@@ -357,7 +357,12 @@ public class ControladorCadastroLista implements ActionListener, KeyListener, Ch
             cVenda.limparDados ();
         } else if (src == cVenda.getBotaoAdd ())
         {
+            Cliente cliente = (Cliente) cVenda.getComboBoxCliente ().getSelectedItem ();
+            Prato prato = (Prato) cVenda.getComboBoxPrato ().getSelectedItem ();
             
+            int quantidade = () cVenda.getSpinnerQuantidade ().getValue ();
+            
+            cVenda.limparDados ();
         }
         
     }

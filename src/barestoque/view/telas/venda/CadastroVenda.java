@@ -5,6 +5,9 @@
  */
 package barestoque.view.telas.venda;
 
+import barestoque.controller.ControladorCadastroLista;
+import barestoque.model.Cliente;
+import barestoque.model.Prato;
 import barestoque.view.InicializadorLookAndFeel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,7 +19,11 @@ import javax.swing.JLabel;
  */
 public class CadastroVenda extends javax.swing.JPanel
 {
-
+    
+    private int quantidade;
+    private Prato[] listaPrato;
+    private Cliente[] listaCliente;
+    
     /**
      * Creates new form CadastroVenda
      */
@@ -24,6 +31,12 @@ public class CadastroVenda extends javax.swing.JPanel
     {
         initComponents ();
         setBackground(InicializadorLookAndFeel.COR_FOREGROUND);
+        
+        botaoAdd.addActionListener (new ControladorCadastroLista (this));
+        botaoAddPrato.addActionListener (new ControladorCadastroLista (this));
+        botaoLimpar.addActionListener (new ControladorCadastroLista (this));
+        botaoRemovePrato.addActionListener (new ControladorCadastroLista (this));
+        
     }
 
     /**
@@ -33,7 +46,8 @@ public class CadastroVenda extends javax.swing.JPanel
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel1 = new javax.swing.JLabel();
         comboBoxCliente = new javax.swing.JComboBox<>();
@@ -42,7 +56,7 @@ public class CadastroVenda extends javax.swing.JPanel
         jLabel3 = new javax.swing.JLabel();
         comboBoxPrato = new javax.swing.JComboBox<>();
         botaoAddPrato = new javax.swing.JButton();
-        botamRemovePrato = new javax.swing.JButton();
+        botaoRemovePrato = new javax.swing.JButton();
         botaoLimpar = new barestoque.view.componentes.JNegativeButton();
         botaoAdd = new barestoque.view.componentes.JPositiveButton();
 
@@ -56,15 +70,15 @@ public class CadastroVenda extends javax.swing.JPanel
 
         labelPreco.setText("0");
 
-        jLabel3.setText("Pratos:");
+        jLabel3.setText("Prato:");
 
         comboBoxPrato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         botaoAddPrato.setText("+");
         botaoAddPrato.setPreferredSize(new java.awt.Dimension(40, 25));
 
-        botamRemovePrato.setText("-");
-        botamRemovePrato.setPreferredSize(new java.awt.Dimension(40, 25));
+        botaoRemovePrato.setText("-");
+        botaoRemovePrato.setPreferredSize(new java.awt.Dimension(40, 25));
 
         botaoLimpar.setText("X");
         botaoLimpar.setPreferredSize(new java.awt.Dimension(40, 40));
@@ -93,7 +107,7 @@ public class CadastroVenda extends javax.swing.JPanel
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botaoAddPrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botamRemovePrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(botaoRemovePrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(botaoAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -111,7 +125,7 @@ public class CadastroVenda extends javax.swing.JPanel
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboBoxPrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(botamRemovePrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoRemovePrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoAddPrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -125,7 +139,7 @@ public class CadastroVenda extends javax.swing.JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     public JButton getBotamRemovePrato() {
-        return botamRemovePrato;
+        return botaoRemovePrato;
     }
 
     public JButton getBotaoAdd() {
@@ -154,10 +168,10 @@ public class CadastroVenda extends javax.swing.JPanel
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botamRemovePrato;
     private javax.swing.JButton botaoAdd;
     private javax.swing.JButton botaoAddPrato;
     private javax.swing.JButton botaoLimpar;
+    private javax.swing.JButton botaoRemovePrato;
     private javax.swing.JComboBox<String> comboBoxCliente;
     private javax.swing.JComboBox<String> comboBoxPrato;
     private javax.swing.JLabel jLabel1;

@@ -22,12 +22,11 @@ import barestoque.view.telas.fornecedor.CadastroFornecedor;
 import barestoque.view.telas.fornecedor.ListaFornecedor;
 import barestoque.view.telas.produto.CadastroProduto;
 import barestoque.view.telas.produto.ListaProduto;
+import barestoque.view.telas.venda.CadastroVenda;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import java.util.Map;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -337,6 +336,14 @@ public class ControladorCadastroLista implements ActionListener, KeyListener, Ch
             lCardapio.getEditorPaneFormula ().setText (p.info ());
         }
             
+    }
+    //</editor-fold>
+    
+    
+    //<editor-fold desc="Venda">
+    private void eventoCadastroVenda (CadastroVenda cVenda, ActionEvent e)
+    {
+        
     }
     //</editor-fold>
     

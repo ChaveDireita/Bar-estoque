@@ -7,6 +7,7 @@ public class Venda extends EntidadeBanco implements Valoravel
     private Cliente cliente;
     private Prato prato;
     private double valor;
+    private int quantidade;
     
     public Venda(int codigo, Prato prato) 
     {

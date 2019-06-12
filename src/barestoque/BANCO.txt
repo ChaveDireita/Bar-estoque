@@ -61,14 +61,11 @@ CREATE TABLE prato_ingrediente
 
 CREATE TABLE venda
 (
-	codigo INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    valor DOUBLE
-);
-
-CREATE TABLE venda_prato
-(
-	codigo_venda INT NOT NULL,
+    codigo INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     codigo_prato INT NOT NULL,
-    quantidade INT NOT NULL,
-    PRIMARY KEY (codigo_prato, codigo_venda)
+    codigo_cliente INT NOT NULL,
+    quantidade INT,
+    valor DOUBLE,
+    FOREIGN KEY (codigo_prato) REFERENCES prato (codigo),
+    FOREIGN KEY (codigo_cliente) REFERENCES cliente (codigo)
 );

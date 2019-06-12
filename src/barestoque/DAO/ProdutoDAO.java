@@ -25,8 +25,9 @@ public class ProdutoDAO extends ClasseDAO <Produto>{
         updateSet(new String[] {"quantidade"}, new Object[] {"quantidade - " + valor}, "codigo = " + codigo);
     }
     
-    public void inserirProduto(Produto produto){
-        insertInto (produto);
+    public void inserirProduto(Produto p){
+        p.setCategoria(new CategoriaDAO().getCategoriaDeNome(p.getCategoria().getNome()));
+        insertInto(p);
     }
     
     public void inserir (Produto p)

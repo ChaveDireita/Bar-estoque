@@ -14,9 +14,11 @@ import java.util.ArrayList;
  * todos comunmente usados por elas, essa classe diminuirá o código repetido em
  * suas subclasses para apenas algumas dezenas de linhas.
  * 
- * @author Nolasco
+ * @author Filipe Nolasco (ChaveDireita)
+ * 
+ * @param <T> é a entidade a ser trabalhada pela classe.
  */
-public abstract class ClasseDAO <T>
+public abstract class ClasseDAO <T extends EntidadeBanco>
 {
     protected FabricaConexao fabrica;
     protected String tabela;
